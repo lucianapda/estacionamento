@@ -1,0 +1,6 @@
+INDEX VERSION 1.4+E:\Furb\Programação III\servicoja-master-718b41ada0fd22d5be5de2d65dc9774eb38f8b1a\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+761201951.index
+3140705915.index
+3894595114.index
+4286809242.index
+1399898021.index

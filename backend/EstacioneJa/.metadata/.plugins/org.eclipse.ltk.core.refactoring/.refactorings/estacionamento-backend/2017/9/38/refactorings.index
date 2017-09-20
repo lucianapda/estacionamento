@@ -1,0 +1,74 @@
+1505783426794	Rename package 'br.com.servicoja.commons'
+1505783431896	Rename package 'br.com.servicoja.controller'
+1505783440558	Rename package 'br.com.servicoja.main'
+1505783445181	Rename package 'br.com.servicoja.model'
+1505783597434	Rename resource 'V1__Create_TabelaExemplo.sql'
+1505784908321	Copy compilation units
+1505784926330	Rename type 'ExemploRepository2'
+1505784933097	Delete element
+1505784936779	Delete element
+1505784938908	Delete element
+1505784945389	Rename type 'ExemploRepositoryCustom2'
+1505784954800	Rename type 'ExemploRepositoryImpl2'
+1505785028251	Copy compilation units
+1505785053649	Copy compilation units
+1505785076777	Copy compilation units
+1505785096136	Copy compilation units
+1505785122921	Copy compilation units
+1505785140679	Copy compilation units
+1505785156053	Copy compilation units
+1505785177330	Copy compilation units
+1505785200289	Copy compilation units
+1505785218003	Copy compilation units
+1505785237311	Copy compilation units
+1505785261851	Copy compilation units
+1505785280138	Copy compilation units
+1505785299336	Copy compilation units
+1505785311728	Copy compilation units
+1505785341804	Copy compilation units
+1505785363969	Copy compilation units
+1505785380439	Copy compilation units
+1505785394717	Copy compilation units
+1505785413543	Copy compilation units
+1505785435516	Copy compilation units
+1505785456743	Copy compilation units
+1505785464683	Rename type 'VagaValorTipoRepository'
+1505785481004	Copy compilation units
+1505785493882	Copy compilation units
+1505785509882	Copy compilation units
+1505785817334	Delete element
+1505785978119	Copy compilation units
+1505785999129	Copy compilation units
+1505787236148	Rename type 'ExemploController'
+1505787263181	Rename field 'exemploRepository'
+1505792203673	Copy package
+1505792208247	Delete element
+1505792675131	Rename type 'EstacionamentoImagem'
+1505792695914	Rename type 'EstacionamentoImagemRepository'
+1505792701848	Rename type 'estacionamento_img'
+1505792710082	Rename type 'EstacionamentoImagemRepositoryImpl'
+1505792715094	Rename type 'EstacionamentoImagemRepositoryCustom'
+1505793260667	Delete elements
+1505793327714	Rename field 'codigoVag'
+1505793331689	Rename field 'cobertVag'
+1505793334917	Rename field 'valdiaVag'
+1505793342956	Rename field 'valmesVah'
+1505793353126	Rename field 'estacionamento'
+1505793358324	Rename field 'vagaStatus'
+1505793363372	Rename field 'vagaTipo'
+1505794747417	Delete element
+1505834107223	Rename field 'codigo'
+1505834705203	Copy compilation unit
+1505836225130	Delete element
+1505837176716	Rename type 'VagaValor'
+1505837220517	Copy compilation units
+1505857822756	Rename type 'Vaga'
+1505857878245	Rename compilation unit 'Vaga_valor.java'
+1505857905033	Delete element
+1505859158363	Rename type 'Vaga_valorRepository'
+1505859164771	Rename type 'Vaga_valorRepositoryCustom'
+1505859170532	Rename type 'Vaga_valorRepositoryImpl'
+1505922696844	Delete element
+1505945947664	Rename local variable 'estacionamentoAux'
+1505946044914	Copy compilation unit
+1505946072472	Rename field 'estacionamentoRepository'

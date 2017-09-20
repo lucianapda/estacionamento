@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="br.com.estacionamento.model.Localidade"/>
+<fullyQualifiedTypeName name="model.Localidade"/>
+<fullyQualifiedTypeName name="br.com.estacionamento.controller.UsuarioController"/>
+<fullyQualifiedTypeName name="br.com.estacionamento.model.UsuarioRepository"/>
+<fullyQualifiedTypeName name="java.lang.Long"/>
+<fullyQualifiedTypeName name="br.com.estacionamento.model.QUsuario"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="br.com.estacionamento.model.Usuario"/>
+<fullyQualifiedTypeName name="java.awt.List"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="com.sun.mail.util.QEncoderStream"/>
+<fullyQualifiedTypeName name="br.com.estacionamento.model.EstacionamentoControle"/>
+<fullyQualifiedTypeName name="br.com.estacionamento.model.BairroRepository"/>
+<fullyQualifiedTypeName name="br.com.estacionamento.model.Bairro"/>
+</qualifiedTypeNameHistroy>
