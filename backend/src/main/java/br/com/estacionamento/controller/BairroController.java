@@ -23,7 +23,7 @@ public class BairroController {
 	private BairroRepository bairroRepository;
 	
 	@RequestMapping(path = "/bairro", method = RequestMethod.GET)
-	public ResponseEntity<List<Bairro>> getUsuarioNome(@RequestParam(name = "nome", required = false) String nome,
+	public ResponseEntity<List<Bairro>> get(@RequestParam(name = "nome", required = false) String nome,
 			@RequestParam(name = "codigo", required = false) Long codigo) {
 		List<Bairro> listaRetorno = new ArrayList<>();
 
@@ -43,7 +43,7 @@ public class BairroController {
 	}
 
 	@RequestMapping(path = "/bairro", method = RequestMethod.POST)
-	public ResponseEntity<Bairro> saveEstacionamento(@RequestBody Bairro bairro) {
+	public ResponseEntity<Bairro> save(@RequestBody Bairro bairro) {
 
 		if (bairro != null) {
 			try {
@@ -56,7 +56,7 @@ public class BairroController {
 	}
 
 	@RequestMapping(path = "/bairro", method = RequestMethod.DELETE)
-	public ResponseEntity<String> deleteEstacionamento(@RequestParam(name = "codigo", required=true) Long codigo) {
+	public ResponseEntity<String> delete(@RequestParam(name = "codigo", required=true) Long codigo) {
 		
 		if (bairroRepository.exists(codigo)) {
 			bairroRepository.delete(codigo);
@@ -67,7 +67,7 @@ public class BairroController {
 	}
 	
 	@RequestMapping(path = "/bairro", method = RequestMethod.PUT)
-	public ResponseEntity<Bairro> updateUsuario(@RequestBody Bairro bairro) {
+	public ResponseEntity<Bairro> update(@RequestBody Bairro bairro) {
 
 		if (bairro != null) {
 			if (!bairroRepository.exists(bairro.getCodigo())) {

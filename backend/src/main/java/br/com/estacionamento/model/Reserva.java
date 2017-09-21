@@ -12,7 +12,7 @@ import javax.persistence.*;
 @NamedQuery(name="Reserva.findAll", query="SELECT r FROM Reserva r")
 public class Reserva implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private int codigo;
+	private Long codigo;
 	private int tempo;
 	private Usuario usuario;
 	private Vaga vaga;
@@ -23,11 +23,11 @@ public class Reserva implements Serializable {
 
 	@Id
 	@Column(name="codigo_res")
-	public int getCodigo() {
+	public Long getCodigo() {
 		return this.codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 

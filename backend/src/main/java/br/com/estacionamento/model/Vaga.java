@@ -12,7 +12,7 @@ import java.util.List;
 @NamedQuery(name = "Vaga.findAll", query = "SELECT v FROM Vaga v")
 public class Vaga implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private int codigo_vag;
+	private Long codigo_vag;
 	private boolean cobert_vag;
 	private List<EstacionamentoControle> estacionamentoControles;
 	private List<Reserva> reservas;
@@ -27,11 +27,11 @@ public class Vaga implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "codigo_vag")
-	public int getCodigo() {
+	public Long getCodigo() {
 		return this.codigo_vag;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo_vag = codigo;
 	}
 

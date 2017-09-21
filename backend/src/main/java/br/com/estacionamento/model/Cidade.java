@@ -13,7 +13,7 @@ import java.util.List;
 @NamedQuery(name="Cidade.findAll", query="SELECT c FROM Cidade c")
 public class Cidade implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private int codigo;
+	private Long codigo;
 	private String descricao;
 	private String uf;
 	private Pais pais;
@@ -25,11 +25,11 @@ public class Cidade implements Serializable {
 
 	@Id
 	@Column(name="codigo_cid")
-	public int getCodigo() {
+	public Long getCodigo() {
 		return this.codigo;
 	}
 
-	public void setCodigo(int codigoCid) {
+	public void setCodigo(Long codigoCid) {
 		this.codigo = codigoCid;
 	}
 

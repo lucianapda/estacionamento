@@ -8,9 +8,6 @@ import br.com.estacionamento.commons.RepositoryBaseImpl;
 
 public class EstacionamentoRepositoryImpl extends RepositoryBaseImpl implements EstacionamentoRepositoryCustom {
 
-	/**
-	 * Este método retorna todos os registros da tabela Exemplo que contém a descrição informada no parâmetro
-	 */
 	@Override
 	public List<Estacionamento> obtemPeloNome(String nome) {
 		QEstacionamento estacionamentoAux = QEstacionamento.estacionamento;

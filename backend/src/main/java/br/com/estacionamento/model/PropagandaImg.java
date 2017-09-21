@@ -13,7 +13,7 @@ import javax.persistence.*;
 @NamedQuery(name="PropagandaImg.findAll", query="SELECT p FROM PropagandaImg p")
 public class PropagandaImg implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private int codigo;
+	private Long codigo;
 	private byte[] imagem;
 	private Propaganda propaganda;
 
@@ -23,11 +23,11 @@ public class PropagandaImg implements Serializable {
 
 	@Id
 	@Column(name="codigo_proi")
-	public int getCodigo() {
+	public Long getCodigo() {
 		return this.codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 

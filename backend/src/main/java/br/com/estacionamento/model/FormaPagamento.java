@@ -14,7 +14,7 @@ import java.util.List;
 @NamedQuery(name="FormaPagamento.findAll", query="SELECT f FROM FormaPagamento f")
 public class FormaPagamento implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private int codigo;
+	private Long codigo;
 	private String descricao;
 	private List<Transacao> transacao;
 
@@ -24,11 +24,11 @@ public class FormaPagamento implements Serializable {
 
 	@Id
 	@Column(name="codigo_fpg")
-	public int getCodigo() {
+	public Long getCodigo() {
 		return this.codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 

@@ -13,7 +13,7 @@ import java.util.Date;
 @NamedQuery(name = "EstacionamentoControle.findAll", query = "SELECT e FROM EstacionamentoControle e")
 public class EstacionamentoControle implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private int codigo_esc;
+	private Long codigo_esc;
 	private Date dhfim_esc;
 	private Date dhini_esc;
 	private boolean diaria_esc;
@@ -27,11 +27,11 @@ public class EstacionamentoControle implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "codigo_esc")
-	public int getCodigo() {
+	public Long getCodigo() {
 		return this.codigo_esc;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo_esc = codigo;
 	}
 

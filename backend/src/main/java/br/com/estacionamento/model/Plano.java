@@ -15,7 +15,7 @@ import java.util.List;
 @NamedQuery(name="Plano.findAll", query="SELECT p FROM Plano p")
 public class Plano implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private int codigo;
+	private Long codigo;
 	private String descricao;
 	private String nome;
 	private BigDecimal valor;
@@ -27,11 +27,11 @@ public class Plano implements Serializable {
 
 	@Id
 	@Column(name="codigp_pla")
-	public int getCodigo() {
+	public Long getCodigo() {
 		return this.codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 

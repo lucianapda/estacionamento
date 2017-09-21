@@ -14,7 +14,7 @@ import java.util.List;
 @NamedQuery(name="Pais.findAll", query="SELECT p FROM Pais p")
 public class Pais implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private int codigo;
+	private Long codigo;
 	private String descricao;
 	private String sigla;
 	private List<Cidade> cidade;
@@ -25,11 +25,11 @@ public class Pais implements Serializable {
 
 	@Id
 	@Column(name="codigo_pai")
-	public int getCodigo() {
+	public Long getCodigo() {
 		return this.codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 

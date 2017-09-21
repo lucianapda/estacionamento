@@ -13,7 +13,7 @@ import javax.persistence.*;
 @NamedQuery(name="UsuarioImg.findAll", query="SELECT u FROM UsuarioImg u")
 public class UsuarioImg implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private int codigo;
+	private Long codigo;
 	private byte[] imagem;
 	private Usuario usuario;
 
@@ -23,11 +23,11 @@ public class UsuarioImg implements Serializable {
 
 	@Id
 	@Column(name="codigo_uimg")
-	public int getCodigo() {
+	public Long getCodigo() {
 		return this.codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 

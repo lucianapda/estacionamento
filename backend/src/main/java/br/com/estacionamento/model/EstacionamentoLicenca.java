@@ -13,7 +13,7 @@ import javax.persistence.*;
 @NamedQuery(name="EstacionamentoLicenca.findAll", query="SELECT e FROM EstacionamentoLicenca e")
 public class EstacionamentoLicenca implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private int codigo;
+	private Long codigo;
 	private UsuarioTipo tipoUsuario;
 	private Estacionamento estacionamento;
 	private Usuario usuario;
@@ -24,11 +24,11 @@ public class EstacionamentoLicenca implements Serializable {
 
 	@Id
 	@Column(name="codigo_eli")
-	public int getCodigo() {
+	public Long getCodigo() {
 		return this.codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 

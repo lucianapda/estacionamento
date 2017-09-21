@@ -23,7 +23,7 @@ public class UsuarioController {
 	private UsuarioRepository usuarioRepository;
 
 	@RequestMapping(path = "/usuario", method = RequestMethod.GET)
-	public ResponseEntity<List<Usuario>> getUsuarioNome(@RequestParam(name = "nome", required = false) String nome,
+	public ResponseEntity<List<Usuario>> get(@RequestParam(name = "nome", required = false) String nome,
 			@RequestParam(name = "codigo", required = false) Long codigo) {
 		List<Usuario> listaRetorno = new ArrayList<>();
 
@@ -43,7 +43,7 @@ public class UsuarioController {
 	}
 
 	@RequestMapping(path = "/usuario", method = RequestMethod.POST)
-	public ResponseEntity<Usuario> saveUsuario(@RequestBody Usuario usuario) {
+	public ResponseEntity<Usuario> save(@RequestBody Usuario usuario) {
 
 		if (usuario != null) {
 			try {
@@ -56,7 +56,7 @@ public class UsuarioController {
 	}
 
 	@RequestMapping(path = "/usuario", method = RequestMethod.DELETE)
-	public ResponseEntity<String> deleteUsuario(@RequestParam(name = "codigo", required = true) Long codigo) {
+	public ResponseEntity<String> delete(@RequestParam(name = "codigo", required = true) Long codigo) {
 
 		if (usuarioRepository.exists(codigo)) {
 			usuarioRepository.delete(codigo);
@@ -67,7 +67,7 @@ public class UsuarioController {
 	}
 
 	@RequestMapping(path = "/usuario", method = RequestMethod.PUT)
-	public ResponseEntity<Usuario> updateUsuario(@RequestBody Usuario usuario) {
+	public ResponseEntity<Usuario> update(@RequestBody Usuario usuario) {
 
 		if (usuario != null) {
 			if (!usuarioRepository.exists(usuario.getCodigo())) {

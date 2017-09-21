@@ -14,7 +14,7 @@ import java.util.Date;
 @NamedQuery(name="Transacao.findAll", query="SELECT t FROM Transacao t")
 public class Transacao implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private int codigo;
+	private Long codigo;
 	private Date dataHora;
 	private String descricao;
 	private int codigoLigacao;
@@ -29,11 +29,11 @@ public class Transacao implements Serializable {
 
 	@Id
 	@Column(name="codigo_tra")
-	public int getCodigo() {
+	public Long getCodigo() {
 		return this.codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 

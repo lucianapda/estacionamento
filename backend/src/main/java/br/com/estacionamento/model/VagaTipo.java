@@ -14,7 +14,7 @@ import java.util.List;
 @NamedQuery(name="VagaTipo.findAll", query="SELECT v FROM VagaTipo v")
 public class VagaTipo implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private int codigo;
+	private Long codigo;
 	private String descricao;
 	private List<Vaga> vagas;
 
@@ -24,11 +24,11 @@ public class VagaTipo implements Serializable {
 
 	@Id
 	@Column(name="codigo_vat")
-	public int getCodigo() {
+	public Long getCodigo() {
 		return this.codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 

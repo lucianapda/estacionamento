@@ -15,7 +15,7 @@ import java.util.List;
 @NamedQuery(name="CartaoCredito.findAll", query="SELECT c FROM CartaoCredito c")
 public class CartaoCredito implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private int codigo;
+	private Long codigo;
 	private int codigoSeguranca;
 	private String cpfTitular;
 	private Date dataVencimento;
@@ -30,11 +30,11 @@ public class CartaoCredito implements Serializable {
 
 	@Id
 	@Column(name="codigo_ctc")
-	public int getCodigo() {
+	public Long getCodigo() {
 		return this.codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 

@@ -12,7 +12,7 @@ import java.util.List;
 @NamedQuery(name = "Propaganda.findAll", query = "SELECT p FROM Propaganda p")
 public class Propaganda implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private int codigo_pro;
+	private Long codigo_pro;
 	private String descri_pro;
 	private List<PropagandaEstacionamento> propagandaEstacionamento;
 	private List<PropagandaImg> imagemPropaganda;
@@ -23,11 +23,11 @@ public class Propaganda implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "codigo_pro")
-	public int getCodigo() {
+	public Long getCodigo() {
 		return this.codigo_pro;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo_pro = codigo;
 	}
 

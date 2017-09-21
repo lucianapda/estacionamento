@@ -11,7 +11,7 @@ import javax.persistence.*;
 @NamedQuery(name = "Estacionamento_img.findAll", query = "SELECT e FROM Estacionamento_img e")
 public class Estacionamento_img implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private int codigo_eimg;
+	private Long codigo_eimg;
 	private byte[] img_eimg;
 	private Estacionamento codest_eimg;
 
@@ -20,11 +20,11 @@ public class Estacionamento_img implements Serializable {
 
 	@Id
 	@Column(name = "codigo_eimg")
-	public int getCodigo() {
+	public Long getCodigo() {
 		return this.codigo_eimg;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo_eimg = codigo;
 	}
 

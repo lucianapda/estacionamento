@@ -23,7 +23,7 @@ public class EstacionamentoController {
 	private EstacionamentoRepository estacionamentoRepository;
 	
 	@RequestMapping(path = "/estacionamento", method = RequestMethod.GET)
-	public ResponseEntity<List<Estacionamento>> getUsuarioNome(@RequestParam(name = "nome", required = false) String nome,
+	public ResponseEntity<List<Estacionamento>> get(@RequestParam(name = "nome", required = false) String nome,
 			@RequestParam(name = "codigo", required = false) Long codigo) {
 		List<Estacionamento> listaRetorno = new ArrayList<>();
 
@@ -43,7 +43,7 @@ public class EstacionamentoController {
 	}
 
 	@RequestMapping(path = "/estacionamento", method = RequestMethod.POST)
-	public ResponseEntity<Estacionamento> saveEstacionamento(@RequestBody Estacionamento estacionamento) {
+	public ResponseEntity<Estacionamento> save(@RequestBody Estacionamento estacionamento) {
 
 		if (estacionamento != null) {
 			try {
@@ -56,7 +56,7 @@ public class EstacionamentoController {
 	}
 
 	@RequestMapping(path = "/estacionamento", method = RequestMethod.DELETE)
-	public ResponseEntity<String> deleteEstacionamento(@RequestParam(name = "codigo", required=true) Long codigo) {
+	public ResponseEntity<String> delete(@RequestParam(name = "codigo", required=true) Long codigo) {
 		
 		if (estacionamentoRepository.exists(codigo)) {
 			estacionamentoRepository.delete(codigo);
@@ -67,7 +67,7 @@ public class EstacionamentoController {
 	}
 	
 	@RequestMapping(path = "/estacionamento", method = RequestMethod.PUT)
-	public ResponseEntity<Estacionamento> updateUsuario(@RequestBody Estacionamento estacionamento) {
+	public ResponseEntity<Estacionamento> update(@RequestBody Estacionamento estacionamento) {
 
 		if (estacionamento != null) {
 			if (!estacionamentoRepository.exists(estacionamento.getCodigo())) {
