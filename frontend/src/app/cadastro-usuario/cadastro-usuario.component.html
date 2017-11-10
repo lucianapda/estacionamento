@@ -1,0 +1,116 @@
+<mat-card class="card-register-user"> 
+  <div class="title">
+    <h2>Cadastro de usuário</h2>
+  </div>
+
+  <div>
+    <mat-form-field class="input-name">   
+      <input matInput placeholder="Nome completo" > 
+    </mat-form-field>
+  </div>
+
+  <div class="input-date-birth">
+    <mat-form-field>   
+      <input matInput [matDatepicker]="picker" placeholder="Data de nascimento">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  
+    <mat-form-field>
+      <mat-select placeholder="Sexo">
+        <mat-option *ngFor="let sex of sex" [value]="sex.value">
+          {{ sex.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field class="input-cep">   
+      <input matInput placeholder="CEP" > 
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field class="input-street">   
+      <input matInput placeholder="Rua" > 
+    </mat-form-field>
+  
+    <mat-form-field class="input-number">   
+      <input matInput placeholder="Nº" > 
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field class="select-estado">
+      <mat-select placeholder="Estado">
+        <mat-option *ngFor="let state of state" [value]="state.value">
+          {{ state.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="input-uf">   
+      <input matInput type="text" maxlength="2" placeholder="UF" > 
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field class="select-bairro">
+      <mat-select placeholder="Bairro">
+        <mat-option *ngFor="let bairro of bairro" [value]="bairro.value">
+          {{ bairro.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field class="select-cidade">
+      <mat-select placeholder="Cidade">
+        <mat-option *ngFor="let city of city" [value]="city.value">
+          {{ city.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field class="input-phone">   
+      <input matInput placeholder="Telefone" ng-model="number" ui-number-mask="3"> 
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field class="input-email">   
+      <input matInput placeholder="E-mail" [formControl]="email" required>
+      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field class="input-confEmail">   
+      <input matInput placeholder="Confirmar email" [formControl]="confEmail" required>
+      <mat-error *ngIf="email.invalid">{{getErrorMessageConf()}}</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div>
+  <mat-form-field class="input-password">   
+      <input matInput maxlength="20" placeholder="Senha" [type]="hide ? 'password' : 'text'">
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon> 
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field class="input-confPassword">   
+      <input matInput maxlength="20" placeholder="Confirmar senha" [type]="hide2 ? 'password' : 'text'">
+      <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility' : 'visibility_off'}}</mat-icon> 
+    </mat-form-field>
+  </div>
+
+  <div class="button-save">
+    <mat-button-toggle>Salvar</mat-button-toggle>
+  </div>
+
+</mat-card>
