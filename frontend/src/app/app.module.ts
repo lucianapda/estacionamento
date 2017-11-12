@@ -1,3 +1,4 @@
+import 'hammerjs';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -39,12 +40,21 @@ import {
 import { AppComponent } from './app.component';
 import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
 import { CdkTableModule } from '@angular/cdk/table';
-import 'hammerjs';
+import { MainScreenComponent } from './main-screen/main-screen.component';
+import { ImageListComponent } from './main-screen/image-list/image-list.component';
+import { ImageComponent } from './main-screen/image-list/image.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CadastroUsuarioComponent
+    CadastroUsuarioComponent,
+    MainScreenComponent,
+    ImageListComponent,
+    ImageComponent,
+    HeaderComponent,
+    FooterComponent
   ],
 
   imports: [

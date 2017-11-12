@@ -29,7 +29,7 @@ export class CadastroUsuarioComponent implements OnInit {
 
   getErrorMessageConf() {
     return this.confEmail.hasError('required') ? 'O email deve ser preenchido' :
-      this.confEmail.hasError('email') ? 'Email é inválido' : '';
+      this.confEmail.hasError('confEmail') ? 'Email é inválido' : '';
   }
 
   sex = [

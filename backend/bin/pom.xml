@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.furb</groupId>
-	<artifactId>servicoja-backend</artifactId>
+	<artifactId>estacionamento-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
@@ -20,9 +20,9 @@
 			<version>5.2.10.Final</version>
 		</dependency>
 		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>9.3-1102-jdbc41</version>
+			<groupId>mysql</groupId>
+   			<artifactId>mysql-connector-java</artifactId>
+    		<version>5.1.6</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.code.gson</groupId>

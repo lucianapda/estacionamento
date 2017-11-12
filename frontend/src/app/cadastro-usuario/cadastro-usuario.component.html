@@ -91,7 +91,7 @@
   <div>
     <mat-form-field class="input-confEmail">   
       <input matInput placeholder="Confirmar email" [formControl]="confEmail" required>
-      <mat-error *ngIf="email.invalid">{{getErrorMessageConf()}}</mat-error>
+      <mat-error *ngIf="confEmail.invalid">{{getErrorMessageConf()}}</mat-error>
     </mat-form-field>
   </div>
 
@@ -112,5 +112,5 @@
   <div class="button-save">
     <mat-button-toggle>Salvar</mat-button-toggle>
   </div>
-
+  
 </mat-card>

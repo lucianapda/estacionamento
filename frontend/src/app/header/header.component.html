@@ -1,0 +1,29 @@
+<mat-toolbar color="primary">
+  <!-- cria o logo do site no lado esquerdo do cabeçalho-->
+  
+  <a href="" class="header-start">Estacione já</a>
+  
+  <!-- cria o menu de pesquisa no centro do cabeçalho-->
+  <span class="search-center"></span>
+  <input type="text" class="search-input">  
+  <button type="submit" mat-button class="search-button">
+    <mat-icon >search</mat-icon>
+  </button>
+
+  <!-- cria o menu opções lado direito do cabeçalho-->
+  <span class="menu-right"></span>
+  <button mat-button [matMenuTriggerFor]="appMenu">
+    <mat-icon >menu</mat-icon>Menu
+  </button>
+</mat-toolbar>
+
+<mat-menu #appMenu="matMenu">
+  <button mat-menu-item>
+    <!--<mat-icon>dialpad</mat-icon>-->
+    <span>MInha conta</span>
+  </button>
+  <button mat-menu-item>
+    <!--<mat-icon>voicemail</mat-icon>-->
+    <span>Sair</span>
+  </button>
+</mat-menu>
