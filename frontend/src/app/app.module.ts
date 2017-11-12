@@ -38,17 +38,25 @@ import {
 } from '@angular/material';
 import { AppComponent } from './app.component';
 import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
+import {LoginComponent} from './login/login.component';
+import {LoginDialogComponent} from './login-dialog/login-dialog.component';
+import {CadastroVagaComponent} from './cadastro-vaga/cadastro-vaga.component';
 import { CdkTableModule } from '@angular/cdk/table';
+import { CurrencyMaskModule } from "ng2-currency-mask";
 import 'hammerjs';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CadastroUsuarioComponent
+    CadastroUsuarioComponent,
+    LoginComponent,
+    CadastroVagaComponent,
+    LoginDialogComponent
   ],
 
   imports: [
     FormsModule,
+    CurrencyMaskModule,
     HttpModule,
     ReactiveFormsModule,
     BrowserModule,
@@ -85,6 +93,9 @@ import 'hammerjs';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule
+  ],
+  entryComponents: [
+    LoginDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

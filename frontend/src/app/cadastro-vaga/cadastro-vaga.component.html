@@ -1,0 +1,33 @@
+<mat-card class="card-register-vacancy"> 
+  <div class="title">
+    <h2>Cadastro de vagas</h2>
+  </div>
+ 	<hr class="linha"/>
+ 	<br>
+   
+   <div class="main"> 
+     <mat-form-field class="type-vacancy">
+      <mat-select placeholder="Tipo de vaga">
+       <mat-option [value]="1">{{'Carro hatch'}}</mat-option>
+       <mat-option [value]="1">{{'Carro sedan'}}</mat-option>
+       <mat-option [value]="1">{{'Moto'}}</mat-option>
+       <mat-option [value]="1">{{'Caminh&atilde;o'}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+   
+    <mat-form-field class="input-value">   
+      <input matInput currencyMask [(ngModel)]="value" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" placeholder="Valor da vaga" [maxlength]="19"/>
+    </mat-form-field>
+  </div>
+  	<mat-checkbox class="value-covered">Coberta</mat-checkbox>
+  	
+	<br>
+	<br>
+  
+  <div class="buttons">
+    <mat-button-toggle>Salvar</mat-button-toggle>
+    <mat-button-toggle>cancelar</mat-button-toggle>
+  </div>
+
+</mat-card>
