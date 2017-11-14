@@ -16,7 +16,8 @@ export class ImageListComponent implements OnInit {
     new Image('5', 'Quinta Imagem', 'Descripcion primera imagen', 'https://videotutoriales.com/maspa/maspa5.jpg', 'https://videotutoriales.com/maspa/maspa5-1.jpg'),
     new Image('6', 'Sexta Imagem', 'Descripcion primera imagen', 'https://videotutoriales.com/maspa/maspa6.jpg', 'https://videotutoriales.com/maspa/maspa6-1.jpg'),
     new Image('7', 'Setima Imagem', 'Descripcion primera imagen', 'https://videotutoriales.com/maspa/maspa7.jpg', 'https://videotutoriales.com/maspa/maspa7-1.jpg'),
-    new Image('8', 'Oitava Imagem', 'Descripcion primera imagen', 'https://videotutoriales.com/maspa/maspa8.jpg', 'https://videotutoriales.com/maspa/maspa8-1.jpg')
+    new Image('8', 'Oitava Imagem', 'Descripcion primera imagen', 'https://videotutoriales.com/maspa/maspa8.jpg', 'https://videotutoriales.com/maspa/maspa8-1.jpg'),
+    new Image('8', 'Nona Imagem', 'Descripcion primera imagen', 'https://videotutoriales.com/maspa/maspa9.jpg', 'https://videotutoriales.com/maspa/maspa8-1.jpg')
   ]
   constructor() { }
 
