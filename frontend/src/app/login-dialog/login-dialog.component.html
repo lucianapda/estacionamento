@@ -1,0 +1,13 @@
+<div class="loginDialog">
+	<img src="assets/imagens/login.png" alt="Login" height="80" width="90">
+	  <mat-form-field class="input">
+	    <input matInput placeholder="Email" value="" type="text" #email>
+	  </mat-form-field>
+	  <mat-form-field class="input">
+	    <input matInput placeholder="Senha" value="" type="password" #senha>
+	  </mat-form-field>
+	  <br>
+	  <br>
+		<button mat-raised-button (click)='entrar(email.value, senha.value)'>Entrar</button>
+		<button mat-raised-button (click)='cancelar()'>Cancelar</button>
+ </div>	

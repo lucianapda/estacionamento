@@ -1,0 +1,4 @@
+.container {
+    float: left; /*Vai deixar uma foto ao lado da outra*/
+    margin: 0px 10px 10px 0px; /*Espaçamento entre uma imagem e outra*/
+}

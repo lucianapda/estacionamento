@@ -1,0 +1,36 @@
+.card-register-vacancy{
+  width: 45%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  margin-top: auto;
+}
+.title, .main{
+	text-align: center;
+}
+.linha{
+	height:2px; 
+	border:none; 
+	color:#000; 
+	margin-top: 0px; 
+	margin-bottom: 0px;
+	background-color:#000; 
+}
+.buttons{
+	text-align: right;
+}
+.input-value{
+	left: 30px;
+}
+.type-vacancy{
+	left: -20px;
+}
+.value-covered{
+	margin-left: 24px;
+}
+.mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: rgb(0, 0, 0) !important;
+}
+.mat-ripple-element {
+  background: rgba(0, 0, 0, .1) !important;
+}

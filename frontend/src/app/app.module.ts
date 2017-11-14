@@ -39,6 +39,9 @@ import {
 } from '@angular/material';
 import { AppComponent } from './app.component';
 import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
+import { LoginComponent } from './login/login.component';
+import { LoginDialogComponent } from './login-dialog/login-dialog.component';
+import { CadastroVagaComponent } from './cadastro-vaga/cadastro-vaga.component';
 import { CdkTableModule } from '@angular/cdk/table';
 import { MainScreenComponent } from './main-screen/main-screen.component';
 import { ImageListComponent } from './main-screen/image-list/image-list.component';
@@ -54,7 +57,10 @@ import { FooterComponent } from './footer/footer.component';
     ImageListComponent,
     ImageComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    LoginDialogComponent,
+    LoginComponent,
+    CadastroVagaComponent
   ],
 
   imports: [
@@ -95,6 +101,9 @@ import { FooterComponent } from './footer/footer.component';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule
+  ],
+  entryComponents: [
+    LoginDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
