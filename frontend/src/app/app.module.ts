@@ -48,6 +48,10 @@ import { ImageListComponent } from './main-screen/image-list/image-list.componen
 import { ImageComponent } from './main-screen/image-list/image.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { CurrencyMaskModule } from "ng2-currency-mask";
+import { InformationComponent } from './information/information.component';
+import { SlideListComponent } from './information/slide-list/slide-list.component';
+import { SlideComponent } from './information/slide-list/slide.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +64,10 @@ import { FooterComponent } from './footer/footer.component';
     FooterComponent,
     LoginDialogComponent,
     LoginComponent,
-    CadastroVagaComponent
+    CadastroVagaComponent,
+    InformationComponent,
+    SlideListComponent,
+    SlideComponent
   ],
 
   imports: [
@@ -100,7 +107,8 @@ import { FooterComponent } from './footer/footer.component';
     MatTableModule,
     MatTabsModule,
     MatToolbarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    CurrencyMaskModule
   ],
   entryComponents: [
     LoginDialogComponent
