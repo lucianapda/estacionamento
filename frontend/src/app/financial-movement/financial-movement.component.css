@@ -1,0 +1,32 @@
+.card {
+    width: 60%;
+}
+
+.input-name {
+    width: 48%;
+}
+
+.date-input {
+    width: 25%;
+}
+
+.date-exit {
+    width: 25%;
+}
+
+.select-attendant {
+    width: 33%;
+}
+
+.input-total {
+    width: 15%
+}
+
+.input-board {
+    width: 19%;
+}
+
+.button {
+    text-align: right;
+
+}

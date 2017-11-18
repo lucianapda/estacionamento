@@ -1,0 +1,64 @@
+<mat-card class="card">
+	<h3 class="text-center">Movimento financeiro</h3>
+	<hr/>
+		<form>
+    
+      <div>
+        <mat-form-field class="input-name">   
+          <input matInput placeholder="Nome completo" value="Nome estacionamento" disabled> 
+        </mat-form-field>
+        
+        <mat-form-field class="date-input">   
+          <input matInput [matDatepicker]="picker-input" placeholder="Data de entrada">
+          <mat-datepicker-toggle matSuffix [for]="picker-input"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        
+        <mat-form-field class="date-exit">   
+          <input matInput [matDatepicker]="picker-exit" placeholder="Data de entrada">
+          <mat-datepicker-toggle matSuffix [for]="picker-exit"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        
+      </div>
+
+      <div>
+        <mat-form-field class="select-attendant">
+          <mat-select placeholder="Atendente">
+            <mat-option *ngFor="let attendant of attendant" [value]="attendant.value">
+              {{ attendant.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="input-total">   
+          <input matInput placeholder="Total(R$)" disabled> 
+        </mat-form-field>
+      
+        <mat-form-field class="select-payment">
+          <mat-select placeholder="Forma de pagamento">
+            <mat-option *ngFor="let payment of payment" [value]="payment.value">
+              {{ payment .name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="input-board">   
+          <input matInput placeholder="Placa- veículo"> 
+        </mat-form-field>
+      </div>
+
+      <div>
+        <div class="button">
+          <mat-button-toggle>
+              <mat-icon>save</mat-icon>Salvar
+          </mat-button-toggle>
+          
+          <mat-button-toggle>
+              <mat-icon>cancel</mat-icon>Cancelar
+          </mat-button-toggle>
+        </div>
+      </div>
+
+	</form>
+</mat-card>

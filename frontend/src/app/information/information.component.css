@@ -6,6 +6,11 @@
     margin-top: auto;
 }
 
+.description-title {
+    text-align: center;
+    font: bold;
+}
+
 .description {
     text-align: center;
 }

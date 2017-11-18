@@ -7,6 +7,7 @@ import { Image } from '../../models/image';
   styleUrls: ['./image-list.component.css'],
   encapsulation: ViewEncapsulation.None
 })
+
 export class ImageListComponent implements OnInit {
   images: Image[] = [
     new Image('1', 'Primera Imagem', 'Descripcion primera imagen', 'https://videotutoriales.com/maspa/maspa1.jpg', 'https://videotutoriales.com/maspa/maspa1-1.jpg'),

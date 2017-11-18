@@ -52,6 +52,7 @@ import { CurrencyMaskModule } from "ng2-currency-mask";
 import { InformationComponent } from './information/information.component';
 import { SlideListComponent } from './information/slide-list/slide-list.component';
 import { SlideComponent } from './information/slide-list/slide.component';
+import { FinancialMovementComponent } from './financial-movement/financial-movement.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { SlideComponent } from './information/slide-list/slide.component';
     CadastroVagaComponent,
     InformationComponent,
     SlideListComponent,
-    SlideComponent
+    SlideComponent,
+    FinancialMovementComponent
   ],
 
   imports: [
