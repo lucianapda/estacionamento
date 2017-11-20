@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDropdownModule } from 'ngx-bootstrap';
+import { RouterModule, Routes } from '@angular/router';
 import {
     MatAutocompleteModule,
     MatButtonModule,
@@ -39,7 +41,7 @@ import {
 } from '@angular/material';
 import { AppComponent } from './app.component';
 import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
-import { LoginComponent } from './login/login.component';
+import { ServicoUsuarioService } from './cadastro-usuario/servico-usuario.service';
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 import { CadastroVagaComponent } from './cadastro-vaga/cadastro-vaga.component';
 import { CdkTableModule } from '@angular/cdk/table';
@@ -53,6 +55,14 @@ import { InformationComponent } from './information/information.component';
 import { SlideListComponent } from './information/slide-list/slide-list.component';
 import { SlideComponent } from './information/slide-list/slide.component';
 import { FinancialMovementComponent } from './financial-movement/financial-movement.component';
+import { ScreenHomeComponent } from './screen-home/screen-home.component';
+import { ServicoEstacionamentoService } from './information/servico-estacionamento.service';
+
+const appRoutes: Routes = [
+  { path: 'new_user', component: CadastroUsuarioComponent },
+   { path: 'parking', component: InformationComponent},
+   { path: '', component: ScreenHomeComponent}
+ ];
 
 @NgModule({
   declarations: [
@@ -64,15 +74,19 @@ import { FinancialMovementComponent } from './financial-movement/financial-movem
     HeaderComponent,
     FooterComponent,
     LoginDialogComponent,
-    LoginComponent,
     CadastroVagaComponent,
     InformationComponent,
     SlideListComponent,
     SlideComponent,
-    FinancialMovementComponent
+    FinancialMovementComponent,
+    ScreenHomeComponent
   ],
 
   imports: [
+     RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: true } 
+    ),
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
@@ -87,6 +101,7 @@ import { FinancialMovementComponent } from './financial-movement/financial-movem
     MatChipsModule,
     MatStepperModule,
     MatDatepickerModule,
+    BsDropdownModule.forRoot(),
     MatDialogModule,
     MatExpansionModule,
     MatGridListModule,
@@ -115,7 +130,7 @@ import { FinancialMovementComponent } from './financial-movement/financial-movem
   entryComponents: [
     LoginDialogComponent
   ],
-  providers: [],
+  providers: [ServicoUsuarioService, ServicoEstacionamentoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,3 +1,7 @@
+.container {
+	width: 100%;	
+}
+
 .menu-right {
     flex: 1 1 auto;
 }
@@ -5,23 +9,40 @@
 .search-center {
     flex: 1 auto;
 }
-
+.buttonPesquisa {
+	height: 50px;
+	width: 96%;
+}
 .search-input {
-    width: 40%;
-    height: 25px;
-    border-radius: 10px;
+    width: 85%;
+    height: 40px;
+    border-radius: 5px;
+    margin-top: 1%;
+    float: left;
 }
-
-.header-start {
-    color: white;
-    text-decoration: none;
-    font-size: 30px;
+.buttonsearch {
+    height: 40px;
+    width: 63px;
+    border-radius: 5px;
+    margin-top: 1%;
 }
-
-.btn-search {
-    height: 34px;
-}
-
 .btn-menu {
     height: 34px;
+    
+}
+.navbar-header {
+	float: left;
+}
+.navbarsearch {
+	width: 45%;
+	margin-left: 20%;
+	text-align: center;
+	float: left;
+}
+.navbar-brand {
+	font-size: 30px;
+}
+.menuUser {
+	float: right;
+	margin-top: 0.2%;
 }

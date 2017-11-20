@@ -4,7 +4,7 @@ import { Image } from '../../models/image';
 @Component({
   selector: 'app-slide-list',
   templateUrl: './slide-list.component.html',
-  styles: [],
+  styleUrls: ['./slide-list.component.css'],
   encapsulation: ViewEncapsulation.None
 })
 export class SlideListComponent implements OnInit {
