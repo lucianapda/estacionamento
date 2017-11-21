@@ -24,4 +24,16 @@ public class UsuarioRepositoryImpl extends RepositoryBaseImpl implements Usuario
 		return query.fetch();
 	}
 
+	@Override
+	public long login(String email, String senha) {
+		QUsuario usuarioAux = QUsuario.usuario;
+
+		// Cria a query
+		JPAQuery<Usuario> query = select(usuarioAux).from(usuarioAux);
+		query.where(usuarioAux.email.eq(email));
+		query.where(usuarioAux.senha.eq(senha));
+
+		return query.fetch().get(0).getCodigo();
+	}
+
 }

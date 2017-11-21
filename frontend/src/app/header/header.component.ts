@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {LoginDialogComponent} from '../login-dialog/login-dialog.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,9 +10,10 @@ import {LoginDialogComponent} from '../login-dialog/login-dialog.component';
   encapsulation: ViewEncapsulation.None
 })
 export class HeaderComponent implements OnInit {
-dialogResult = '';
-  
-  constructor(public dialog: MatDialog) {}
+  private isLogado: boolean = localStorage.getItem('codigoUsuLogado') != null;
+
+  constructor(public dialog: MatDialog, private router: Router) {
+  }
 
   ngOnInit() {
   }
@@ -20,9 +22,11 @@ dialogResult = '';
     let dialogRef = this.dialog.open(LoginDialogComponent, {
       width: '400px'
     });
+  }
 
-    dialogRef.afterClosed().subscribe(result => {
-      this.dialogResult = result;
-    });
+  logoff() {
+    localStorage.removeItem('codigoUsuLogado');
+    this.router.navigateByUrl('');
+    window.location.reload()
   }
 }

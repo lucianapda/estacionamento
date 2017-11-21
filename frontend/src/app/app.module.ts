@@ -7,6 +7,41 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {BsDropdownModule} from 'ngx-bootstrap';
 import {RouterModule, Routes} from '@angular/router';
 import {AlertModule} from 'ngx-bootstrap';
+import {AppComponent} from './app.component';
+import {CadastroUsuarioComponent} from './cadastro-usuario/cadastro-usuario.component';
+import {ServicoUsuarioService} from './cadastro-usuario/servico-usuario.service';
+import {BairroService} from './models/bairro.service';
+import {LoginDialogComponent} from './login-dialog/login-dialog.component';
+import {CadastroVagaComponent} from './cadastro-vaga/cadastro-vaga.component';
+import {CdkTableModule} from '@angular/cdk/table';
+import {MainScreenComponent} from './main-screen/main-screen.component';
+import {ImageListComponent} from './main-screen/image-list/image-list.component';
+import {ImageComponent} from './main-screen/image-list/image.component';
+import {HeaderComponent} from './header/header.component';
+import {FooterComponent} from './footer/footer.component';
+import {CurrencyMaskModule} from "ng2-currency-mask";
+import {InformationComponent} from './information/information.component';
+import {SlideListComponent} from './information/slide-list/slide-list.component';
+import {SlideComponent} from './information/slide-list/slide.component';
+import {FinancialMovementComponent} from './financial-movement/financial-movement.component';
+import {ScreenHomeComponent} from './screen-home/screen-home.component';
+import {ServicoEstacionamentoService} from './information/servico-estacionamento.service';
+import {CarouselModule} from 'ngx-bootstrap';
+import {CadastroEstacionamentoComponent} from './cadastro-estacionamento/cadastro-estacionamento.component'
+import {EstacionamentoService} from './cadastro-estacionamento/estacionamento.service';
+import { ServicoLoginService } from './login-dialog/servico-login.service';
+import {LoginGuard} from './login-guard/login.guard';
+import {CidadeService} from './models/cidade.service';
+import {LocalidadeService} from './models/localidade.service';
+import {NoLoginGuard} from './no-login/no-login.guard';
+
+const appRoutes: Routes = [
+  {path: 'new_user', component: CadastroUsuarioComponent, canActivate: [NoLoginGuard]},
+  {path: 'parking', component: InformationComponent},
+  {path: '', component: ScreenHomeComponent},
+  {path: 'new_parking', component: CadastroEstacionamentoComponent, canActivate: [LoginGuard]}
+];
+
 import {
   MatAutocompleteModule,
   MatButtonModule,
@@ -40,35 +75,6 @@ import {
   MatTooltipModule,
   MatStepperModule
 } from '@angular/material';
-import {AppComponent} from './app.component';
-import {CadastroUsuarioComponent} from './cadastro-usuario/cadastro-usuario.component';
-import {ServicoUsuarioService} from './cadastro-usuario/servico-usuario.service';
-import {BairroService} from './models/bairro.service';
-import {LoginDialogComponent} from './login-dialog/login-dialog.component';
-import {CadastroVagaComponent} from './cadastro-vaga/cadastro-vaga.component';
-import {CdkTableModule} from '@angular/cdk/table';
-import {MainScreenComponent} from './main-screen/main-screen.component';
-import {ImageListComponent} from './main-screen/image-list/image-list.component';
-import {ImageComponent} from './main-screen/image-list/image.component';
-import {HeaderComponent} from './header/header.component';
-import {FooterComponent} from './footer/footer.component';
-import {CurrencyMaskModule} from "ng2-currency-mask";
-import {InformationComponent} from './information/information.component';
-import {SlideListComponent} from './information/slide-list/slide-list.component';
-import {SlideComponent} from './information/slide-list/slide.component';
-import {FinancialMovementComponent} from './financial-movement/financial-movement.component';
-import {ScreenHomeComponent} from './screen-home/screen-home.component';
-import {ServicoEstacionamentoService} from './information/servico-estacionamento.service';
-import {CarouselModule} from 'ngx-bootstrap';
-import {CadastroEstacionamentoComponent} from './cadastro-estacionamento/cadastro-estacionamento.component'
-import {EstacionamentoService} from './cadastro-estacionamento/estacionamento.service';
-import {CidadeService} from './models/cidade.service';
-import { LocalidadeService } from './models/localidade.service';
-const appRoutes: Routes = [
-  {path: 'new_user', component: CadastroUsuarioComponent},
-  {path: 'parking', component: InformationComponent},
-  {path: '', component: ScreenHomeComponent}
-];
 
 @NgModule({
   declarations: [
@@ -145,7 +151,10 @@ const appRoutes: Routes = [
     BairroService,
     CidadeService,
     EstacionamentoService,
-    LocalidadeService
+    LocalidadeService,
+    LoginGuard,
+    NoLoginGuard,
+    ServicoLoginService
   ],
   bootstrap: [AppComponent]
 })

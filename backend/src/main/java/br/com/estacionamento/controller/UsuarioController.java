@@ -42,6 +42,14 @@ public class UsuarioController {
 		}
 		return new ResponseEntity<List<Usuario>>(listaRetorno, HttpStatus.NOT_FOUND);
 	}
+	
+	@CrossOrigin(origins = "*")
+	@RequestMapping(path = "/login", method = RequestMethod.GET)
+	public long get(@RequestParam(name = "email", required = true) String email,
+			@RequestParam(name = "senha", required = true) String senha) {
+
+		return usuarioRepository.login(email, senha);
+	}
 
 	@CrossOrigin(origins = "*")
 	@RequestMapping(path = "/usuario", method = RequestMethod.POST)
