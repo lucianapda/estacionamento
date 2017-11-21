@@ -53,6 +53,8 @@ import { InformationComponent } from './information/information.component';
 import { SlideListComponent } from './information/slide-list/slide-list.component';
 import { SlideComponent } from './information/slide-list/slide.component';
 import { FinancialMovementComponent } from './financial-movement/financial-movement.component';
+import { CadastroEstacionamentoComponent } from './cadastro-estacionamento/cadastro-estacionamento.component';
+import { UploadImageComponent } from './upload-image/upload-image.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +71,9 @@ import { FinancialMovementComponent } from './financial-movement/financial-movem
     InformationComponent,
     SlideListComponent,
     SlideComponent,
-    FinancialMovementComponent
+    FinancialMovementComponent,
+    CadastroEstacionamentoComponent,
+    UploadImageComponent
   ],
 
   imports: [
