@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +23,7 @@ public class EstacionamentoController {
 	@Inject
 	private EstacionamentoRepository estacionamentoRepository;
 	
+	@CrossOrigin(allowedHeaders="*", origins="*")
 	@RequestMapping(path = "/estacionamento", method = RequestMethod.GET)
 	public ResponseEntity<List<Estacionamento>> get(@RequestParam(name = "nome", required = false) String nome,
 			@RequestParam(name = "codigo", required = false) Long codigo) {

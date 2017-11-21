@@ -1,14 +1,14 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Image } from '../../models/image';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Image} from '../../models/image';
 
 @Component({
   selector: 'app-slide-list',
   templateUrl: './slide-list.component.html',
-  styles: [],
+  styleUrls: ['./slide-list.component.css'],
   encapsulation: ViewEncapsulation.None
 })
 export class SlideListComponent implements OnInit {
-  
+
   images: Image[] = [
     new Image('1', 'Primera Imagem', 'Descripcion primera imagen', 'https://videotutoriales.com/maspa/maspa1.jpg', 'https://videotutoriales.com/maspa/maspa1-1.jpg'),
     new Image('2', 'Segunda Imagem', 'Descripcion primera imagen', 'https://videotutoriales.com/maspa/maspa2.jpg', 'https://videotutoriales.com/maspa/maspa2-1.jpg'),
@@ -20,9 +20,11 @@ export class SlideListComponent implements OnInit {
     new Image('8', 'Oitava Imagem', 'Descripcion primera imagen', 'https://videotutoriales.com/maspa/maspa8.jpg', 'https://videotutoriales.com/maspa/maspa8-1.jpg')
   ]
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
+
 
 }

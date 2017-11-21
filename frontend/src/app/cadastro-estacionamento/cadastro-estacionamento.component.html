@@ -5,29 +5,29 @@
 
   <div>
     <mat-form-field class="input-razao">   
-      <input matInput placeholder="Razão social" > 
+      <input type="text" [(ngModel)]="estacionamento.nome_est" name="nome_est" matInput placeholder="Razão social">
     </mat-form-field>
   </div>
 
   <div>
     <mat-form-field class="input-cnpj">   
-      <input matInput placeholder="CNPJ" > 
+      <input type="text" [(ngModel)]="estacionamento.cnpj_est" name="cnpj_est" matInput placeholder="CNPJ">
     </mat-form-field>
   </div>
   
   <div>
     <mat-form-field class="input-cep">   
-      <input matInput placeholder="CEP" > 
+      <input type="text" [(ngModel)]="localidade.cep_loc" name="cep_loc" matInput placeholder="CEP">
     </mat-form-field>
   </div>
 
   <div>
     <mat-form-field class="input-street">   
-      <input matInput placeholder="Rua" > 
+      <input type="text" [(ngModel)]="localidade.endere_loc" name="endere_loc" matInput placeholder="Rua">
     </mat-form-field>
   
     <mat-form-field class="input-number">   
-      <input matInput placeholder="Nº" > 
+      <input type="text" [(ngModel)]="localidade.numero_loc" name="numero_loc" matInput placeholder="Nº">
     </mat-form-field>
   </div>
 
@@ -41,7 +41,7 @@
     </mat-form-field>
 
     <mat-form-field class="input-uf">   
-      <input matInput type="text" maxlength="2" placeholder="UF" > 
+      <input type="text" [(ngModel)]="localidade.numero_loc" name="numero_loc" matInput placeholder="UF">
     </mat-form-field>
   </div>
 
@@ -73,7 +73,7 @@
 
 
   <div class="button-save">
-    <mat-button-toggle>Salvar</mat-button-toggle>
+    <mat-button-toggle (click)="submit()">Salvar</mat-button-toggle>
   </div>
   
 </mat-card>

@@ -4,6 +4,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDropdownModule } from 'ngx-bootstrap';
+import { RouterModule, Routes } from '@angular/router';
+import { AlertModule } from 'ngx-bootstrap';
 import {
     MatAutocompleteModule,
     MatButtonModule,
@@ -39,7 +42,8 @@ import {
 } from '@angular/material';
 import { AppComponent } from './app.component';
 import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
-import { LoginComponent } from './login/login.component';
+import { ServicoUsuarioService } from './cadastro-usuario/servico-usuario.service';
+import { BairroService } from './models/bairro.service';
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 import { CadastroVagaComponent } from './cadastro-vaga/cadastro-vaga.component';
 import { CdkTableModule } from '@angular/cdk/table';
@@ -53,8 +57,16 @@ import { InformationComponent } from './information/information.component';
 import { SlideListComponent } from './information/slide-list/slide-list.component';
 import { SlideComponent } from './information/slide-list/slide.component';
 import { FinancialMovementComponent } from './financial-movement/financial-movement.component';
-import { CadastroEstacionamentoComponent } from './cadastro-estacionamento/cadastro-estacionamento.component';
-import { UploadImageComponent } from './upload-image/upload-image.component';
+import { ScreenHomeComponent } from './screen-home/screen-home.component';
+import { ServicoEstacionamentoService } from './information/servico-estacionamento.service';
+import { CarouselModule } from 'ngx-bootstrap';
+import { CadastroEstacionamentoComponent } from './cadastro-estacionamento/cadastro-estacionamento.component'
+import { EstacionamentoService } from './cadastro-estacionamento/estacionamento.service';
+const appRoutes: Routes = [
+  { path: 'new_user', component: CadastroUsuarioComponent },
+   { path: 'parking', component: InformationComponent},
+   { path: '', component: ScreenHomeComponent}
+ ];
 
 @NgModule({
   declarations: [
@@ -66,17 +78,22 @@ import { UploadImageComponent } from './upload-image/upload-image.component';
     HeaderComponent,
     FooterComponent,
     LoginDialogComponent,
-    LoginComponent,
     CadastroVagaComponent,
     InformationComponent,
     SlideListComponent,
     SlideComponent,
     FinancialMovementComponent,
-    CadastroEstacionamentoComponent,
-    UploadImageComponent
+    ScreenHomeComponent,
+    CadastroEstacionamentoComponent    
   ],
 
   imports: [
+     RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: true } 
+    ),
+    CarouselModule.forRoot(),
+    AlertModule.forRoot(),
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
@@ -91,6 +108,7 @@ import { UploadImageComponent } from './upload-image/upload-image.component';
     MatChipsModule,
     MatStepperModule,
     MatDatepickerModule,
+    BsDropdownModule.forRoot(),
     MatDialogModule,
     MatExpansionModule,
     MatGridListModule,
@@ -119,7 +137,12 @@ import { UploadImageComponent } from './upload-image/upload-image.component';
   entryComponents: [
     LoginDialogComponent
   ],
-  providers: [],
+  providers: [
+    ServicoUsuarioService, 
+    ServicoEstacionamentoService,
+    BairroService, 
+    EstacionamentoService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

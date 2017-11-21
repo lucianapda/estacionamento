@@ -2,6 +2,9 @@ package br.com.estacionamento.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;

@@ -1,4 +1,6 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {MatDialog} from '@angular/material';
+import {LoginDialogComponent} from '../login-dialog/login-dialog.component';
 
 @Component({
   selector: 'app-header',
@@ -7,10 +9,20 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
+dialogResult = '';
+  
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit() {
   }
 
+  chamaLogin() {
+    let dialogRef = this.dialog.open(LoginDialogComponent, {
+      width: '400px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.dialogResult = result;
+    });
+  }
 }

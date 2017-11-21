@@ -1,4 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { EstacionamentoService } from './estacionamento.service';
+import { Estacionamento } from '../models/estacionamento';
+import { Localidade } from '../models/localidade';
 
 @Component({
   selector: 'app-cadastro-estacionamento',
@@ -8,16 +11,23 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class CadastroEstacionamentoComponent implements OnInit {
 
-  constructor() { }
+  private estacionamento: Estacionamento = new Estacionamento();
+  private localidade: Localidade = new Localidade();
+
+  constructor(private service: EstacionamentoService) {
+    service.getAll().subscribe(estacionamento => console.log(estacionamento), error => console.log(error), () => console.log("Pegou toda lista"));
+  }
 
   ngOnInit() {
   }
 
-  sex = [
-    {value: '1', name: 'Masculino'},
-    {value: '2', name: 'Feminino'},
-    {value: '3', name: 'Ignorado'}
-  ];
+  submit() {
+    console.log(this.estacionamento);
+    this.service.createEstacionamento(this.estacionamento).subscribe(usuario => console.log(usuario),
+      error => console.log(error),
+      () => console.log("inseriu")
+    );
+  }
 
   state = [
     {value: '1', name: 'Curitiba'},
