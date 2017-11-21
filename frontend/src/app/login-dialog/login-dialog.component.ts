@@ -19,7 +19,6 @@ export class LoginDialogComponent implements OnInit {
   entrar(email, senha) {
     console.log(email, senha);
     this.loginService.loginUser(email, senha).subscribe(codigo => localStorage.setItem('codigoUsuLogado', codigo), error => console.log(error), () => console.log("tentou logar"));
-    this.router.navigateByUrl('');
     window.location.reload()
     this.cancelar();
   }

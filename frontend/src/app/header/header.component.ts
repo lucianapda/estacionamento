@@ -26,7 +26,6 @@ export class HeaderComponent implements OnInit {
 
   logoff() {
     localStorage.removeItem('codigoUsuLogado');
-    this.router.navigateByUrl('');
-    window.location.reload()
+    window.location.reload();
   }
 }
