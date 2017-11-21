@@ -3,8 +3,10 @@ import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/form
 import {ErrorStateMatcher} from '@angular/material/core';
 import {ServicoUsuarioService} from './servico-usuario.service';
 import {BairroService} from '../models/bairro.service';
+import {CidadeService} from '../models/cidade.service';
 import {Usuario} from '../models/usuario';
 import {Bairro} from '../models/bairro';
+import {Cidade} from '../models/cidade';
 
 @Component({
   selector: 'app-cadastro-usuario',
@@ -16,10 +18,14 @@ import {Bairro} from '../models/bairro';
 export class CadastroUsuarioComponent implements OnInit {
 
   private usuario: Usuario = new Usuario();
-  private bairros: Array<Bairro> = [];
+  private bairros: Bairro[] = [];
+  private cidades: Cidade[] = [{codigo: 75680, descricao: 'Blumenau'},
+  {codigo: 55298, descricao: 'Curitiba'},
+  {codigo: 71986, descricao: 'Porto Alegre'}];
 
-  constructor(private service: ServicoUsuarioService, private bairroServico: BairroService) {
-    bairroServico.getAll().subscribe(bairros => console.log(bairros), error => console.log(error), () => console.log("Pegou toda lista"));
+  constructor(private service: ServicoUsuarioService, private bairroServico: BairroService, private cidadeServico: CidadeService) {
+    //    cidadeServico.getAll().subscribe(cidades => this.cidades = cidades, error => console.log(error), () => console.log("Pegou toda lista"));
+//    bairroServico.getAll().subscribe(bairros => this.bairros = bairros, error => console.log(error), () => console.log("Pegou toda lista"));
   }
 
   ngOnInit() {
@@ -50,22 +56,14 @@ export class CadastroUsuarioComponent implements OnInit {
     );
   }
 
+  carregaBairro(codigoCidade) {
+    this.bairroServico.getBairrosCIdade(codigoCidade).subscribe(bairros => this.bairros = bairros, error => console.log(error), () => console.log("Pegou toda lista"));
+  }
+
   sex = [
     {value: '1', name: 'Masculino'},
     {value: '2', name: 'Feminino'},
     {value: '3', name: 'Ignorado'}
-  ];
-
-  state = [
-    {value: '1', name: 'Curitiba'},
-    {value: '2', name: 'Santa Catarina'},
-    {value: '3', name: 'Rio Grande do Sul'}
-  ];
-
-  city = [
-    {value: '1', name: 'Blumenal'},
-    {value: '2', name: 'Curitiba'},
-    {value: '3', name: 'Porto Alegre'}
   ];
 
 }

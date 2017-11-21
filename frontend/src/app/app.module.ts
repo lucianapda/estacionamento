@@ -44,6 +44,7 @@ import { AppComponent } from './app.component';
 import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
 import { ServicoUsuarioService } from './cadastro-usuario/servico-usuario.service';
 import {BairroService} from './models/bairro.service';
+import {CidadeService} from './models/cidade.service';
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 import { CadastroVagaComponent } from './cadastro-vaga/cadastro-vaga.component';
 import { CdkTableModule } from '@angular/cdk/table';
@@ -135,7 +136,7 @@ const appRoutes: Routes = [
   entryComponents: [
     LoginDialogComponent
   ],
-  providers: [ServicoUsuarioService, ServicoEstacionamentoService, BairroService],
+  providers: [ServicoUsuarioService, ServicoEstacionamentoService, BairroService, CidadeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

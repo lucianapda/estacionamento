@@ -2,6 +2,9 @@ package br.com.estacionamento.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.List;
 
 
@@ -56,6 +59,7 @@ public class Pais implements Serializable {
 
 	//bi-directional many-to-one association to Cidade
 	@OneToMany(mappedBy="pais")
+	 @JsonManagedReference
 	public List<Cidade> getCidade() {
 		return this.cidade;
 	}

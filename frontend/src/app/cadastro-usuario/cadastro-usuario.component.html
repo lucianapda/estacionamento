@@ -68,9 +68,9 @@
 
   <div>
     <mat-form-field class="select-cidade">
-      <mat-select placeholder="Cidade">
-        <mat-option *ngFor="let city of city" [value]="city.value">
-          {{ city.name }}
+      <mat-select placeholder="Cidade" (click)="carregaBairro(cidadeAux.codigo)">
+        <mat-option *ngFor="let cidadeAux of cidades" [value]="cidadeAux.codigo">
+          {{ cidadeAux.descricao }}
         </mat-option>
       </mat-select>
     </mat-form-field>

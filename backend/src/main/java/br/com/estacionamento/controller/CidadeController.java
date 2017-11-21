@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +23,7 @@ public class CidadeController {
 	@Inject
 	private CidadeRepository cidadeRepository;
 
+	@CrossOrigin(origins = "*")
 	@RequestMapping(path = "/cidade", method = RequestMethod.GET)
 	public ResponseEntity<List<Cidade>> get(@RequestParam(name = "nome", required = false) String nome,
 			@RequestParam(name = "codigo", required = false) Long codigo) {
@@ -30,9 +32,13 @@ public class CidadeController {
 		if (nome != null && !nome.isEmpty()) {
 			listaRetorno = cidadeRepository.obtemPeloNome(nome);
 		} else {
-			if (cidadeRepository.exists(codigo)) {
-				Cidade cidade = cidadeRepository.findOne(codigo);
-				listaRetorno.add(cidade);
+			if(codigo != null) {
+				if (cidadeRepository.exists(codigo)) {
+					Cidade cidade = cidadeRepository.findOne(codigo);
+					listaRetorno.add(cidade);
+				}
+			}else {
+				listaRetorno = cidadeRepository.obtemTodos();
 			}
 		}
 
