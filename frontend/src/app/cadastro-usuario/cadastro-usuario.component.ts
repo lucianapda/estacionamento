@@ -7,6 +7,8 @@ import {CidadeService} from '../models/cidade.service';
 import {Usuario} from '../models/usuario';
 import {Bairro} from '../models/bairro';
 import {Cidade} from '../models/cidade';
+import {Localidade} from '../models/localidade';
+import {LocalidadeService} from '../models/localidade.service';
 
 @Component({
   selector: 'app-cadastro-usuario',
@@ -23,9 +25,8 @@ export class CadastroUsuarioComponent implements OnInit {
   {codigo: 55298, descricao: 'Curitiba'},
   {codigo: 71986, descricao: 'Porto Alegre'}];
 
-  constructor(private service: ServicoUsuarioService, private bairroServico: BairroService, private cidadeServico: CidadeService) {
-    //    cidadeServico.getAll().subscribe(cidades => this.cidades = cidades, error => console.log(error), () => console.log("Pegou toda lista"));
-//    bairroServico.getAll().subscribe(bairros => this.bairros = bairros, error => console.log(error), () => console.log("Pegou toda lista"));
+  constructor(private service: ServicoUsuarioService, private bairroServico: BairroService, private cidadeServico: CidadeService,
+    private localidadeService: LocalidadeService) {
   }
 
   ngOnInit() {
@@ -48,12 +49,9 @@ export class CadastroUsuarioComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.usuario);
-    this.service.createUsuario(this.usuario).subscribe(usuario => console.log(usuario),
-      error => console.log(error),
-      () => console.log("Terminou cuzao")
-
-    );
+    console.log(this.usuario.localidade);
+    this.localidadeService.createLocalidade(this.usuario.localidade).subscribe(localidade => this.usuario.localidade = localidade, error => console.log(error), () => console.log("Finalizou"));
+    this.service.createUsuario(this.usuario).subscribe(usuario => console.log(usuario), error => console.log(error), () => console.log("Finalizou"));
   }
 
   carregaBairro(codigoCidade) {

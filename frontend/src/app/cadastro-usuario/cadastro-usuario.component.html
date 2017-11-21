@@ -3,7 +3,6 @@
     <h2>Cadastro de usuário</h2>
   </div>
 <form> 
-
   <div>
     <mat-form-field class="input-name">   
       <input type="text" [(ngModel)]="usuario.nome" name="nome" matInput placeholder="Nome completo" >
@@ -11,15 +10,9 @@
   </div>
 
   <div class="input-date-birth">
-    <mat-form-field>   
-      <input matInput [matDatepicker]="picker" placeholder="Data de nascimento">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-  
     <mat-form-field>
-      <mat-select placeholder="Sexo">
-        <mat-option *ngFor="let sex of sex" [value]="sex.value">
+      <mat-select placeholder="Sexo" [(ngModel)]="usuario.sexo" name="sexo">
+        <mat-option *ngFor="let sex of sex" [value]="sex.name">
           {{ sex.name }}
         </mat-option>
       </mat-select>
@@ -28,37 +21,39 @@
 
   <div>
     <mat-form-field class="input-cep">   
-      <input matInput placeholder="CEP" > 
+      <input [(ngModel)]="usuario.localidade.cep" name="cep" matInput placeholder="CEP" > 
     </mat-form-field>
   </div>
 
   <div>
     <mat-form-field class="input-street">   
-      <input matInput placeholder="Rua" > 
+      <input [(ngModel)]="usuario.localidade.endereco" name="endereco" matInput placeholder="Rua" > 
     </mat-form-field>
   
     <mat-form-field class="input-number">   
-      <input matInput placeholder="Nº" > 
+      <input [(ngModel)]="usuario.localidade.numero" name="numero" matInput placeholder="Nº" > 
     </mat-form-field>
   </div>
 
   <div>
     <mat-form-field class="select-estado">
-      <mat-select placeholder="Estado">
-        <mat-option *ngFor="let state of state" [value]="state.value">
-          {{ state.name }}
+      <input placeholder="Estado" matInput [(ngModel)]="usuario.localidade.estado" name="estado">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field class="select-cidade">
+      <mat-select [(ngModel)]="usuario.localidade.cidade.codigo" name="codigo" placeholder="Cidade">
+        <mat-option *ngFor="let cidadeAux of cidades" [value]="cidadeAux.codigo" (click)="carregaBairro(usuario.localidade.cidade.codigo)">
+          {{ cidadeAux.descricao }}
         </mat-option>
       </mat-select>
-    </mat-form-field>
-
-    <mat-form-field class="input-uf">   
-      <input matInput type="text" maxlength="2" placeholder="UF" > 
     </mat-form-field>
   </div>
 
   <div>
     <mat-form-field class="select-bairro">
-      <mat-select placeholder="Bairro">
+      <mat-select placeholder="Bairro" [(ngModel)]="usuario.localidade.bairro.codigo" name="codigo">
         <mat-option *ngFor="let bairroAux of bairros" [value]="bairroAux.codigo">
           {{ bairroAux.descricao }}
         </mat-option>
@@ -67,24 +62,14 @@
   </div>
 
   <div>
-    <mat-form-field class="select-cidade">
-      <mat-select placeholder="Cidade" (click)="carregaBairro(cidadeAux.codigo)">
-        <mat-option *ngFor="let cidadeAux of cidades" [value]="cidadeAux.codigo">
-          {{ cidadeAux.descricao }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-
-  <div>
     <mat-form-field class="input-phone">   
-      <input matInput placeholder="Telefone" ng-model="number" ui-number-mask="3"> 
+      <input [(ngModel)]="usuario.telefone" name="telefone" matInput placeholder="Telefone" ng-model="number" ui-number-mask="3"> 
     </mat-form-field>
   </div>
 
   <div>
     <mat-form-field class="input-email">   
-      <input matInput placeholder="E-mail" [formControl]="email" required>
+      <input matInput [(ngModel)]="usuario.email" name="email" placeholder="E-mail" [formControl]="email" required>
       <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
   </div>
@@ -98,7 +83,7 @@
 
   <div>
   <mat-form-field class="input-password">   
-      <input matInput maxlength="20" placeholder="Senha" [type]="hide ? 'password' : 'text'">
+      <input matInput [(ngModel)]="usuario.senha" name="senha" maxlength="20" placeholder="Senha" [type]="hide ? 'password' : 'text'">
       <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon> 
     </mat-form-field>
   </div>

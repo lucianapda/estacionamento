@@ -1,8 +1,17 @@
 package br.com.estacionamento.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 
 /**
@@ -20,7 +29,7 @@ public class Usuario implements Serializable {
 	private String nome;
 	private String senha;
 	private String sexo;
-	private Localidade codloc_usu;
+	private Localidade localidade;
 	private List<Estacionamento> estacionamentos;
 	private List<EstacionamentoLicenca> estacionamentoLicencas;
 	private List<Reserva> reservas;
@@ -52,17 +61,6 @@ public class Usuario implements Serializable {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
-	}
-
-	// bi-directional many-to-one association to Localidade
-	@ManyToOne
-	@JoinColumn(name = "codloc_usu")
-	public Localidade getLocalidade() {
-		return this.codloc_usu;
-	}
-
-	public void setLocalidade(Localidade localidade) {
-		this.codloc_usu = localidade;
 	}
 
 
@@ -104,7 +102,16 @@ public class Usuario implements Serializable {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	
+	@ManyToOne
+	@JoinColumn(name="codloc_usu")
+	public Localidade getLocalidade() {
+		return this.localidade;
+	}
 
+	public void setLocalidade(Localidade localidade) {
+		this.localidade = localidade;
+	}
 
 	@Column(name="sexo_usu")
 	public String getSexo() {

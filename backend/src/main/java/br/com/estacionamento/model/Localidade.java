@@ -1,8 +1,17 @@
 package br.com.estacionamento.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 /**
  * The persistent class for the localidade database table.
@@ -16,10 +25,11 @@ public class Localidade implements Serializable {
 	private int cep_loc;
 	private String endere_loc;
 	private String numero_loc;
+	private String estado_loc;
 	private List<Estacionamento> estacionamento;
-	private List<Usuario> usuario;
 	private Bairro codbai_loc;
 	private Cidade codcid_loc;
+	private List<Usuario> usuarios;
 
 	public Localidade() {
 	}
@@ -35,6 +45,15 @@ public class Localidade implements Serializable {
 		this.codigo_loc = codigo;
 	}
 
+	@Column(name = "estado_loc")
+	public String getEstado() {
+		return this.estado_loc;
+	}
+
+	public void setEstado(String estado) {
+		this.estado_loc = estado;
+	}
+	
 	@Column(name = "cep_loc")
 	public int getCep() {
 		return this.cep_loc;
@@ -86,30 +105,6 @@ public class Localidade implements Serializable {
 		return estacionamento;
 	}
 	
-	// bi-directional many-to-one association to Estacionamento
-		@OneToMany(mappedBy = "localidade")
-		public List<Usuario> getUsuario() {
-			return this.usuario;
-		}
-
-		public void setUsuario(List<Usuario> usuario) {
-			this.usuario = usuario;
-		}
-		
-		public Usuario addEstacionamento(Usuario usuario) {
-			getUsuario().add(usuario);
-			usuario.setLocalidade(this);
-
-			return usuario;
-		}
-
-		public Usuario removeUsuario(Usuario usuario) {
-			getUsuario().remove(usuario);
-			usuario.setLocalidade(null);
-
-			return usuario;
-		}
-
 	// bi-directional many-to-one association to Bairro
 	@ManyToOne
 	@JoinColumn(name = "codbai_loc")
@@ -130,5 +125,28 @@ public class Localidade implements Serializable {
 
 	public void setCidade(Cidade cidade) {
 		this.codcid_loc = cidade;
+	}
+	
+	@OneToMany(mappedBy="localidade")
+	public List<Usuario> getUsuarios() {
+		return this.usuarios;
+	}
+
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
+
+	public Usuario addUsuario(Usuario usuario) {
+		getUsuarios().add(usuario);
+		usuario.setLocalidade(this);
+
+		return usuario;
+	}
+
+	public Usuario removeUsuario(Usuario usuario) {
+		getUsuarios().remove(usuario);
+		usuario.setLocalidade(null);
+
+		return usuario;
 	}
 }

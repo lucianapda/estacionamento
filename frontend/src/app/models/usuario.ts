@@ -1,10 +1,17 @@
+import {Localidade} from './localidade';
+
 export class Usuario {
-    public codigo: number;
-    public cpf: String;
-    public email: String;
-    public telefone: String;
-    public nome: String;
-    public senha: String;
-    public sexo: String;
-    public codigoImg: number;
+
+  constructor() {
+    this.localidade = new Localidade;
+  }
+
+  private codigo: number;
+  private cpf: String;
+  private email: String;
+  private telefone: String;
+  private nome: String;
+  private senha: String;
+  private sexo: String;
+  public localidade: Localidade;
 }
