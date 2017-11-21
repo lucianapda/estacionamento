@@ -22,11 +22,12 @@ public class BairroController {
 
 	@Inject
 	private BairroRepository bairroRepository;
-	
+
 	@CrossOrigin(origins = "*")
 	@RequestMapping(path = "/bairro", method = RequestMethod.GET)
 	public ResponseEntity<List<Bairro>> get(@RequestParam(name = "nome", required = false) String nome,
-			@RequestParam(name = "codigo", required = false) Long codigo) {
+			@RequestParam(name = "codigo", required = false) Long codigo,
+			@RequestParam(name = "codigoCidade", required = false) Long codigoCidade) {
 		List<Bairro> listaRetorno = new ArrayList<>();
 
 		if (nome != null && !nome.isEmpty()) {
@@ -38,7 +39,11 @@ public class BairroController {
 					listaRetorno.add(bairro);
 				}
 			}else {
-				listaRetorno = bairroRepository.obtemTodos();
+				if(codigoCidade != null) {
+					listaRetorno = bairroRepository.obtemPelaCidade(codigoCidade);
+				}else {
+					listaRetorno = bairroRepository.obtemTodos();
+				}
 			}
 		}
 

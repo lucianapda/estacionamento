@@ -20,6 +20,7 @@ public class Usuario implements Serializable {
 	private String nome;
 	private String senha;
 	private String sexo;
+	private Localidade codloc_usu;
 	private List<Estacionamento> estacionamentos;
 	private List<EstacionamentoLicenca> estacionamentoLicencas;
 	private List<Reserva> reservas;
@@ -51,6 +52,17 @@ public class Usuario implements Serializable {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	// bi-directional many-to-one association to Localidade
+	@ManyToOne
+	@JoinColumn(name = "codloc_usu")
+	public Localidade getLocalidade() {
+		return this.codloc_usu;
+	}
+
+	public void setLocalidade(Localidade localidade) {
+		this.codloc_usu = localidade;
 	}
 
 

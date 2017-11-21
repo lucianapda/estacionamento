@@ -17,6 +17,7 @@ public class Localidade implements Serializable {
 	private String endere_loc;
 	private String numero_loc;
 	private List<Estacionamento> estacionamento;
+	private List<Usuario> usuario;
 	private Bairro codbai_loc;
 	private Cidade codcid_loc;
 
@@ -70,7 +71,7 @@ public class Localidade implements Serializable {
 	public void setEstacionamento(List<Estacionamento> estacionamento) {
 		this.estacionamento = estacionamento;
 	}
-
+	
 	public Estacionamento addEstacionamento(Estacionamento estacionamento) {
 		getEstacionamento().add(estacionamento);
 		estacionamento.setLocalidade(this);
@@ -84,6 +85,30 @@ public class Localidade implements Serializable {
 
 		return estacionamento;
 	}
+	
+	// bi-directional many-to-one association to Estacionamento
+		@OneToMany(mappedBy = "localidade")
+		public List<Usuario> getUsuario() {
+			return this.usuario;
+		}
+
+		public void setUsuario(List<Usuario> usuario) {
+			this.usuario = usuario;
+		}
+		
+		public Usuario addEstacionamento(Usuario usuario) {
+			getUsuario().add(usuario);
+			usuario.setLocalidade(this);
+
+			return usuario;
+		}
+
+		public Usuario removeUsuario(Usuario usuario) {
+			getUsuario().remove(usuario);
+			usuario.setLocalidade(null);
+
+			return usuario;
+		}
 
 	// bi-directional many-to-one association to Bairro
 	@ManyToOne

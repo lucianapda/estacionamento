@@ -2,6 +2,10 @@ package br.com.estacionamento.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.List;
 
 
@@ -18,6 +22,7 @@ public class Cidade implements Serializable {
 	private String uf;
 	private Pais pais;
 	private List<Localidade> localidade;
+	private List<Bairro> bairros;
 
 	public Cidade() {
 	}
@@ -42,7 +47,16 @@ public class Cidade implements Serializable {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	
+	 @JsonManagedReference
+	@OneToMany(mappedBy="cidade")
+	public List<Bairro> getBairros() {
+		return this.bairros;
+	}
 
+	public void setBairros(List<Bairro> bairros) {
+		this.bairros = bairros;
+	}
 
 	@Column(name="uf_cid")
 	public String getUf() {
@@ -56,6 +70,7 @@ public class Cidade implements Serializable {
 
 	//bi-directional many-to-one association to Pais
 	@ManyToOne
+	@JsonBackReference
 	@JoinColumn(name="codpai_cid")
 	public Pais getPais() {
 		return this.pais;

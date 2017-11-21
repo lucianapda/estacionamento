@@ -1,8 +1,17 @@
 package br.com.estacionamento.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 
 /**
@@ -16,6 +25,7 @@ public class Bairro implements Serializable {
 	private Long codigo;
 	private String descricao;
 	private List<Localidade> localidade;
+	private Cidade cidade;
 
 	public Bairro() {
 	}
@@ -64,6 +74,17 @@ public class Bairro implements Serializable {
 		localidade.setBairro(null);
 
 		return localidade;
+	}
+	
+	@ManyToOne
+	@JsonBackReference
+	@JoinColumn(name="codcid_bai")
+	public Cidade getCidade() {
+		return this.cidade;
+	}
+
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
 	}
 
 }

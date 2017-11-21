@@ -10,17 +10,29 @@ public class CidadeRepositoryImpl extends RepositoryBaseImpl implements CidadeRe
 
 	@Override
 	public List<Cidade> obtemPeloNome(String nome) {
-		QCidade bairroAux = QCidade.cidade;
+		QCidade cidadeAux = QCidade.cidade;
 
 		// Cria a query
-		JPAQuery<Cidade> query = select(bairroAux).from(bairroAux);
+		JPAQuery<Cidade> query = select(cidadeAux).from(cidadeAux);
 
 		if (nome != null && !nome.isEmpty()) {
-			query.where(bairroAux.descricao.containsIgnoreCase(nome));
+			query.where(cidadeAux.descricao.containsIgnoreCase(nome));
 		}
 
-		query.orderBy(bairroAux.descricao.asc());
+		query.orderBy(cidadeAux.descricao.asc());
 
+		return query.fetch();
+	}
+
+	@Override
+	public List<Cidade> obtemTodos() {
+		QCidade cidadeAux = QCidade.cidade;
+
+		// Cria a query
+		JPAQuery<Cidade> query = select(cidadeAux).from(cidadeAux);
+		query.orderBy(cidadeAux.descricao.asc());
+		query.where(cidadeAux.pais.codigo.eq((long) 1));
+		
 		return query.fetch();
 	}
 	
