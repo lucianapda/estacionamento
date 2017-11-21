@@ -16,7 +16,7 @@ export class LoginGuard implements CanActivate {
     if (localStorage.getItem('codigoUsuLogado') == null) {
       this.router.navigateByUrl('');
       let dialogRef = this.dialog.open(LoginDialogComponent, {
-        width: '400px'
+        width: '50%'
       });
       return false;
     } else {

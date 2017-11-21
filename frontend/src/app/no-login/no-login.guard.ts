@@ -11,10 +11,10 @@ export class NoLoginGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
-    this.router.navigateByUrl('');
     if (localStorage.getItem('codigoUsuLogado') == null) {
         return true;
     } else {
+    this.router.navigateByUrl('');
         return false;
     }
   }

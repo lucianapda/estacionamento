@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
 
   chamaLogin() {
     let dialogRef = this.dialog.open(LoginDialogComponent, {
-      width: '400px'
+      width: '50%'
     });
   }
 
