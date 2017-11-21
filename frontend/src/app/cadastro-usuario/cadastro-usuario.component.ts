@@ -1,7 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
-import { ServicoUsuarioService } from './servico-usuario.service';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {ErrorStateMatcher} from '@angular/material/core';
+import {ServicoUsuarioService} from './servico-usuario.service';
+import {BairroService} from '../models/bairro.service';
+import {Usuario} from '../models/usuario';
+import {Bairro} from '../models/bairro';
 
 @Component({
   selector: 'app-cadastro-usuario',
@@ -12,28 +15,22 @@ import { ServicoUsuarioService } from './servico-usuario.service';
 
 export class CadastroUsuarioComponent implements OnInit {
 
-  private usuario;
+  private usuario: Usuario = new Usuario();
+  private bairros: Array<Bairro> = [];
 
-  constructor(private service: ServicoUsuarioService) { 
-    //Como a chamada de serviço é assincrona passamos ao subscribe 3 métodos como parâmetro:
-    //O primeiro é o que ele faz se houver sucesso.(Neste caso this.exemplos = exemplos)
-    //O segundo é quando ocorre erro
-    //O terceiro sempre é chamado independende se deu erro ou não
-    service.getAll().subscribe( usuario => this.usuario = usuario, 
-      error => console.log(error),
-      () => console.log("Terminou")
-    );
+  constructor(private service: ServicoUsuarioService, private bairroServico: BairroService) {
+    bairroServico.getAll().subscribe(bairros => console.log(bairros), error => console.log(error), () => console.log("Pegou toda lista"));
   }
 
   ngOnInit() {
   }
-  
+
   hide = true;
   hide2 = true;
 
   email = new FormControl('', [Validators.required, Validators.email]);
-  confEmail = new FormControl('', [Validators.required, Validators.email]);  
-  
+  confEmail = new FormControl('', [Validators.required, Validators.email]);
+
   getErrorMessage() {
     return this.email.hasError('required') ? 'O email deve ser preenchido' :
       this.email.hasError('email') ? 'Email é inválido' : '';
@@ -42,6 +39,15 @@ export class CadastroUsuarioComponent implements OnInit {
   getErrorMessageConf() {
     return this.confEmail.hasError('required') ? 'O email deve ser preenchido' :
       this.confEmail.hasError('confEmail') ? 'Email é inválido' : '';
+  }
+
+  submit() {
+    console.log(this.usuario);
+    this.service.createUsuario(this.usuario).subscribe(usuario => console.log(usuario),
+      error => console.log(error),
+      () => console.log("Terminou cuzao")
+
+    );
   }
 
   sex = [
@@ -54,12 +60,6 @@ export class CadastroUsuarioComponent implements OnInit {
     {value: '1', name: 'Curitiba'},
     {value: '2', name: 'Santa Catarina'},
     {value: '3', name: 'Rio Grande do Sul'}
-  ];
-
-  bairro = [
-    {value: '1', name: 'Centro'},
-    {value: '2', name: 'Vila nova'},
-    {value: '3', name: 'Velha'}
   ];
 
   city = [

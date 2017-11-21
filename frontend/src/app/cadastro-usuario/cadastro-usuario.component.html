@@ -1,11 +1,12 @@
-<mat-card class="card-register-user"> 
+<mat-card class="card-register-user">
   <div class="title">
     <h2>Cadastro de usuário</h2>
   </div>
+<form> 
 
   <div>
     <mat-form-field class="input-name">   
-      <input matInput placeholder="Nome completo" > 
+      <input type="text" [(ngModel)]="usuario.nome" name="nome" matInput placeholder="Nome completo" >
     </mat-form-field>
   </div>
 
@@ -58,8 +59,8 @@
   <div>
     <mat-form-field class="select-bairro">
       <mat-select placeholder="Bairro">
-        <mat-option *ngFor="let bairro of bairro" [value]="bairro.value">
-          {{ bairro.name }}
+        <mat-option *ngFor="let bairroAux of bairros" [value]="bairroAux.codigo">
+          {{ bairroAux.descricao }}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -110,7 +111,7 @@
   </div>
 
   <div class="button-save">
-    <mat-button-toggle>Salvar</mat-button-toggle>
+    <mat-button-toggle (click)="submit()">Salvar</mat-button-toggle>
   </div>
-  
+  </form>
 </mat-card>

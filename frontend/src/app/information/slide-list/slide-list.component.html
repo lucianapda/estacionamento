@@ -1,18 +1,13 @@
+<app-header></app-header>
 <div class="container">
-  <div class="row">
-    <div class="col-md-8">
-      <section id="sliderhome">
-        <div id="myslide" class="carousel slide" data-ride="carousel">
-          
-          <div class="carousel-inner">
-            <div *ngFor="let image of images" class="{{image.id==1 ? 'item active' : 'item'}}"><img src="{{image.thumbnail}}" alt="{{image.title}}"/></div>            
-          </div>
-          
-          <a class="left carousel-control" href="#myslide" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-          <a class="right carousel-control" href="#myslide" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-        
-        </div>
-      </section>      
-    </div>
-  </div>
+	<div class="row">
+		<div class="col-md-8">
+			<carousel [interval]="1500" [noWrap]="noWrapSlides"	[(activeSlide)]="activeSlideIndex"> 
+				<slide	*ngFor="let image of images" class="{{image.id==1 ? 'item active' : 'item'}}"> 
+					<img src="{{image.thumbnail}}" alt="{{image.title}}" /> 
+				</slide> 
+			</carousel>
+		</div>
+	</div>
 </div>
+<app-footer></app-footer>

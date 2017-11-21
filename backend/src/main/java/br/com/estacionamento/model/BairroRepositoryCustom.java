@@ -5,4 +5,5 @@ import java.util.List;
 public interface BairroRepositoryCustom {
 
 	List<Bairro> obtemPeloNome(String nome);
+	List<Bairro> obtemTodos();
 }

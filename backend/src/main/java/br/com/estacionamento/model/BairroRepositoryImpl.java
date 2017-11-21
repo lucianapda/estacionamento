@@ -24,4 +24,14 @@ public class BairroRepositoryImpl extends RepositoryBaseImpl implements BairroRe
 		return query.fetch();
 	}
 
+	@Override
+	public List<Bairro> obtemTodos() {
+		QBairro bairroAux = QBairro.bairro;
+		JPAQuery<Bairro> query = select(bairroAux).from(bairroAux);
+
+		query.orderBy(bairroAux.descricao.asc());
+
+		return query.fetch();
+	}
+
 }

@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap';
 import { RouterModule, Routes } from '@angular/router';
+import { AlertModule } from 'ngx-bootstrap';
 import {
     MatAutocompleteModule,
     MatButtonModule,
@@ -42,6 +43,7 @@ import {
 import { AppComponent } from './app.component';
 import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
 import { ServicoUsuarioService } from './cadastro-usuario/servico-usuario.service';
+import {BairroService} from './models/bairro.service';
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 import { CadastroVagaComponent } from './cadastro-vaga/cadastro-vaga.component';
 import { CdkTableModule } from '@angular/cdk/table';
@@ -57,6 +59,7 @@ import { SlideComponent } from './information/slide-list/slide.component';
 import { FinancialMovementComponent } from './financial-movement/financial-movement.component';
 import { ScreenHomeComponent } from './screen-home/screen-home.component';
 import { ServicoEstacionamentoService } from './information/servico-estacionamento.service';
+import { CarouselModule } from 'ngx-bootstrap';
 
 const appRoutes: Routes = [
   { path: 'new_user', component: CadastroUsuarioComponent },
@@ -87,6 +90,8 @@ const appRoutes: Routes = [
       appRoutes,
       { enableTracing: true } 
     ),
+    CarouselModule.forRoot(),
+    AlertModule.forRoot(),
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
@@ -130,7 +135,7 @@ const appRoutes: Routes = [
   entryComponents: [
     LoginDialogComponent
   ],
-  providers: [ServicoUsuarioService, ServicoEstacionamentoService],
+  providers: [ServicoUsuarioService, ServicoEstacionamentoService, BairroService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
