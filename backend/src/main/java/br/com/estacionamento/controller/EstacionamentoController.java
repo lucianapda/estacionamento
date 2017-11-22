@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.estacionamento.model.Estacionamento;
 import br.com.estacionamento.model.EstacionamentoRepository;
 
+@CrossOrigin(allowedHeaders="*", origins="*")
 @RestController
 public class EstacionamentoController {
 
 	@Inject
 	private EstacionamentoRepository estacionamentoRepository;
 	
-	@CrossOrigin(allowedHeaders="*", origins="*")
 	@RequestMapping(path = "/estacionamento", method = RequestMethod.GET)
 	public ResponseEntity<List<Estacionamento>> get(@RequestParam(name = "nome", required = false) String nome,
 			@RequestParam(name = "codigo", required = false) Long codigo) {

@@ -2,24 +2,22 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-CREATE TABLE IF NOT EXISTS `estacionamento`.`usuario` (
-  `idusuario` INT(11) NOT NULL AUTO_INCREMENT,
-  `codctc_usu` INT(11) NULL DEFAULT NULL COMMENT 'Código do cartão de crédito cadastrado pelo usuário',
-  `nome_usu` VARCHAR(100) NULL DEFAULT NULL,
-  `cpf_usu` VARCHAR(11) NULL DEFAULT NULL,
-  `sexo_usu` VARCHAR(45) NULL DEFAULT NULL,
-  `fone_usu` VARCHAR(9) NULL DEFAULT NULL,
-  `email_usu` VARCHAR(100) NULL DEFAULT NULL,
-  `senha_usu` VARCHAR(15) NULL DEFAULT NULL,
+  CREATE TABLE `usuario` (
+  `idusuario` int(11) NOT NULL AUTO_INCREMENT,
+  `codctc_usu` int(11) DEFAULT NULL COMMENT 'Código cartão de crédito',
+  `nome_usu` varchar(100) DEFAULT NULL,
+  `cpf_usu` varchar(11) DEFAULT NULL,
+  `sexo_usu` varchar(45) DEFAULT NULL,
+  `fone_usu` varchar(9) DEFAULT NULL,
+  `email_usu` varchar(100) DEFAULT NULL,
+  `senha_usu` varchar(15) DEFAULT NULL,
+  `codloc_usu` int(11) DEFAULT NULL,
   PRIMARY KEY (`idusuario`),
-  INDEX `fk_usuario_cartao_credito1_idx` (`codctc_usu` ASC),
-  CONSTRAINT `fk_usuario_cartao_credito1`
-    FOREIGN KEY (`codctc_usu`)
-    REFERENCES `estacionamento`.`cartao_credito` (`codigo_ctc`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+  KEY `fk_usuario_cartao_credito1_idx` (`codctc_usu`),
+  KEY `fk_usuario_localidade_idx` (`codloc_usu`),
+  CONSTRAINT `fk_usuario_cartao_credito1` FOREIGN KEY (`codctc_usu`) REFERENCES `cartao_credito` (`codigo_ctc`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_usuario_localidade` FOREIGN KEY (`codloc_usu`) REFERENCES `localidade` (`codigo_loc`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `estacionamento`.`estacionamento` (
   `codigo_est` INT(11) NOT NULL AUTO_INCREMENT,
@@ -92,6 +90,7 @@ CREATE TABLE IF NOT EXISTS `estacionamento`.`localidade` (
   `codigo_loc` INT(11) NOT NULL AUTO_INCREMENT,
   `endere_loc` VARCHAR(250) NULL DEFAULT '' COMMENT 'Endereço',
   `numero_loc` VARCHAR(15) NULL DEFAULT NULL,
+  `estado_loc` VARCHAR(50) NULL DEFAULT NULL,
   `codcid_loc` INT(11) NOT NULL COMMENT 'Define o código da cidade',
   `codbai_loc` INT(11) NOT NULL,
   `cep_loc` INT(8) NULL DEFAULT NULL,

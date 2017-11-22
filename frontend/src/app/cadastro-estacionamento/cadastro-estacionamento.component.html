@@ -5,72 +5,57 @@
 
   <div>
     <mat-form-field class="input-razao">   
-      <input type="text" [(ngModel)]="estacionamento.nome_est" name="nome_est" matInput placeholder="Razão social">
+      <input type="text" [(ngModel)]="estacionamento.nome" name="nome" matInput placeholder="Razão social">
     </mat-form-field>
   </div>
 
   <div>
     <mat-form-field class="input-cnpj">   
-      <input type="text" [(ngModel)]="estacionamento.cnpj_est" name="cnpj_est" matInput placeholder="CNPJ">
+      <input type="text" [(ngModel)]="estacionamento.cnpj" name="cnpj" matInput placeholder="CNPJ">
     </mat-form-field>
   </div>
   
   <div>
     <mat-form-field class="input-cep">   
-      <input type="text" [(ngModel)]="localidade.cep_loc" name="cep_loc" matInput placeholder="CEP">
+      <input type="text" [(ngModel)]="estacionamento.localidade.cep" name="cep" matInput placeholder="CEP">
     </mat-form-field>
   </div>
 
   <div>
     <mat-form-field class="input-street">   
-      <input type="text" [(ngModel)]="localidade.endere_loc" name="endere_loc" matInput placeholder="Rua">
+      <input type="text" [(ngModel)]="estacionamento.localidade.endereco" name="endereco" matInput placeholder="Rua">
     </mat-form-field>
   
     <mat-form-field class="input-number">   
-      <input type="text" [(ngModel)]="localidade.numero_loc" name="numero_loc" matInput placeholder="Nº">
+      <input type="text" [(ngModel)]="estacionamento.localidade.numero" name="numero" matInput placeholder="Nº">
     </mat-form-field>
   </div>
 
   <div>
     <mat-form-field class="select-estado">
-      <mat-select placeholder="Estado">
-        <mat-option *ngFor="let state of state" [value]="state.value">
-          {{ state.name }}
+      <input placeholder="Estado" matInput [(ngModel)]="estacionamento.localidade.estado" name="estado">
+    </mat-form-field>
+  </div>
+
+   <div>
+    <mat-form-field class="select-cidade">
+      <mat-select [(ngModel)]="estacionamento.localidade.cidade.codigo" name="codigo" placeholder="Cidade">
+        <mat-option *ngFor="let cidadeAux of cidades" [value]="cidadeAux.codigo" (click)="carregaBairro(estacionamento.localidade.cidade.codigo)">
+          {{ cidadeAux.descricao }}
         </mat-option>
       </mat-select>
-    </mat-form-field>
-
-    <mat-form-field class="input-uf">   
-      <input type="text" [(ngModel)]="localidade.numero_loc" name="numero_loc" matInput placeholder="UF">
     </mat-form-field>
   </div>
 
   <div>
     <mat-form-field class="select-bairro">
-      <mat-select placeholder="Bairro">
-        <mat-option *ngFor="let bairro of bairro" [value]="bairro.value">
-          {{ bairro.name }}
+      <mat-select placeholder="Bairro" [(ngModel)]="estacionamento.localidade.bairro.codigo" name="codigo">
+        <mat-option *ngFor="let bairroAux of bairros" [value]="bairroAux.codigo">
+          {{ bairroAux.descricao }}
         </mat-option>
       </mat-select>
     </mat-form-field>
   </div>
-
-  <div>
-    <mat-form-field class="select-cidade">
-      <mat-select placeholder="Cidade">
-        <mat-option *ngFor="let city of city" [value]="city.value">
-          {{ city.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-
-  <div>
-    <mat-form-field class="input-phone">   
-      <input matInput placeholder="Telefone" ng-model="number" ui-number-mask="3"> 
-    </mat-form-field>
-  </div>
-
 
   <div class="button-save">
     <mat-button-toggle (click)="submit()">Salvar</mat-button-toggle>
