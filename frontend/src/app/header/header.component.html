@@ -21,7 +21,7 @@
 				</button>
 				<ul *dropdownMenu class="dropdown-menu dropdown-menu-right"
 					role="menu">
-					<div *ngIf="isLogado">
+					<div *ngIf="!isLogado">
 						<li role="menuitem"><a class="dropdown-item"
 							(click)="chamaLogin()">Entrar</a></li>
 						<li class="divider dropdown-divider"></li>
@@ -29,7 +29,7 @@
 							routerLink="/new_user">Cadastrar</a></li>
 					</div>
 
-					<div *ngIf="!isLogado">
+					<div *ngIf="isLogado">
 						<li role="menuitem"><a class="dropdown-item"
 							routerLink="/new_parking">Cadastrar estacionamento</a></li>
 						<li class="divider dropdown-divider"></li>

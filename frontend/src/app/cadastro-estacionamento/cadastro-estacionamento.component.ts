@@ -8,6 +8,7 @@ import { Usuario } from '../models/usuario';
 import { Bairro } from '../models/bairro';
 import { Cidade } from '../models/cidade';
 import { LocalidadeService } from '../models/localidade.service';
+import {LoginDialogComponent} from '../login-dialog/login-dialog.component';
 
 @Component({
   selector: 'app-cadastro-estacionamento',
@@ -17,7 +18,7 @@ import { LocalidadeService } from '../models/localidade.service';
 })
 export class CadastroEstacionamentoComponent implements OnInit {
 
-  private estacionamento: Estacionamento = new Estacionamento();
+  private estacionamento: Estacionamento = new Estacionamento(parseInt(localStorage.getItem('codigoUsuLogado')));
   private bairros: Bairro[] = [];
   private cidades: Cidade[] = [{codigo: 75680, descricao: 'Blumenau'},
   {codigo: 55298, descricao: 'Curitiba'},
