@@ -12,6 +12,7 @@
 .buttonPesquisa {
 	height: 50px;
 	width: 96%;
+	margin-left: 0px; 
 }
 .search-input {
     width: 80%;
@@ -26,6 +27,7 @@
     border-radius: 5px;
     margin-top: 1%;
 }
+
 .btn-menu {
     height: 34px;
     
@@ -35,8 +37,9 @@
 }
 .navbarsearch {
 	width: 45%;
-	margin-left: 20%;
+	margin-left: 15%;
 	text-align: center;
+	position: relative;
 	float: left;
 }
 .navbar-brand {
