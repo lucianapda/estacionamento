@@ -2,6 +2,12 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { EstacionamentoService } from './estacionamento.service';
 import { Estacionamento } from '../models/estacionamento';
 import { Localidade } from '../models/localidade';
+import { BairroService } from '../models/bairro.service';
+import { CidadeService } from '../models/cidade.service';
+import { Usuario } from '../models/usuario';
+import { Bairro } from '../models/bairro';
+import { Cidade } from '../models/cidade';
+import { LocalidadeService } from '../models/localidade.service';
 
 @Component({
   selector: 'app-cadastro-estacionamento',
@@ -12,40 +18,28 @@ import { Localidade } from '../models/localidade';
 export class CadastroEstacionamentoComponent implements OnInit {
 
   private estacionamento: Estacionamento = new Estacionamento();
-  private localidade: Localidade = new Localidade();
+  private bairros: Bairro[] = [];
+  private cidades: Cidade[] = [{codigo: 75680, descricao: 'Blumenau'},
+  {codigo: 55298, descricao: 'Curitiba'},
+  {codigo: 71986, descricao: 'Porto Alegre'}];
 
-  constructor(private service: EstacionamentoService) {
-    service.getAll().subscribe(estacionamento => console.log(estacionamento), error => console.log(error), () => console.log("Pegou toda lista"));
+  constructor(private service: EstacionamentoService, private bairroServico: BairroService, private cidadeServico: CidadeService,
+    private localidadeService: LocalidadeService) {
   }
 
   ngOnInit() {
   }
 
   submit() {
-    console.log(this.estacionamento);
-    this.service.createEstacionamento(this.estacionamento).subscribe(usuario => console.log(usuario),
-      error => console.log(error),
-      () => console.log("inseriu")
-    );
+    console.log(this.estacionamento.localidade);
+    this.localidadeService.createLocalidade(this.estacionamento.localidade).subscribe(localidade => this.estacionamento.localidade = localidade, error => console.log(error), () => console.log("Finalizou"));
+    console.log(this.estacionamento);    
+    this.service.createEstacionamento(this.estacionamento).subscribe(estacionamento => console.log(estacionamento), error => console.log(error), () => console.log("Finalizou"));
   }
 
-  state = [
-    {value: '1', name: 'Curitiba'},
-    {value: '2', name: 'Santa Catarina'},
-    {value: '3', name: 'Rio Grande do Sul'}
-  ];
-
-  bairro = [
-    {value: '1', name: 'Centro'},
-    {value: '2', name: 'Vila nova'},
-    {value: '3', name: 'Velha'}
-  ];
-
-  city = [
-    {value: '1', name: 'Blumenal'},
-    {value: '2', name: 'Curitiba'},
-    {value: '3', name: 'Porto Alegre'}
-  ];
+  carregaBairro(codigoCidade) {
+    this.bairroServico.getBairrosCIdade(codigoCidade).subscribe(bairros => this.bairros = bairros, error => console.log(error), () => console.log("Pegou toda lista"));
+  }
 
 
 }
