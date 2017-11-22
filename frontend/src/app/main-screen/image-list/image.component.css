@@ -1,8 +1,28 @@
 .titulos {
-	position: absolute;
-	margin-top: -100px;
 	background-color: black;
+	border-radius: 25px;
 	opacity: 0.7;
-	width: 365%;
-	height: 80px;
+	position: absolute;
+	top: 95%;
+	width: 96%;
+	height: 60%;
+	left: 2%;
+}
+
+.texto {
+	margin-top: 2%;
+	margin-left: 2%;
+	font-size: 120%;
+}
+
+.img-responsive {
+	height: 100%;
+	width: 100%;
+	position: relative;
+}
+
+.div-responsive {
+	height: 100%;
+	width: 100%;
+	position: relative;
 }
