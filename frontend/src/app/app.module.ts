@@ -37,6 +37,7 @@ import {LocalidadeService} from './models/localidade.service';
 import {NoLoginGuard} from './no-login/no-login.guard';
 import {UploadImageComponent} from './upload-image/upload-image.component';
 
+
 const appRoutes: Routes = [
   {path: 'new_user', component: CadastroUsuarioComponent, canActivate: [NoLoginGuard]},
   {path: 'parking', component: InformationComponent},
