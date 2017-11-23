@@ -92,7 +92,7 @@ public class Estacionamento implements Serializable {
 	}
 
 	// bi-directional many-to-one association to Localidade
-	@ManyToOne
+	@ManyToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "codloc_est")
 	public Localidade getLocalidade() {
 		return this.codloc_est;
