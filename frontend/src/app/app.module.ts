@@ -29,11 +29,14 @@ import {ServicoEstacionamentoService} from './information/servico-estacionamento
 import {CarouselModule} from 'ngx-bootstrap';
 import {CadastroEstacionamentoComponent} from './cadastro-estacionamento/cadastro-estacionamento.component'
 import {EstacionamentoService} from './cadastro-estacionamento/estacionamento.service';
-import { ServicoLoginService } from './login-dialog/servico-login.service';
+import {ServicoLoginService} from './login-dialog/servico-login.service';
 import {LoginGuard} from './login-guard/login.guard';
 import {CidadeService} from './models/cidade.service';
+import {ImgUsuarioService} from './models/imgUsuario.service';
 import {LocalidadeService} from './models/localidade.service';
 import {NoLoginGuard} from './no-login/no-login.guard';
+import {UploadImageComponent} from './upload-image/upload-image.component';
+
 
 const appRoutes: Routes = [
   {path: 'new_user', component: CadastroUsuarioComponent, canActivate: [NoLoginGuard]},
@@ -92,7 +95,8 @@ import {
     SlideComponent,
     FinancialMovementComponent,
     ScreenHomeComponent,
-    CadastroEstacionamentoComponent
+    CadastroEstacionamentoComponent,
+    UploadImageComponent
   ],
 
   imports: [
@@ -154,7 +158,9 @@ import {
     LocalidadeService,
     LoginGuard,
     NoLoginGuard,
-    ServicoLoginService
+    ServicoLoginService,
+    UploadImageComponent,
+    ImgUsuarioService
   ],
   bootstrap: [AppComponent]
 })

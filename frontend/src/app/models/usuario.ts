@@ -6,12 +6,12 @@ export class Usuario {
     this.localidade = new Localidade;
   }
 
-  private codigo: number;
-  private cpf: String;
-  private email: String;
-  private telefone: String;
-  private nome: String;
-  private senha: String;
-  private sexo: String;
+  public codigo: number;
+  public cpf: String;
+  public email: String;
+  public telefone: String;
+  public nome: String;
+  public senha: String;
+  public sexo: String;
   public localidade: Localidade;
 }
