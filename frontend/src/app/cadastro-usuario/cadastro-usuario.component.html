@@ -1,102 +1,106 @@
 <mat-card class="card-register-user">
-  <div class="title">
-    <h2>Cadastro de usuário</h2>
-  </div>
-<form> 
-  <div>
-    <mat-form-field class="input-name">   
-      <input type="text" [(ngModel)]="usuario.nome" name="nome" matInput placeholder="Nome completo" >
-    </mat-form-field>
-  </div>
+<div class="title">
+	<h2>Cadastro de usuário</h2>
+</div>
+<form>
+<br><br>
+	<div>
+		<app-upload-image  (returnImage)="setImage($event)" class="image" ></app-upload-image>
+		<div>
+			<div>
+				<mat-form-field class="input-name"> <input
+					type="text" [(ngModel)]="usuario.nome" name="nome" matInput
+					placeholder="Nome completo"> </mat-form-field>
+			</div>
 
-  <div class="input-date-birth">
-    <mat-form-field>
-      <mat-select placeholder="Sexo" [(ngModel)]="usuario.sexo" name="sexo">
-        <mat-option *ngFor="let sex of sex" [value]="sex.name">
-          {{ sex.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
+			<div class="input-date-birth">
+				<mat-form-field> <mat-select placeholder="Sexo"
+					[(ngModel)]="usuario.sexo" name="sexo"> <mat-option
+					*ngFor="let sex of sex" [value]="sex.name"> {{
+				sex.name }} </mat-option> </mat-select> </mat-form-field>
+			</div>
+		</div>
 
-  <div>
-    <mat-form-field class="input-cep">   
-      <input [(ngModel)]="usuario.localidade.cep" name="cep" matInput placeholder="CEP" > 
-    </mat-form-field>
-  </div>
+	</div>
 
-  <div>
-    <mat-form-field class="input-street">   
-      <input [(ngModel)]="usuario.localidade.endereco" name="endereco" matInput placeholder="Rua" > 
-    </mat-form-field>
-  
-    <mat-form-field class="input-number">   
-      <input [(ngModel)]="usuario.localidade.numero" name="numero" matInput placeholder="Nº" > 
-    </mat-form-field>
-  </div>
+	<div>
+		<mat-form-field class="input-cep"> <input
+			[(ngModel)]="usuario.localidade.cep" name="cep" matInput
+			placeholder="CEP"> </mat-form-field>
+	</div>
 
-  <div>
-    <mat-form-field class="select-estado">
-      <input placeholder="Estado" matInput [(ngModel)]="usuario.localidade.estado" name="estado">
-    </mat-form-field>
-  </div>
+	<div>
+		<mat-form-field class="input-street"> <input
+			[(ngModel)]="usuario.localidade.endereco" name="endereco" matInput
+			placeholder="Rua"> </mat-form-field>
 
-  <div>
-    <mat-form-field class="select-cidade">
-      <mat-select [(ngModel)]="usuario.localidade.cidade.codigo" name="codigo" placeholder="Cidade">
-        <mat-option *ngFor="let cidadeAux of cidades" [value]="cidadeAux.codigo" (click)="carregaBairro(usuario.localidade.cidade.codigo)">
-          {{ cidadeAux.descricao }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
+		<mat-form-field class="input-number"> <input
+			[(ngModel)]="usuario.localidade.numero" name="numero" matInput
+			placeholder="Nº"> </mat-form-field>
+	</div>
 
-  <div>
-    <mat-form-field class="select-bairro">
-      <mat-select placeholder="Bairro" [(ngModel)]="usuario.localidade.bairro.codigo" name="codigo">
-        <mat-option *ngFor="let bairroAux of bairros" [value]="bairroAux.codigo">
-          {{ bairroAux.descricao }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
+	<div>
+		<mat-form-field class="select-estado"> <input
+			placeholder="Estado" matInput [(ngModel)]="usuario.localidade.estado"
+			name="estado"> </mat-form-field>
+	</div>
 
-  <div>
-    <mat-form-field class="input-phone">   
-      <input [(ngModel)]="usuario.telefone" name="telefone" matInput placeholder="Telefone" ng-model="number" ui-number-mask="3"> 
-    </mat-form-field>
-  </div>
+	<div>
+		<mat-form-field class="select-cidade"> <mat-select
+			[(ngModel)]="usuario.localidade.cidade.codigo" name="codigo"
+			placeholder="Cidade"> <mat-option
+			*ngFor="let cidadeAux of cidades" [value]="cidadeAux.codigo"
+			(click)="carregaBairro(usuario.localidade.cidade.codigo)">
+		{{ cidadeAux.descricao }} </mat-option> </mat-select> </mat-form-field>
+	</div>
 
-  <div>
-    <mat-form-field class="input-email">   
-      <input matInput [(ngModel)]="usuario.email" name="email" placeholder="E-mail" [formControl]="email" required>
-      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-    </mat-form-field>
-  </div>
+	<div>
+		<mat-form-field class="select-bairro"> <mat-select
+			placeholder="Bairro" [(ngModel)]="usuario.localidade.bairro.codigo"
+			name="codigo"> <mat-option
+			*ngFor="let bairroAux of bairros" [value]="bairroAux.codigo">
+		{{ bairroAux.descricao }} </mat-option> </mat-select> </mat-form-field>
+	</div>
 
-  <div>
-    <mat-form-field class="input-confEmail">   
-      <input matInput placeholder="Confirmar email" [formControl]="confEmail" required>
-      <mat-error *ngIf="confEmail.invalid">{{getErrorMessageConf()}}</mat-error>
-    </mat-form-field>
-  </div>
+	<div>
+		<mat-form-field class="input-phone"> <input
+			[(ngModel)]="usuario.telefone" name="telefone" matInput
+			placeholder="Telefone" ng-model="number" ui-number-mask="3">
+		</mat-form-field>
+	</div>
 
-  <div>
-  <mat-form-field class="input-password">   
-      <input matInput [(ngModel)]="usuario.senha" name="senha" maxlength="20" placeholder="Senha" [type]="hide ? 'password' : 'text'">
-      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon> 
-    </mat-form-field>
-  </div>
+	<div>
+		<mat-form-field class="input-email"> <input matInput
+			[(ngModel)]="usuario.email" name="email" placeholder="E-mail"
+			[formControl]="email" required> <mat-error
+			*ngIf="email.invalid">{{getErrorMessage()}}</mat-error> </mat-form-field>
+	</div>
 
-  <div>
-    <mat-form-field class="input-confPassword">   
-      <input matInput maxlength="20" placeholder="Confirmar senha" [type]="hide2 ? 'password' : 'text'">
-      <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility' : 'visibility_off'}}</mat-icon> 
-    </mat-form-field>
-  </div>
+	<div>
+		<mat-form-field class="input-confEmail"> <input
+			matInput placeholder="Confirmar email" [formControl]="confEmail"
+			required> <mat-error *ngIf="confEmail.invalid">{{getErrorMessageConf()}}</mat-error>
+		</mat-form-field>
+	</div>
 
-  <div class="button-save">
-    <mat-button-toggle (click)="submit()">Salvar</mat-button-toggle>
-  </div>
-  </form>
+	<div>
+		<mat-form-field class="input-password"> <input
+			matInput [(ngModel)]="usuario.senha" name="senha" maxlength="20"
+			placeholder="Senha" [type]="hide ? 'password' : 'text'"> <mat-icon
+			matSuffix (click)="hide = !hide">{{hide ? 'visibility' :
+		'visibility_off'}}</mat-icon> </mat-form-field>
+	</div>
+
+	<div>
+		<mat-form-field class="input-confPassword"> <input
+			matInput maxlength="20" placeholder="Confirmar senha"
+			[type]="hide2 ? 'password' : 'text'"> <mat-icon matSuffix
+			(click)="hide2 = !hide2">{{hide2 ? 'visibility' :
+		'visibility_off'}}</mat-icon> </mat-form-field>
+	</div>
+
+	<div class="button-save">
+		<mat-button-toggle (click)="submit()">Salvar</mat-button-toggle>
+	</div>
+</form>
 </mat-card>

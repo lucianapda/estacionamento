@@ -7,11 +7,11 @@ export class Usuario {
   }
 
   public codigo: number;
-  private cpf: String;
-  private email: String;
-  private telefone: String;
-  private nome: String;
-  private senha: String;
-  private sexo: String;
+  public cpf: String;
+  public email: String;
+  public telefone: String;
+  public nome: String;
+  public senha: String;
+  public sexo: String;
   public localidade: Localidade;
 }
