@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
@@ -55,7 +56,7 @@ public class Localidade implements Serializable {
 	public void setEstado(String estado) {
 		this.estado_loc = estado;
 	}
-	
+
 	@Column(name = "cep_loc")
 	public int getCep() {
 		return this.cep_loc;
@@ -84,6 +85,7 @@ public class Localidade implements Serializable {
 	}
 
 	// bi-directional many-to-one association to Estacionamento
+	@JsonManagedReference(value = "localidade-estacionamento")
 	@OneToMany(mappedBy = "localidade")
 	public List<Estacionamento> getEstacionamento() {
 		return this.estacionamento;
@@ -92,7 +94,7 @@ public class Localidade implements Serializable {
 	public void setEstacionamento(List<Estacionamento> estacionamento) {
 		this.estacionamento = estacionamento;
 	}
-	
+
 	public Estacionamento addEstacionamento(Estacionamento estacionamento) {
 		getEstacionamento().add(estacionamento);
 		estacionamento.setLocalidade(this);
@@ -106,8 +108,9 @@ public class Localidade implements Serializable {
 
 		return estacionamento;
 	}
-	
+
 	// bi-directional many-to-one association to Bairro
+	@JsonBackReference(value = "localidade-bairro")
 	@ManyToOne
 	@JoinColumn(name = "codbai_loc")
 	public Bairro getBairro() {
@@ -119,6 +122,7 @@ public class Localidade implements Serializable {
 	}
 
 	// bi-directional many-to-one association to Cidade
+	@JsonBackReference(value = "localidade-cidade")
 	@ManyToOne
 	@JoinColumn(name = "codcid_loc")
 	public Cidade getCidade() {
@@ -128,9 +132,9 @@ public class Localidade implements Serializable {
 	public void setCidade(Cidade cidade) {
 		this.codcid_loc = cidade;
 	}
-	
-	@JsonManagedReference
-	@OneToMany(mappedBy="localidade")
+
+	@JsonManagedReference(value = "user-localidade")
+	@OneToMany(mappedBy = "localidade")
 	public List<Usuario> getUsuarios() {
 		return this.usuarios;
 	}

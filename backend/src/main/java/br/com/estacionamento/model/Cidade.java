@@ -1,12 +1,20 @@
 package br.com.estacionamento.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import java.util.List;
 
 
 /**
@@ -29,6 +37,7 @@ public class Cidade implements Serializable {
 
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="codigo_cid")
 	public Long getCodigo() {
 		return this.codigo;
@@ -48,7 +57,7 @@ public class Cidade implements Serializable {
 		this.descricao = descricao;
 	}
 	
-	 @JsonManagedReference
+	@JsonManagedReference (value="bairro-cidade")
 	@OneToMany(mappedBy="cidade")
 	public List<Bairro> getBairros() {
 		return this.bairros;
@@ -70,7 +79,7 @@ public class Cidade implements Serializable {
 
 	//bi-directional many-to-one association to Pais
 	@ManyToOne
-	@JsonBackReference
+	@JsonBackReference (value="cidade-pais")
 	@JoinColumn(name="codpai_cid")
 	public Pais getPais() {
 		return this.pais;
@@ -82,6 +91,7 @@ public class Cidade implements Serializable {
 
 
 	//bi-directional many-to-one association to Localidade
+	@JsonManagedReference (value="localidade-cidade")
 	@OneToMany(mappedBy="cidade")
 	public List<Localidade> getLocalidade() {
 		return this.localidade;

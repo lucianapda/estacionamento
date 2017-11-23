@@ -1,3 +1,5 @@
+import {Estacionamento} from './estacionamento';
+import {ImgUsuario} from './imgUsuario';
 import {Localidade} from './localidade';
 
 export class Usuario {
@@ -14,6 +16,8 @@ export class Usuario {
   public senha: String;
   public sexo: String;
   public localidade: Localidade;
+  public estacionamento: Estacionamento[];
+  public imgusuario: ImgUsuario[];
 
   setIfo(user: Usuario) {
     this.codigo = user.codigo;
@@ -23,7 +27,7 @@ export class Usuario {
     this.nome = user.nome;
     this.senha = user.senha;
     this.sexo = user.sexo;
-    
+
     if (user.localidade != null) {
       this.localidade = user.localidade;
     }

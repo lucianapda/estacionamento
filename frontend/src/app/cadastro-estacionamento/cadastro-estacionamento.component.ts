@@ -9,6 +9,7 @@ import {Bairro} from '../models/bairro';
 import {Cidade} from '../models/cidade';
 import {LocalidadeService} from '../models/localidade.service';
 import {LoginDialogComponent} from '../login-dialog/login-dialog.component';
+import { Pais } from '../models/pais';
 
 @Component({
   selector: 'app-cadastro-estacionamento',
@@ -20,9 +21,9 @@ export class CadastroEstacionamentoComponent implements OnInit {
 
   private estacionamento: Estacionamento;
   private bairros: Bairro[] = [];
-  private cidades: Cidade[] = [{codigo: 75680, descricao: 'Blumenau'},
-  {codigo: 55298, descricao: 'Curitiba'},
-  {codigo: 71986, descricao: 'Porto Alegre'}];
+  private cidades: Cidade[] = [{codigo: 75680, descricao: 'Blumenau', pais: new Pais()},
+  {codigo: 55298, descricao: 'Curitiba', pais: new Pais()},
+  {codigo: 71986, descricao: 'Porto Alegre', pais: new Pais()}];
 
   constructor(private service: EstacionamentoService, private bairroServico: BairroService, private cidadeServico: CidadeService,
     private localidadeService: LocalidadeService) {

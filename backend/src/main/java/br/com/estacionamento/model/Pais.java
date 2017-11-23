@@ -1,11 +1,18 @@
 package br.com.estacionamento.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import java.util.List;
 
 
 /**
@@ -27,6 +34,7 @@ public class Pais implements Serializable {
 
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="codigo_pai")
 	public Long getCodigo() {
 		return this.codigo;
@@ -58,8 +66,8 @@ public class Pais implements Serializable {
 
 
 	//bi-directional many-to-one association to Cidade
+	@JsonManagedReference (value="cidade-pais")
 	@OneToMany(mappedBy="pais")
-	 @JsonManagedReference
 	public List<Cidade> getCidade() {
 		return this.cidade;
 	}

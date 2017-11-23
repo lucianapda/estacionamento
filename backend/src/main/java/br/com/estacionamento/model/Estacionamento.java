@@ -1,13 +1,24 @@
 package br.com.estacionamento.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
-
-import org.springframework.web.bind.annotation.CrossOrigin;
-
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 /**
  * The persistent class for the estacionamento database table.
@@ -92,6 +103,7 @@ public class Estacionamento implements Serializable {
 	}
 
 	// bi-directional many-to-one association to Localidade
+	@JsonBackReference(value = "localidade-estacionamento")
 	@ManyToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "codloc_est")
 	public Localidade getLocalidade() {
@@ -103,6 +115,7 @@ public class Estacionamento implements Serializable {
 	}
 
 	// bi-directional many-to-one association to Usuario
+	@JsonBackReference(value = "user-estacionamento")
 	@ManyToOne
 	@JoinColumn(name = "codusu_est")
 	public Usuario getUsuario() {

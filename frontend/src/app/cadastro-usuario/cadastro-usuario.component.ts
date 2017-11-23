@@ -11,6 +11,7 @@ import {ImgUsuario} from '../models/imgUsuario';
 import {ImgUsuarioService} from '../models/imgUsuario.service';
 import {Localidade} from '../models/localidade';
 import {LocalidadeService} from '../models/localidade.service';
+import {Pais} from '../models/pais';
 import {UploadImageComponent} from '../upload-image/upload-image.component';
 import {Router} from '@angular/router';
 
@@ -32,9 +33,9 @@ export class CadastroUsuarioComponent implements OnInit {
   constructor(private service: ServicoUsuarioService, private bairroServico: BairroService, private cidadeServico: CidadeService,
     private localidadeService: LocalidadeService, private imgUsuService: ImgUsuarioService, private router: Router) {
     this.cidades = [
-      {codigo: 75680, descricao: 'Blumenau'},
-      {codigo: 55298, descricao: 'Curitiba'},
-      {codigo: 71986, descricao: 'Porto Alegre'}];
+      {codigo: 75680, descricao: 'Blumenau', pais: new Pais()},
+      {codigo: 55298, descricao: 'Curitiba', pais: new Pais()},
+      {codigo: 71986, descricao: 'Porto Alegre', pais: new Pais()}];
     this.bairros = [];
     this.imagem = '/assets/imagens/user.png';
 
@@ -82,16 +83,18 @@ export class CadastroUsuarioComponent implements OnInit {
   }
 
   submit() {
-    var userAux = this.usuario;
-    this.service.createUsuario(userAux).subscribe(user => this.salvarImagemBD(user), error => console.log(error), () => console.log("Finalizou usuario"));
+    this.service.createUsuario(this.usuario).subscribe(user => this.salvarImagemBD(user), error => console.log(error), () => console.log("Finalizou usuario"));
   }
 
   salvarImagemBD(user: Usuario) {
+      console.log(user);
     if (this.imagem != null && user != null) {
       this.imgUsuario = new ImgUsuario(user.codigo);
-
+      this.homePage(String(user.codigo));
       this.imgUsuario.imagem = this.imagem;
+       console.log(111111111111111111);
       this.imgUsuService.newImgUsu(this.imgUsuario).subscribe(retornoImg => this.homePage(String(user.codigo)), error => console.log(error), () => console.log("Salvo Imagem"));
+       console.log(222222222222222222);
     }
   }
 

@@ -23,6 +23,7 @@ public class EstacionamentoLicenca implements Serializable {
 
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="codigo_eli")
 	public Long getCodigo() {
 		return this.codigo;

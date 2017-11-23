@@ -1,4 +1,12 @@
+import {Pais} from './pais';
+
 export class Cidade {
-    public codigo: number;
-    public descricao: String;
+
+  constructor() {
+    this.pais = new Pais;
+  }
+
+  public codigo: number;
+  public descricao: String;
+  public pais: Pais;
 }

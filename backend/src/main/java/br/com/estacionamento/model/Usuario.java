@@ -17,13 +17,12 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-
 /**
  * The persistent class for the usuario database table.
  * 
  */
 @Entity
-@Table(name="usuario")
+@Table(name = "usuario")
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private long codigo;
@@ -45,10 +44,9 @@ public class Usuario implements Serializable {
 	public Usuario() {
 	}
 
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="idusuario")
+	@Column(name = "idusuario")
 	public long getCodigo() {
 		return this.codigo;
 	}
@@ -57,8 +55,7 @@ public class Usuario implements Serializable {
 		this.codigo = codigo;
 	}
 
-
-	@Column(name="cpf_usu")
+	@Column(name = "cpf_usu")
 	public String getCpf() {
 		return this.cpf;
 	}
@@ -67,8 +64,7 @@ public class Usuario implements Serializable {
 		this.cpf = cpf;
 	}
 
-
-	@Column(name="email_usu")
+	@Column(name = "email_usu")
 	public String getEmail() {
 		return this.email;
 	}
@@ -77,8 +73,7 @@ public class Usuario implements Serializable {
 		this.email = email;
 	}
 
-
-	@Column(name="fone_usu")
+	@Column(name = "fone_usu")
 	public String getTelefone() {
 		return this.telefone;
 	}
@@ -87,8 +82,7 @@ public class Usuario implements Serializable {
 		this.telefone = telefone;
 	}
 
-
-	@Column(name="nome_usu")
+	@Column(name = "nome_usu")
 	public String getNome() {
 		return this.nome;
 	}
@@ -97,8 +91,7 @@ public class Usuario implements Serializable {
 		this.nome = nome;
 	}
 
-
-	@Column(name="senha_usu")
+	@Column(name = "senha_usu")
 	public String getSenha() {
 		return this.senha;
 	}
@@ -106,10 +99,10 @@ public class Usuario implements Serializable {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
-	@JsonBackReference
-	@ManyToOne(cascade = {CascadeType.ALL})
-	@JoinColumn(name="codloc_usu")
+
+	@JsonBackReference(value = "user-localidade")
+	@ManyToOne(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "codloc_usu")
 	public Localidade getLocalidade() {
 		return this.localidade;
 	}
@@ -118,7 +111,7 @@ public class Usuario implements Serializable {
 		this.localidade = localidade;
 	}
 
-	@Column(name="sexo_usu")
+	@Column(name = "sexo_usu")
 	public String getSexo() {
 		return this.sexo;
 	}
@@ -127,9 +120,9 @@ public class Usuario implements Serializable {
 		this.sexo = sexo;
 	}
 
-
-	//bi-directional many-to-one association to Estacionamento
-	@OneToMany(mappedBy="usuario")
+	// bi-directional many-to-one association to Estacionamento
+	@JsonManagedReference(value = "user-estacionamento")
+	@OneToMany(mappedBy = "usuario")
 	public List<Estacionamento> getEstacionamentos() {
 		return this.estacionamentos;
 	}
@@ -152,9 +145,8 @@ public class Usuario implements Serializable {
 		return estacionamento;
 	}
 
-
-	//bi-directional many-to-one association to EstacionamentoLicenca
-	@OneToMany(mappedBy="usuario")
+	// bi-directional many-to-one association to EstacionamentoLicenca
+	@OneToMany(mappedBy = "usuario")
 	public List<EstacionamentoLicenca> getEstacionamentoLicencas() {
 		return this.estacionamentoLicencas;
 	}
@@ -177,9 +169,8 @@ public class Usuario implements Serializable {
 		return estacionamentoLicenca;
 	}
 
-
-	//bi-directional many-to-one association to Reserva
-	@OneToMany(mappedBy="usuario")
+	// bi-directional many-to-one association to Reserva
+	@OneToMany(mappedBy = "usuario")
 	public List<Reserva> getReservas() {
 		return this.reservas;
 	}
@@ -202,9 +193,8 @@ public class Usuario implements Serializable {
 		return reserva;
 	}
 
-
-	//bi-directional many-to-one association to Transacao
-	@OneToMany(mappedBy="usuario")
+	// bi-directional many-to-one association to Transacao
+	@OneToMany(mappedBy = "usuario")
 	public List<Transacao> getTransacaos() {
 		return this.transacaos;
 	}
@@ -227,10 +217,9 @@ public class Usuario implements Serializable {
 		return transacao;
 	}
 
-
-	//bi-directional many-to-one association to CartaoCredito
+	// bi-directional many-to-one association to CartaoCredito
 	@ManyToOne
-	@JoinColumn(name="codctc_usu")
+	@JoinColumn(name = "codctc_usu")
 	public CartaoCredito getCartaoCredito() {
 		return this.cartaoCredito;
 	}
@@ -239,10 +228,9 @@ public class Usuario implements Serializable {
 		this.cartaoCredito = cartaoCredito;
 	}
 
-
-	//bi-directional many-to-one association to UsuarioImg
-	@JsonManagedReference
-	@OneToMany(mappedBy="usuario")
+	// bi-directional many-to-one association to UsuarioImg
+	@JsonManagedReference (value = "user-imgUsu")
+	@OneToMany(mappedBy = "usuario")
 	public List<UsuarioImg> getUsuarioImgs() {
 		return this.usuarioImgs;
 	}
@@ -265,9 +253,8 @@ public class Usuario implements Serializable {
 		return usuarioImg;
 	}
 
-
-	//bi-directional many-to-one association to VeiculoUsuario
-	@OneToMany(mappedBy="usuario")
+	// bi-directional many-to-one association to VeiculoUsuario
+	@OneToMany(mappedBy = "usuario")
 	public List<VeiculoUsuario> getVeiculoUsuarios() {
 		return this.veiculoUsuarios;
 	}
