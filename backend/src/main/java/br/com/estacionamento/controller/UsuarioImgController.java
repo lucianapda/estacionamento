@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,13 +23,18 @@ public class UsuarioImgController {
 	@Inject
 	private UsuarioImgRepository usuarioImgRepository;
 
+	@CrossOrigin(origins = "*")
 	@RequestMapping(path = "/usuarioimg", method = RequestMethod.GET)
 	public ResponseEntity<List<UsuarioImg>> get(@RequestParam(name = "codigo", required = false) Long codigo) {
 		List<UsuarioImg> listaRetorno = new ArrayList<>();
 
-		if (usuarioImgRepository.exists(codigo)) {
+		if (codigo != null && usuarioImgRepository.exists(codigo)) {
 			UsuarioImg usuarioImg = usuarioImgRepository.findOne(codigo);
 			listaRetorno.add(usuarioImg);
+		} else {
+			if (codigo == null) {
+				listaRetorno = usuarioImgRepository.findAll();
+			}
 		}
 
 		if (listaRetorno.size() > 0) {
@@ -37,6 +43,7 @@ public class UsuarioImgController {
 		return new ResponseEntity<List<UsuarioImg>>(listaRetorno, HttpStatus.NOT_FOUND);
 	}
 
+	@CrossOrigin(origins = "*")
 	@RequestMapping(path = "/usuarioimg", method = RequestMethod.POST)
 	public ResponseEntity<UsuarioImg> save(@RequestBody UsuarioImg usuarioImg) {
 
@@ -44,6 +51,7 @@ public class UsuarioImgController {
 			try {
 				usuarioImgRepository.saveAndFlush(usuarioImg);
 			} catch (Exception e) {
+				e.printStackTrace();
 				return new ResponseEntity<UsuarioImg>(usuarioImg, HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		}

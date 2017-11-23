@@ -59,6 +59,7 @@ public class UsuarioController {
 			try {
 				usuarioRepository.saveAndFlush(usuario);
 			} catch (Exception e) {
+				e.printStackTrace();
 				return new ResponseEntity<Usuario>(usuario, HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		}

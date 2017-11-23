@@ -9,12 +9,12 @@ export class Localidade {
     this.cidade = new Cidade;
   }
 
-  private codigo: number;
-  private cep: number;
-  private endereco: String;
-  private numero: String;
-  private bairro: Bairro;
-  private cidade: Cidade;
-  private usuarios: Usuario[];
-  private estado: String;
+  public codigo: number;
+  public cep: number;
+  public endereco: String;
+  public numero: String;
+  public bairro: Bairro;
+  public cidade: Cidade;
+  public usuarios: Usuario[];
+  public estado: String;
 }

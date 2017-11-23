@@ -3,6 +3,7 @@ package br.com.estacionamento.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 /**
@@ -103,7 +107,8 @@ public class Usuario implements Serializable {
 		this.senha = senha;
 	}
 	
-	@ManyToOne
+	@JsonBackReference
+	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="codloc_usu")
 	public Localidade getLocalidade() {
 		return this.localidade;
@@ -236,6 +241,7 @@ public class Usuario implements Serializable {
 
 
 	//bi-directional many-to-one association to UsuarioImg
+	@JsonManagedReference
 	@OneToMany(mappedBy="usuario")
 	public List<UsuarioImg> getUsuarioImgs() {
 		return this.usuarioImgs;

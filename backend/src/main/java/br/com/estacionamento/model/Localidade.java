@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 /**
  * The persistent class for the localidade database table.
  * 
@@ -127,6 +129,7 @@ public class Localidade implements Serializable {
 		this.codcid_loc = cidade;
 	}
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy="localidade")
 	public List<Usuario> getUsuarios() {
 		return this.usuarios;

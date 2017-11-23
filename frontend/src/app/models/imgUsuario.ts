@@ -2,11 +2,12 @@ import {Usuario} from './usuario';
 
 export class ImgUsuario {
 
-  constructor(usuario: Usuario) {
-    this.usuario = usuario;
+  constructor(codigo: number) {
+    this.usuario = new Usuario();
+    this.usuario.codigo = codigo;
   }
 
   public codigo: number;
-  public imagem: Blob[];
+  public imagem: String;
   public usuario: Usuario;
 }

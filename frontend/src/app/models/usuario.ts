@@ -3,7 +3,7 @@ import {Localidade} from './localidade';
 export class Usuario {
 
   constructor() {
-    this.localidade = new Localidade;
+    this.localidade = new Localidade();
   }
 
   public codigo: number;

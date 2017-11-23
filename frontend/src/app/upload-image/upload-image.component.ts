@@ -57,13 +57,13 @@ export class UploadImageComponent {
 
     reader.onload = this._handleReaderLoaded.bind(this);
     reader.readAsDataURL(file);
-    this.returnImage.emit({imgSelec: reader});
   }
 
   _handleReaderLoaded(e) {
     var reader = e.target;
     this.imageSrc = reader.result;
     this.loaded = true;
+    this.returnImage.emit({imgSelec: this.imageSrc});
   }
 
   _setActive() {

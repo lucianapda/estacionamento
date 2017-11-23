@@ -10,7 +10,7 @@ export class ImgUsuarioService {
   constructor(private http: Http) {}
 
   newImgUsu(imgUsu: ImgUsuario) {
-    return this.http.post("http://localhost:8080/usuarioimg", ImgUsuario).map(response => response.json());
+       return this.http.post("http://localhost:8080/usuarioimg", imgUsu).map(response => response.json());
   }
 
 }

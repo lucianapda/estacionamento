@@ -22,10 +22,11 @@ import {UploadImageComponent} from '../upload-image/upload-image.component';
 
 export class CadastroUsuarioComponent implements OnInit {
 
-  private usuario: Usuario;
+  private usuario: Usuario = new Usuario();
   private bairros: Bairro[];
   private cidades: Cidade[];
-  private imagem: FileReader;
+  private imagem: String;
+  private imgUsuario: ImgUsuario;
 
   constructor(private service: ServicoUsuarioService, private bairroServico: BairroService, private cidadeServico: CidadeService,
     private localidadeService: LocalidadeService, private imgUsuService: ImgUsuarioService) {
@@ -34,7 +35,6 @@ export class CadastroUsuarioComponent implements OnInit {
       {codigo: 55298, descricao: 'Curitiba'},
       {codigo: 71986, descricao: 'Porto Alegre'}];
     this.bairros = [];
-    this.usuario = new Usuario();
   }
 
   ngOnInit() {
@@ -53,7 +53,7 @@ export class CadastroUsuarioComponent implements OnInit {
   ];
 
   setImage(event) {
-    this.imagem = event;
+    this.imagem = event.imgSelec;
   }
 
   getErrorMessage() {
@@ -67,14 +67,16 @@ export class CadastroUsuarioComponent implements OnInit {
   }
 
   submit() {
-    var imgUsuario: ImgUsuario;
+    var userAux = this.usuario;
+    this.service.createUsuario(userAux).subscribe(user => this.salvarImagemBD(user), error => console.log(error), () => console.log("Finalizou usuario"));
+  }
 
-    this.localidadeService.createLocalidade(this.usuario.localidade).subscribe(localidade => this.usuario.localidade = localidade, error => console.log(error), () => console.log("Finalizou"));
-    this.service.createUsuario(this.usuario).subscribe(usuario => imgUsuario.usuario = usuario, error => console.log(error), () => console.log("Finalizou"));
+  salvarImagemBD(user: Usuario) {
+    if (this.imagem != null && user != null) {
+      this.imgUsuario = new ImgUsuario(user.codigo);
 
-    if (imgUsuario != null && this.imagem != null) {
-      imgUsuario.imagem = this.imagem.result;
-      this.imgUsuService.newImgUsu(imgUsuario).subscribe(retornoImg => console.log(retornoImg), error => console.log(error), () => console.log("Finalizou"));
+      this.imgUsuario.imagem = this.imagem;
+      this.imgUsuService.newImgUsu(this.imgUsuario).subscribe(retornoImg => console.log(retornoImg), error => console.log(error), () => console.log("Salvo Imagem"));
     }
   }
 
