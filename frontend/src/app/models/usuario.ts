@@ -6,7 +6,7 @@ export class Usuario {
     this.localidade = new Localidade;
   }
 
-  private codigo: number;
+  public codigo: number;
   private cpf: String;
   private email: String;
   private telefone: String;

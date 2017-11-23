@@ -1,18 +1,28 @@
-import {Localidade} from './localidade';
+import { Localidade } from './localidade';
+import { Usuario } from './usuario';
 
 export class Estacionamento {
 
-  constructor(codioUsuario: number) {
+  constructor() {
     this.localidade = new Localidade;
-    this.codusu_est = codioUsuario;
+    this.usuario = new Usuario;
+    this.dataCriacao = "20171122";
+    this.tempoReserva = 0;
+    this.valorReserva = 0;
+
+    if (localStorage.getItem('codigoUsuLogado')) {
+      this.usuario.codigo = parseInt(localStorage.getItem('codigoUsuLogado'));      
+    } else {
+      this.usuario.codigo = null;
+    }        
   }
 
-  private codigo_est: number;
-  private cnpj_est: String;
-  private datcri_est: Date;
-  private nome_est: String;
-  private tmpres_est: number;
-  private valres_est: number;
+  private codigo: number;
+  private cnpj: String;
+  private nome: String;
+  private dataCriacao: String;
+  private valorReserva: number;
+  private tempoReserva: number; 
   public localidade: Localidade;
-  private codusu_est: number;
+  private usuario: Usuario;
 }

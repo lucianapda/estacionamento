@@ -11,10 +11,10 @@ import {Router} from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   private isLogado: boolean = localStorage.getItem('codigoUsuLogado') != null;
-
+  
   constructor(public dialog: MatDialog, private router: Router) {
   }
-
+    
   ngOnInit() {
   }
 
