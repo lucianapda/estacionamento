@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation, Output, EventEmitter, Input} from '@angular/core';
 
 @Component({
   selector: 'app-upload-image',
@@ -17,8 +17,8 @@ export class UploadImageComponent {
   dragging: boolean = false;
   loaded: boolean = false;
   imageLoaded: boolean = false;
-  imageSrc: string = '/assets/imagens/user.png';
 
+  @Input() imageSrc: string = '/assets/imagens/user.png';
   @Output() returnImage = new EventEmitter();
 
   constructor() {

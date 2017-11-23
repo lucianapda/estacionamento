@@ -22,7 +22,8 @@ public class UsuarioController {
 
 	@Inject
 	private UsuarioRepository usuarioRepository;
-
+	
+	@CrossOrigin(origins = "*")
 	@RequestMapping(path = "/usuario", method = RequestMethod.GET)
 	public ResponseEntity<List<Usuario>> get(@RequestParam(name = "nome", required = false) String nome,
 			@RequestParam(name = "codigo", required = false) Long codigo) {

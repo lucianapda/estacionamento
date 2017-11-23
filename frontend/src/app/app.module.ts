@@ -40,6 +40,7 @@ import {UploadImageComponent} from './upload-image/upload-image.component';
 
 const appRoutes: Routes = [
   {path: 'new_user', component: CadastroUsuarioComponent, canActivate: [NoLoginGuard]},
+  {path: 'edit', component: CadastroUsuarioComponent, canActivate: [LoginGuard]},
   {path: 'parking', component: InformationComponent},
   {path: '', component: ScreenHomeComponent},
   {path: 'new_parking', component: CadastroEstacionamentoComponent, canActivate: [LoginGuard]}

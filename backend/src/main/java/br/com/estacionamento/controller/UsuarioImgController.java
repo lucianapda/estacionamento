@@ -25,11 +25,11 @@ public class UsuarioImgController {
 
 	@CrossOrigin(origins = "*")
 	@RequestMapping(path = "/usuarioimg", method = RequestMethod.GET)
-	public ResponseEntity<List<UsuarioImg>> get(@RequestParam(name = "codigo", required = false) Long codigo) {
+	public ResponseEntity<List<UsuarioImg>> get(@RequestParam(name = "codigo", required = true) Long codigo) {
 		List<UsuarioImg> listaRetorno = new ArrayList<>();
 
-		if (codigo != null && usuarioImgRepository.exists(codigo)) {
-			UsuarioImg usuarioImg = usuarioImgRepository.findOne(codigo);
+		if (codigo != null) {
+			UsuarioImg usuarioImg = usuarioImgRepository.obtemPeloCodigoUsu(codigo);
 			listaRetorno.add(usuarioImg);
 		} else {
 			if (codigo == null) {
