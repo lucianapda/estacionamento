@@ -22,7 +22,7 @@ public class UsuarioController {
 
 	@Inject
 	private UsuarioRepository usuarioRepository;
-	
+
 	@CrossOrigin(origins = "*")
 	@RequestMapping(path = "/usuario", method = RequestMethod.GET)
 	public ResponseEntity<List<Usuario>> get(@RequestParam(name = "nome", required = false) String nome,
@@ -32,9 +32,11 @@ public class UsuarioController {
 		if (nome != null && !nome.isEmpty()) {
 			listaRetorno = usuarioRepository.obtemPeloNome(nome);
 		} else {
-			if (usuarioRepository.exists(codigo)) {
+			if (codigo != null && usuarioRepository.exists(codigo)) {
 				Usuario usuario = usuarioRepository.findOne(codigo);
 				listaRetorno.add(usuario);
+			} else if (codigo == null) {
+				listaRetorno = usuarioRepository.obtemTodos();
 			}
 		}
 
@@ -43,7 +45,7 @@ public class UsuarioController {
 		}
 		return new ResponseEntity<List<Usuario>>(listaRetorno, HttpStatus.NOT_FOUND);
 	}
-	
+
 	@CrossOrigin(origins = "*")
 	@RequestMapping(path = "/login", method = RequestMethod.GET)
 	public long get(@RequestParam(name = "email", required = true) String email,

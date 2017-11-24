@@ -28,7 +28,6 @@ export class CadastroUsuarioComponent implements OnInit {
   private bairros: Bairro[];
   private cidades: Cidade[];
   private imagem: String;
-  private imgUsuario: ImgUsuario;
 
   constructor(private service: ServicoUsuarioService, private bairroServico: BairroService, private cidadeServico: CidadeService,
     private localidadeService: LocalidadeService, private imgUsuService: ImgUsuarioService, private router: Router) {
@@ -87,20 +86,19 @@ export class CadastroUsuarioComponent implements OnInit {
   }
 
   salvarImagemBD(user: Usuario) {
-      console.log(user);
+    this.usuario = user;
     if (this.imagem != null && user != null) {
-      this.imgUsuario = new ImgUsuario(user.codigo);
-      this.homePage(String(user.codigo));
-      this.imgUsuario.imagem = this.imagem;
-       console.log(111111111111111111);
-      this.imgUsuService.newImgUsu(this.imgUsuario).subscribe(retornoImg => this.homePage(String(user.codigo)), error => console.log(error), () => console.log("Salvo Imagem"));
-       console.log(222222222222222222);
+      var img = new ImgUsuario(this.usuario);
+      img.imagem = this.imagem;
+
+      this.imgUsuService.newImgUsu(img).subscribe(retornoImg => this.homePage(), error => console.log(error), () => console.log("Salvo Imagem"));
     }
   }
 
-  homePage(codigo: string) {
-    localStorage.setItem('codigoUsuLogado', codigo);
+  homePage() {
+    localStorage.setItem('codigoUsuLogado', String(this.usuario.codigo));
     this.router.navigateByUrl('');
+    window.location.reload();
   }
 
   carregaBairro(codigoCidade) {

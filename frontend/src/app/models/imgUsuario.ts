@@ -2,9 +2,8 @@ import {Usuario} from './usuario';
 
 export class ImgUsuario {
 
-  constructor(codigo: number) {
-    this.usuario = new Usuario();
-    this.usuario.codigo = codigo;
+  constructor(user: Usuario) {
+    this.usuario = user;
   }
 
   public codigo: number;

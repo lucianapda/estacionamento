@@ -36,4 +36,15 @@ public class UsuarioRepositoryImpl extends RepositoryBaseImpl implements Usuario
 		return query.fetch().get(0).getCodigo();
 	}
 
+	@Override
+	public List<Usuario> obtemTodos() {
+		QUsuario usuarioAux = QUsuario.usuario;
+
+		// Cria a query
+		JPAQuery<Usuario> query = select(usuarioAux).from(usuarioAux);
+		query.orderBy(usuarioAux.nome.asc());
+
+		return query.fetch();
+	}
+
 }

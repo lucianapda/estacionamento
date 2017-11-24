@@ -6,4 +6,5 @@ public interface UsuarioRepositoryCustom {
 
 	List<Usuario> obtemPeloNome(String nome);
 	long login(String email, String senha);
+	List<Usuario> obtemTodos();
 }

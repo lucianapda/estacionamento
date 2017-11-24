@@ -17,7 +17,7 @@ export class Usuario {
   public sexo: String;
   public localidade: Localidade;
   public estacionamento: Estacionamento[];
-  public imgusuario: ImgUsuario[];
+  public usuarioImgs: ImgUsuario[];
 
   setIfo(user: Usuario) {
     this.codigo = user.codigo;
