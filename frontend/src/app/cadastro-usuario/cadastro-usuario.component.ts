@@ -39,7 +39,9 @@ export class CadastroUsuarioComponent implements OnInit {
     this.imagem = '/assets/imagens/user.png';
 
     if (localStorage.getItem('codigoUsuLogado') != null) {
-      this.service.getUsuario(parseInt(localStorage.getItem('codigoUsuLogado'))).subscribe(user => this.carregaUsuEdicao(user[0]), error => console.log(error), () => console.log("carregou usuario edição"));
+      this.service.getUsuario(parseInt(localStorage.getItem('codigoUsuLogado'))).subscribe(user => this.carregaUsuEdicao(user[0]),
+        error => console.log(error),
+        () => console.log("carregou usuario edição"));
     }
   }
 
@@ -59,12 +61,15 @@ export class CadastroUsuarioComponent implements OnInit {
   ];
 
   carregaUsuEdicao(user: Usuario) {
+    console.log(user);
     this.usuario.setIfo(user);
     if (user.localidade != null) {
       this.carregaBairro(user.localidade.cidade.codigo);
     }
 
-    this.imgUsuService.getImg(user.codigo).subscribe(imgCarregada => this.imagem = imgCarregada[0].imagem, error => console.log(error), () => console.log("carregou imagens salvas"));
+    this.imgUsuService.getImg(user.codigo).subscribe(imgCarregada => this.imagem = imgCarregada[0].imagem,
+      error => console.log(error),
+      () => console.log("carregou imagens salvas"));
   }
 
   setImage(event) {
@@ -82,7 +87,14 @@ export class CadastroUsuarioComponent implements OnInit {
   }
 
   submit() {
-    this.service.createUsuario(this.usuario).subscribe(user => this.salvarImagemBD(user), error => console.log(error), () => console.log("Finalizou usuario"));
+
+    this.localidadeService.createLocalidade(this.usuario.localidade).subscribe(localidade => this.usuario.localidade,
+      error => console.log(error),
+      () => "");
+
+    this.service.createUsuario(this.usuario).subscribe(user => this.salvarImagemBD(user),
+      error => console.log(error),
+      () => "");
   }
 
   salvarImagemBD(user: Usuario) {
@@ -91,7 +103,9 @@ export class CadastroUsuarioComponent implements OnInit {
       var img = new ImgUsuario(this.usuario);
       img.imagem = this.imagem;
 
-      this.imgUsuService.newImgUsu(img).subscribe(retornoImg => this.homePage(), error => console.log(error), () => console.log("Salvo Imagem"));
+      this.imgUsuService.newImgUsu(img).subscribe(retornoImg => this.homePage(),
+        error => console.log(error),
+        () => console.log("Salvo Imagem"));
     }
   }
 
@@ -102,7 +116,9 @@ export class CadastroUsuarioComponent implements OnInit {
   }
 
   carregaBairro(codigoCidade) {
-    this.bairroServico.getBairrosCIdade(codigoCidade).subscribe(bairros => this.bairros = bairros, error => console.log(error), () => console.log("Pegou toda lista"));
+    this.bairroServico.getBairrosCIdade(codigoCidade).subscribe(bairros => this.bairros = bairros,
+      error => console.log(error),
+      () => console.log("Pegou toda lista"));
   }
 
 }

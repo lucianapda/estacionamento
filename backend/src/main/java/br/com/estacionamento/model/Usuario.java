@@ -101,7 +101,7 @@ public class Usuario implements Serializable {
 	}
 
 	@JsonBackReference(value = "user-localidade")
-	@ManyToOne(cascade = { CascadeType.ALL })
+	@ManyToOne
 	@JoinColumn(name = "codloc_usu")
 	public Localidade getLocalidade() {
 		return this.localidade;
