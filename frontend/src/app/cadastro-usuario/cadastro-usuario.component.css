@@ -1,5 +1,5 @@
 .card-register-user{
-  width: 35%;
+  width: 55%;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: auto;
@@ -9,16 +9,17 @@
   word-break: break-all;
 }
 .title{
-  text-align: center;
+  text-align: left;
+  font: bold;
 }
 .input-name{
   width: 60%
 }
 .input-street{
-  width: 50%;
+  width: 60%;
 }
 .input-number{
-  width: 10%;
+  width: 60%;
 }
 .input-uf{
   width: 5%;
@@ -30,19 +31,22 @@
   width: 60%;   
 }
 .input-password{
-  width: 30%;    
+  width: 60%;    
 }
 .input-confPassword{
-  width: 30%;    
+  width: 60%;    
 }
 .select-cidade{
-  width: 35%;
+  width: 60%;
 }
 .select-estado{
-  width: 50%;    
+  width: 60%;    
 }
 .select-bairro{
-  width: 35%;    
+  width: 60%;    
+}
+.input-phone {
+  width: 60%;
 }
 .button-save{
   text-align: right;

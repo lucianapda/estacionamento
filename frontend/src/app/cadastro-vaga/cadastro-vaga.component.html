@@ -9,12 +9,11 @@
      <mat-form-field class="type-vacancy">
       <mat-select placeholder="Tipo de vaga">
        <mat-option [value]="1">{{'Carro hatch'}}</mat-option>
-       <mat-option [value]="1">{{'Carro sedan'}}</mat-option>
-       <mat-option [value]="1">{{'Moto'}}</mat-option>
-       <mat-option [value]="1">{{'Caminh&atilde;o'}}</mat-option>
+       <mat-option [value]="2">{{'Carro sedan'}}</mat-option>
+       <mat-option [value]="3">{{'Moto'}}</mat-option>
+       <mat-option [value]="4">{{'Caminh&atilde;o'}}</mat-option>
       </mat-select>
-    </mat-form-field>
-    
+    </mat-form-field>    
    
     <mat-form-field class="input-value">   
       <input matInput currencyMask [(ngModel)]="value" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" placeholder="Valor da vaga" [maxlength]="19"/>

@@ -19,6 +19,7 @@ import { Pais } from '../models/pais';
 })
 export class CadastroEstacionamentoComponent implements OnInit {
 
+  private imagem: String; 
   private estacionamento: Estacionamento;
   private bairros: Bairro[] = [];
   private cidades: Cidade[] = [{codigo: 75680, descricao: 'Blumenau', pais: new Pais()},
@@ -28,9 +29,14 @@ export class CadastroEstacionamentoComponent implements OnInit {
   constructor(private service: EstacionamentoService, private bairroServico: BairroService, private cidadeServico: CidadeService,
     private localidadeService: LocalidadeService) {
     this.estacionamento = new Estacionamento();
+    this.imagem = '/assets/imagens/user.png';    
   }
 
   ngOnInit() {
+  }
+
+  setImage(event) {
+    this.imagem = event.imgSelec;
   }
 
   submit() {

@@ -1,0 +1,40 @@
+<app-header></app-header>
+<br>
+
+<mat-card>
+
+  <div>
+  
+    <div style="font: bold;" style="float:left">
+      <h5>Estacionamento beira rio</h5>
+    </div>
+
+    <div class="header">
+      
+      <button type="button" style="background-color:transparent;border: 0ch;" routerLink="">
+        <mat-icon>home</mat-icon>
+      </button>
+      
+      <button type="button" style="background-color:transparent;border: 0ch;" (click)="editaEstacionamento()">
+        <mat-icon>edit</mat-icon>
+      </button>
+      
+      <button type="button" style="background-color:transparent;border: 0ch;" (click)="deletaEstacionamento()">
+        <mat-icon>delete</mat-icon>
+      </button>
+      
+    </div>
+    
+  </div>
+  
+  <hr>
+    <div>
+        <mat-form-field class="input-cep"> 
+          <input matInput placeholder="CNPJ" disabled>
+        </mat-form-field>
+
+        <mat-form-field class="input-cep"> 
+            <input matInput placeholder="Data de criação" disabled>
+        </mat-form-field>
+    </div>
+  </mat-card>

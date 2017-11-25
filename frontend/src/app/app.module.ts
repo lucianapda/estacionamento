@@ -43,7 +43,8 @@ const appRoutes: Routes = [
   {path: 'edit', component: CadastroUsuarioComponent, canActivate: [LoginGuard]},
   {path: 'parking', component: InformationComponent},
   {path: '', component: ScreenHomeComponent},
-  {path: 'new_parking', component: CadastroEstacionamentoComponent, canActivate: [LoginGuard]}
+  {path: 'new_parking', component: CadastroEstacionamentoComponent, canActivate: [LoginGuard]},
+  {path: 'my_parking', component: MyParkingComponent, canActivate: [LoginGuard]}
 ];
 
 import {
@@ -79,6 +80,8 @@ import {
   MatTooltipModule,
   MatStepperModule
 } from '@angular/material';
+import { MyParkingComponent } from './my-parking/my-parking.component';
+import { DisplayCadastreComponent } from './display-cadastre/display-cadastre.component';
 
 @NgModule({
   declarations: [
@@ -97,7 +100,9 @@ import {
     FinancialMovementComponent,
     ScreenHomeComponent,
     CadastroEstacionamentoComponent,
-    UploadImageComponent
+    UploadImageComponent,
+    MyParkingComponent,
+    DisplayCadastreComponent
   ],
 
   imports: [

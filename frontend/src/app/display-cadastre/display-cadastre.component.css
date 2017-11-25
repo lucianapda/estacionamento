@@ -1,0 +1,14 @@
+.body {
+    padding-top:auto;
+}
+
+.mat-card {
+    padding: 20px;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header {
+    text-align: right;
+}

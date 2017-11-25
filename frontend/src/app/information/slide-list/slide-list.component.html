@@ -1,8 +1,7 @@
-<app-header></app-header>
 <div class="container">
 	<div class="row">
-		<div class="col-md-8">
-			<carousel [interval]="1500" [noWrap]="noWrapSlides"	[(activeSlide)]="activeSlideIndex"> 
+		<div class="col-12">
+			<carousel [interval]="2000" [noWrap]="noWrapSlides"	[(activeSlide)]="activeSlideIndex"> 
 				<slide	*ngFor="let image of images" class="{{image.id==1 ? 'item active' : 'item'}}"> 
 					<img src="{{image.thumbnail}}" alt="{{image.title}}" /> 
 				</slide> 
@@ -10,4 +9,3 @@
 		</div>
 	</div>
 </div>
-<app-footer></app-footer>
