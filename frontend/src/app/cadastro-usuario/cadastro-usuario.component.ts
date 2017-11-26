@@ -36,7 +36,7 @@ export class CadastroUsuarioComponent implements OnInit {
       {codigo: 55298, descricao: 'Curitiba', pais: new Pais()},
       {codigo: 71986, descricao: 'Porto Alegre', pais: new Pais()}];
     this.bairros = [];
-    this.imagem = '/assets/imagens/user.png';
+    this.imagem = '';
 
     if (localStorage.getItem('codigoUsuLogado') != null) {
       this.service.getUsuario(parseInt(localStorage.getItem('codigoUsuLogado'))).subscribe(user => this.carregaUsuEdicao(user[0]),

@@ -1,5 +1,6 @@
 <div class="app-upload-image">
-	<label class="uploader" ondragover="return false;"
+<mat-button-toggle class="bntRemover" (click)="removerImg()"></mat-button-toggle>
+	<label  class="uploader" ondragover="return false;"  [style.width]="widht" [style.height]="height"
 		[class.loaded]="loaded"
 		[style.outlineColor]="dragging ? activeColor : baseColor"
 		(dragenter)="handleDragEnter()" (dragleave)="handleDragLeave()"
@@ -8,7 +9,7 @@
             ? ((imageSrc.length > 0) ? overlayColor : activeColor)
             : ((imageSrc.length > 0) ? overlayColor : baseColor)"></i>
 
-		<img [src]="imageSrc" (load)="handleImageLoad()"
+		<img *ngIf='imageSrc != ""' [src]="imageSrc" (load)="handleImageLoad()"
 		[class.loaded]="imageLoaded" /> <input type="file" name="file" 
 		accept="image/*" (change)="handleInputChange($event)">
 	</label>

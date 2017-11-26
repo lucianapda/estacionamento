@@ -11,16 +11,27 @@
 	cursor: pointer;
 	display: -webkit-flex;
 	display: flex;
-	height: 180px;
 	-webkit-justify-content: center;
 	justify-content: center;
 	outline: 3px dashed #ccc;
 	outline-offset: 5px;
 	position: relative;
-	width: 160px;
+	background-image: url('/assets/imagens/mais.png');
+	background-repeat: no-repeat;
+	background-position: center center;
 }
 
-.uploader img, .uploader .icon {
+.bntRemover{
+	background-image: url('/assets/imagens/menos.png');
+	height: 30px;
+	width: 30px;
+	top:28px;
+	margin-left: 130px;
+	position:absolute;
+    z-index:1;
+}
+
+.uploader .uploader .icon {
 	pointer-events: none;
 }
 

@@ -19,6 +19,8 @@ export class UploadImageComponent {
   imageLoaded: boolean = false;
 
   @Input() imageSrc: string = '/assets/imagens/user.png';
+  @Input() height: string = "";
+  @Input() widht: string = "";
   @Output() returnImage = new EventEmitter();
 
   constructor() {
@@ -26,33 +28,42 @@ export class UploadImageComponent {
 
   handleDragEnter() {
     this.dragging = true;
+    console.log(11);
   }
 
   handleDragLeave() {
     this.dragging = false;
+    console.log(13);
   }
 
   handleDrop(e) {
+    console.log(1);
     e.preventDefault();
     this.dragging = false;
     this.handleInputChange(e);
   }
 
-  handleImageLoad() {
+  handleImageLoad(
+    console.log(14);) {
     this.imageLoaded = true;
     this.iconColor = this.overlayColor;
   }
 
+  removerImg() {
+    this.imageSrc = "";
+    this.returnImage.emit({imgSelec: ""});
+  }
+
   handleInputChange(e) {
+    console.log(15);
     var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
     var reader = new FileReader();
     var pattern = /image-*/;
-    
+
     if (!file.type.match(pattern)) {
       alert('imagem do tipo errado');
       return;
     }
-
     this.loaded = false;
 
     reader.onload = this._handleReaderLoaded.bind(this);
@@ -60,6 +71,7 @@ export class UploadImageComponent {
   }
 
   _handleReaderLoaded(e) {
+    console.log(16);
     var reader = e.target;
     this.imageSrc = reader.result;
     this.loaded = true;
@@ -67,6 +79,7 @@ export class UploadImageComponent {
   }
 
   _setActive() {
+    console.log(17);
     this.borderColor = this.activeColor;
     if (this.imageSrc.length === 0) {
       this.iconColor = this.activeColor;
@@ -74,6 +87,7 @@ export class UploadImageComponent {
   }
 
   _setInactive() {
+    console.log(18);
     this.borderColor = this.baseColor;
     if (this.imageSrc.length === 0) {
       this.iconColor = this.baseColor;
