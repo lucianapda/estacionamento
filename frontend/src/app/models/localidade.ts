@@ -10,7 +10,7 @@ export class Localidade {
   }
 
   public codigo: number;
-  public cep: number;
+  public cep: string;
   public endereco: String;
   public numero: String;
   public bairro: Bairro;

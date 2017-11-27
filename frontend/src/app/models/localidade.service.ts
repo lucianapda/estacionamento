@@ -12,4 +12,12 @@ export class LocalidadeService {
   createLocalidade(localidade: Localidade) {
     return this.http.post("http://localhost:8080/localidade", localidade).map(response => response.json());
   }
+
+  editLocalidade(localidade: Localidade) {
+    return this.http.put("http://localhost:8080/localidade", localidade).map(response => response.json());
+  }
+
+  deleteLocalidade(codigo: number) {
+    return this.http.delete("http://localhost:8080/localidade?codigo=" + codigo).map(response => response.json());
+  }
 }

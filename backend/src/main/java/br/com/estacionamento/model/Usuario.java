@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -101,7 +102,7 @@ public class Usuario implements Serializable {
 	}
 
 	@JsonBackReference(value = "user-localidade")
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "codloc_usu")
 	public Localidade getLocalidade() {
 		return this.localidade;

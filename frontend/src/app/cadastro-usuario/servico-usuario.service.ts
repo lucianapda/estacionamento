@@ -18,4 +18,12 @@ export class ServicoUsuarioService {
     return this.http.post("http://localhost:8080/usuario", usuario).map(response => response.json());
   }
 
+  editUsuario(usuario: Usuario) {
+    return this.http.put("http://localhost:8080/usuario", usuario).map(response => response.json());
+  }
+
+  deleteUsuario(codigo: number) {
+    return this.http.delete("http://localhost:8080/usuario?codigo=" + codigo).map(response => response.json());
+  }
+
 }

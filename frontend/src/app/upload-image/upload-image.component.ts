@@ -28,12 +28,10 @@ export class UploadImageComponent {
 
   handleDragEnter() {
     this.dragging = true;
-    console.log(11);
   }
 
   handleDragLeave() {
     this.dragging = false;
-    console.log(13);
   }
 
   handleDrop(e) {
@@ -43,8 +41,7 @@ export class UploadImageComponent {
     this.handleInputChange(e);
   }
 
-  handleImageLoad(
-    console.log(14);) {
+  handleImageLoad() {
     this.imageLoaded = true;
     this.iconColor = this.overlayColor;
   }
@@ -55,7 +52,6 @@ export class UploadImageComponent {
   }
 
   handleInputChange(e) {
-    console.log(15);
     var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
     var reader = new FileReader();
     var pattern = /image-*/;
@@ -71,7 +67,6 @@ export class UploadImageComponent {
   }
 
   _handleReaderLoaded(e) {
-    console.log(16);
     var reader = e.target;
     this.imageSrc = reader.result;
     this.loaded = true;
@@ -79,7 +74,6 @@ export class UploadImageComponent {
   }
 
   _setActive() {
-    console.log(17);
     this.borderColor = this.activeColor;
     if (this.imageSrc.length === 0) {
       this.iconColor = this.activeColor;
@@ -87,7 +81,6 @@ export class UploadImageComponent {
   }
 
   _setInactive() {
-    console.log(18);
     this.borderColor = this.baseColor;
     if (this.imageSrc.length === 0) {
       this.iconColor = this.baseColor;

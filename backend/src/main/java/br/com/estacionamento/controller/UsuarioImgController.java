@@ -63,6 +63,7 @@ public class UsuarioImgController {
 
 		if (usuarioImgRepository.exists(codigo)) {
 			usuarioImgRepository.delete(codigo);
+			usuarioImgRepository.flush();
 			return new ResponseEntity<String>("Excluído com sucesso", HttpStatus.OK);
 		} else {
 			return new ResponseEntity<String>("Erro ao tentar excluir", HttpStatus.INTERNAL_SERVER_ERROR);

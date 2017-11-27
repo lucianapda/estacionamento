@@ -36,7 +36,7 @@ import {ImgUsuarioService} from './models/imgUsuario.service';
 import {LocalidadeService} from './models/localidade.service';
 import {NoLoginGuard} from './no-login/no-login.guard';
 import {UploadImageComponent} from './upload-image/upload-image.component';
-
+import { TextMaskModule } from 'angular2-text-mask';
 
 const appRoutes: Routes = [
   {path: 'new_user', component: CadastroUsuarioComponent, canActivate: [NoLoginGuard]},
@@ -116,6 +116,7 @@ import { DisplayCadastreComponent } from './display-cadastre/display-cadastre.co
     HttpModule,
     ReactiveFormsModule,
     BrowserModule,
+    TextMaskModule,
     BrowserAnimationsModule,
     CdkTableModule,
     MatAutocompleteModule,

@@ -1,56 +1,87 @@
-.card-register-user{
-  width: 55%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: auto;
-  margin-top: auto;
+.card-register-user {
+	width: 55%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: auto;
+	margin-top: auto;
 }
-.input-date-birth{
-  word-break: break-all;
+
+.input-date-birth {
+	float: left;
+	margin-left: 12%;
 }
-.title{
-  text-align: left;
-  font: bold;
+
+.title {
+	text-align: left;
+	font: bold;
 }
-.input-name{
-  width: 60%
+
+.input-name {
+	width: 75%
 }
-.input-street{
-  width: 60%;
+
+.input-street {
+	margin-left: 12%;
+	width: 40%;
+	float: left;
 }
-.input-number{
-  width: 60%;
+
+.input-number {
+	width: 200px;
+	margin-left: 15px;
 }
-.input-uf{
-  width: 5%;
+
+.input-uf {
+	width: 5%;
 }
-.input-email{
-  width: 60%;
+
+.input-email {
+	width: 75%;
 }
-.input-confEmail{
-  width: 60%;   
+
+.input-cep {
+	margin-left: 20px;
 }
-.input-password{
-  width: 60%;    
+
+.input-confEmail {
+	width: 75%;
 }
-.input-confPassword{
-  width: 60%;    
+
+.input-password {
+	width: 75%;
 }
-.select-cidade{
-  width: 60%;
+
+.input-confPassword {
+	width: 75%;
 }
-.select-estado{
-  width: 60%;    
+
+.select-cidade {
+	width: 75%;
 }
-.select-bairro{
-  width: 60%;    
+
+.select-estado {
+	width: 75%;
 }
+
+.select-bairro {
+	width: 45%;
+	float: left;
+	margin-left: 12%;
+}
+
 .input-phone {
-  width: 60%;
+	width: 230px;
+	margin-left: 15px;
 }
-.button-save{
-  text-align: right;
+
+.buttons{
+	text-align: right;
 }
-.image{
-	float: right;
+
+.image {
+	align-items: center;
+	display: flex;
+	flex-direction: row; flex-wrap : wrap;
+	justify-content: center;
+	flex-wrap: wrap;
 }

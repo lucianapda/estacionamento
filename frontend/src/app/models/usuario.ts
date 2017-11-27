@@ -27,7 +27,7 @@ export class Usuario {
     this.nome = user.nome;
     this.senha = user.senha;
     this.sexo = user.sexo;
-    console.log(user.localidade);
+    
     if (user.localidade != null) {
       this.localidade = user.localidade;
     }

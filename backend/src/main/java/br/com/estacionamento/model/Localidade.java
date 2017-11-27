@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Localidade implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Long codigo_loc;
-	private int cep_loc;
+	private String cep_loc;
 	private String endere_loc;
 	private String numero_loc;
 	private String estado_loc;
@@ -58,11 +58,11 @@ public class Localidade implements Serializable {
 	}
 
 	@Column(name = "cep_loc")
-	public int getCep() {
+	public String getCep() {
 		return this.cep_loc;
 	}
 
-	public void setCep(int cep) {
+	public void setCep(String cep) {
 		this.cep_loc = cep;
 	}
 

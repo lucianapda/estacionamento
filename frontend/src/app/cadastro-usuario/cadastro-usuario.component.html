@@ -6,50 +6,53 @@
 </div>
 <hr>
 <form>
-<br><br>
-	<div>
-		<app-upload-image [imageSrc]="imagem" [height]="'180px'" [widht]="'160px'" (returnImage)="setImage($event)" class="image" ></app-upload-image>
-		<div>
-			<div>
-				<mat-form-field class="input-name"> <input
-					type="text" [(ngModel)]="usuario.nome" name="nome" matInput
-					placeholder="Nome completo"> </mat-form-field>
-			</div>
 
-			<div class="input-date-birth">
-				<mat-form-field> <mat-select placeholder="Sexo"
-					[(ngModel)]="usuario.sexo" name="sexo"> <mat-option
-					*ngFor="let sex of sex" [value]="sex.name"> {{
-				sex.name }} </mat-option> </mat-select> </mat-form-field>
-			</div>
-		</div>
+	<app-upload-image [imageSrc]="imagem" [height]="'180px'"
+		[widht]="'160px'" (returnImage)="setImage($event)" class="image"></app-upload-image>
 
+	<br>
+	<div style="text-align: center;">
+		<mat-form-field class="input-name"> <input
+			type="text" [(ngModel)]="usuario.nome" name="nome" require matInput
+			[readonly]="isReadOnly" placeholder="Nome completo"> </mat-form-field>
 	</div>
 
 	<div>
-		<mat-form-field class="input-cep"> <input
-			[(ngModel)]="usuario.localidade.cep" name="cep" matInput
-			placeholder="CEP"> </mat-form-field>
+		<div class="input-date-birth">
+			<mat-form-field> <mat-select placeholder="Sexo"
+				ng-disabled="isReadOnly" [(ngModel)]="usuario.sexo" name="sexo">
+			<mat-option *ngFor="let sex of sex" require [value]="sex.name">
+			{{ sex.name }} </mat-option> </mat-select> </mat-form-field>
+		</div>
+
+		<div>
+			<mat-form-field class="input-cep"> <input
+				[textMask]="{mask: cepMask}" [readonly]="isReadOnly" 
+				[(ngModel)]="usuario.localidade.cep" require name="cep" matInput
+				placeholder="CEP"> </mat-form-field>
+		</div>
 	</div>
 
 	<div>
 		<mat-form-field class="input-street"> <input
-			[(ngModel)]="usuario.localidade.endereco" name="endereco" matInput
-			placeholder="Rua"> </mat-form-field>
+			[readonly]="isReadOnly" [(ngModel)]="usuario.localidade.endereco"
+			require name="endereco" matInput placeholder="Rua"> </mat-form-field>
 
 		<mat-form-field class="input-number"> <input
-			[(ngModel)]="usuario.localidade.numero" name="numero" matInput
-			placeholder="Nº"> </mat-form-field>
+			type="number" [(ngModel)]="usuario.localidade.numero" name="numero"
+			matInput placeholder="Nº"> </mat-form-field>
 	</div>
 
-	<div>
+	<div style="text-align: center;">
 		<mat-form-field class="select-estado"> <input
-			placeholder="Estado" matInput [(ngModel)]="usuario.localidade.estado"
-			name="estado"> </mat-form-field>
+			ng-disabled="isReadOnly" placeholder="Estado" matInput
+			[(ngModel)]="usuario.localidade.estado" require name="estado">
+		</mat-form-field>
 	</div>
 
-	<div>
+	<div style="text-align: center;">
 		<mat-form-field class="select-cidade"> <mat-select
+			ng-disabled="isReadOnly" require
 			[(ngModel)]="usuario.localidade.cidade.codigo" name="codigo"
 			placeholder="Cidade"> <mat-option
 			*ngFor="let cidadeAux of cidades" [value]="cidadeAux.codigo"
@@ -59,51 +62,61 @@
 
 	<div>
 		<mat-form-field class="select-bairro"> <mat-select
-			placeholder="Bairro" [(ngModel)]="usuario.localidade.bairro.codigo"
-			name="codigo"> <mat-option
-			*ngFor="let bairroAux of bairros" [value]="bairroAux.codigo">
-		{{ bairroAux.descricao }} </mat-option> </mat-select> </mat-form-field>
-	</div>
+			ng-disabled="isReadOnly" placeholder="Bairro"
+			[(ngModel)]="usuario.localidade.bairro.codigo" require name="codigo">
+		<mat-option *ngFor="let bairroAux of bairros"
+			[value]="bairroAux.codigo"> {{ bairroAux.descricao }} </mat-option> </mat-select>
+		</mat-form-field>
 
-	<div>
-		<mat-form-field class="input-phone"> <input
-			[(ngModel)]="usuario.telefone" name="telefone" matInput
+		<mat-form-field class="input-phone"> <input require
+			[readonly]="isReadOnly" [(ngModel)]="usuario.telefone"
+			name="telefone" [textMask]="{mask: telMask}" matInput
 			placeholder="Telefone" ng-model="number" ui-number-mask="3">
 		</mat-form-field>
 	</div>
 
-	<div>
+	<div style="text-align: center;">
 		<mat-form-field class="input-email"> <input matInput
-			[(ngModel)]="usuario.email" name="email" placeholder="E-mail"
-			[formControl]="email" required> <mat-error
+			[readonly]="isReadOnly" [(ngModel)]="usuario.email" name="email"
+			placeholder="E-mail" [formControl]="email" required> <mat-error
 			*ngIf="email.invalid">{{getErrorMessage()}}</mat-error> </mat-form-field>
 	</div>
 
-	<div>
+	<div style="text-align: center;">
 		<mat-form-field class="input-confEmail"> <input
-			matInput placeholder="Confirmar email" [formControl]="confEmail"
-			required> <mat-error *ngIf="confEmail.invalid">{{getErrorMessageConf()}}</mat-error>
-		</mat-form-field>
+			[readonly]="isReadOnly" matInput placeholder="Confirmar email"
+			[formControl]="confEmail" required> <mat-error
+			*ngIf="confEmail.invalid">{{getErrorMessageConf()}}</mat-error> </mat-form-field>
 	</div>
 
-	<div>
+	<div style="text-align: center;">
 		<mat-form-field class="input-password"> <input
-			matInput [(ngModel)]="usuario.senha" name="senha" maxlength="20"
-			placeholder="Senha" [type]="hide ? 'password' : 'text'"> <mat-icon
-			matSuffix (click)="hide = !hide">{{hide ? 'visibility' :
+			[readonly]="isReadOnly" matInput [(ngModel)]="usuario.senha"
+			name="senha" maxlength="20" placeholder="Senha"
+			[type]="hide ? 'password' : 'text'"> <mat-icon matSuffix
+			(click)="hide = !hide">{{hide ? 'visibility' :
 		'visibility_off'}}</mat-icon> </mat-form-field>
 	</div>
 
-	<div>
+	<div style="text-align: center;">
 		<mat-form-field class="input-confPassword"> <input
-			matInput maxlength="20" placeholder="Confirmar senha"
-			[type]="hide2 ? 'password' : 'text'"> <mat-icon matSuffix
-			(click)="hide2 = !hide2">{{hide2 ? 'visibility' :
-		'visibility_off'}}</mat-icon> </mat-form-field>
+			[readonly]="isReadOnly" matInput maxlength="20"
+			placeholder="Confirmar senha" [type]="hide2 ? 'password' : 'text'">
+		<mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ?
+		'visibility' : 'visibility_off'}}</mat-icon> </mat-form-field>
 	</div>
 
-	<div class="button-save">
-		<mat-button-toggle (click)="submit()">Salvar</mat-button-toggle>
+	<br>
+
+	<div class="buttons">
+		<mat-button-toggle (click)="submit()" *ngIf="isBtSaveCanVisible">Salvar</mat-button-toggle>
+		<mat-button-toggle (click)="editarCadastr()"
+			*ngIf="isBtEditExclVisible">Editar</mat-button-toggle>
+		<mat-button-toggle (click)="deletarCadastro()"
+			*ngIf="isBtEditExclVisible">Deletar</mat-button-toggle>
+		<mat-button-toggle (click)="cancelar()" *ngIf="isBtSaveCanVisible">cancelar</mat-button-toggle>
 	</div>
 </form>
 </mat-card>
+<br>
+<app-footer></app-footer>
