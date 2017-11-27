@@ -77,23 +77,24 @@ export class CadastroUsuarioComponent implements OnInit {
   ];
 
   carregaUsuEdicao(user: Usuario) {
-
+    console.log(user);
     this.usuario.setIfo(user);
 
-    this.localidadeService.getLocalidade(this.usuario.localidade.codigo).subscribe(localidade => this.usuario.localidade = localidade[0],
+    this.localidadeService.getLocalidade(user.localidade.codigo).subscribe(localidade => {
+      this.usuario.localidade = localidade[0];
+      console.log(user.localidade);
+      if (user.localidade != null) {
+        this.carregaBairro(user.localidade.cidade.codigo);
+      }
+
+      this.imgUsuService.getImg(user.codigo).subscribe(imgCarregada => this.usuario.usuarioImgs = imgCarregada,
+        error => console.log(error),
+        () => console.log("carregou imagens salvas"));
+
+      this.imagem = this.usuario.usuarioImgs[0].imagem;
+    },
       error => console.log(error),
       () => console.log("carregou localidade"));
-
-    this.usuario.setIfo(user);
-    if (user.localidade != null) {
-      this.carregaBairro(user.localidade.cidade.codigo);
-    }
-
-    this.imgUsuService.getImg(user.codigo).subscribe(imgCarregada => this.usuario.usuarioImgs = imgCarregada,
-      error => console.log(error),
-      () => console.log("carregou imagens salvas"));
-
-    this.imagem = this.usuario.usuarioImgs[0].imagem;
   }
 
   setImage(event) {
@@ -120,6 +121,7 @@ export class CadastroUsuarioComponent implements OnInit {
       case 1:
         this.localidadeService.createLocalidade(this.usuario.localidade).subscribe(localidade => {
           this.usuario.localidade = localidade;
+          console.log(this.usuario);
           this.service.createUsuario(this.usuario).subscribe(user => {
             this.usuario.setIfo(user);
             this.salvarImagemBD();
@@ -177,25 +179,23 @@ export class CadastroUsuarioComponent implements OnInit {
         } else {
           this.deletar();
         }
-
-
         break;
     }
 
   }
 
   deletar() {
-    this.localidadeService.deleteLocalidade(this.usuario.localidade.codigo).subscribe(localidade => console.log(localidade),
+    this.localidadeService.deleteLocalidade(this.usuario.localidade.codigo).subscribe(localidade => {
+      this.service.deleteUsuario(this.usuario.codigo).subscribe(user => {
+        localStorage.removeItem('codigoUsuLogado');
+        this.homePage();
+      },
+        error => console.log(error),
+        () => "");
+    },
       error => console.log(error),
       () => "");
 
-    this.service.deleteUsuario(this.usuario.codigo).subscribe(user => console.log(user),
-      error => console.log(error),
-      () => "");
-
-    localStorage.removeItem('codigoUsuLogado');
-
-    this.homePage();
   }
 
   editarCadastr() {
@@ -205,7 +205,6 @@ export class CadastroUsuarioComponent implements OnInit {
 
   deletarCadastro() {
     this.tipoAcao = 3;
-    this.ajustarBotoes(false);
     this.submit();
   }
 
