@@ -2,10 +2,8 @@ package br.com.estacionamento.model;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -56,7 +54,7 @@ public class UsuarioImg implements Serializable {
 
 	// bi-directional many-to-one association to Usuario
 	@JsonBackReference(value = "user-imgUsu")
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "codusu_uimg")
 	public Usuario getUsuario() {
 		return this.usuario;

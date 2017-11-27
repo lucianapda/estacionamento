@@ -9,6 +9,11 @@ export class LocalidadeService {
   //Injeta a dependencia de um objeto Http e atribui a um atributo http privado
   constructor(private http: Http) {}
 
+  getLocalidade(codigo: number) {
+    //Utiliza o atributo http para realizar a operação GET na url informada, e obtém o resultado da chamada
+    return this.http.get("http://localhost:8080/localidade?codigo=" + codigo).map(response => response.json());
+  }
+
   createLocalidade(localidade: Localidade) {
     return this.http.post("http://localhost:8080/localidade", localidade).map(response => response.json());
   }

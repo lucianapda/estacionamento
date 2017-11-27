@@ -327,7 +327,7 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `estacionamento`.`usuario_img` (
   `codigo_uimg` INT(11) NOT NULL AUTO_INCREMENT,
   `img_uimg` BLOB NULL DEFAULT NULL,
-  `codusu_uimg` INT(11) NOT NULL,
+  `codusu_uimg` INT(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`codigo_uimg`),
   INDEX `fk_usuario_img_usuario1_idx` (`codusu_uimg` ASC),
   CONSTRAINT `fk_usuario_img_usuario1`

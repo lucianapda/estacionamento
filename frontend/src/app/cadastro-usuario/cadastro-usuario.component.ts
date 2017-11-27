@@ -49,9 +49,11 @@ export class CadastroUsuarioComponent implements OnInit {
       this.isBtSaveCanVisible = false;
       this.isBtEditExclVisible = true;
       this.isReadOnly = false;
+
       this.service.getUsuario(parseInt(localStorage.getItem('codigoUsuLogado'))).subscribe(user => this.carregaUsuEdicao(user[0]),
         error => console.log(error),
         () => console.log("carregou usuario edição"));
+
     } else {
       this.isBtEditExclVisible = false;
       this.isBtSaveCanVisible = true;
@@ -75,7 +77,13 @@ export class CadastroUsuarioComponent implements OnInit {
   ];
 
   carregaUsuEdicao(user: Usuario) {
-    console.log(user);
+
+    this.usuario.setIfo(user);
+
+    this.localidadeService.getLocalidade(this.usuario.localidade.codigo).subscribe(localidade => this.usuario.localidade = localidade[0],
+      error => console.log(error),
+      () => console.log("carregou localidade"));
+
     this.usuario.setIfo(user);
     if (user.localidade != null) {
       this.carregaBairro(user.localidade.cidade.codigo);
@@ -110,64 +118,84 @@ export class CadastroUsuarioComponent implements OnInit {
 
     switch (this.tipoAcao) {
       case 1:
-        this.service.createUsuario(this.usuario).subscribe(user => this.usuario.setIfo(user),
-          error => console.log(error),
+        this.localidadeService.createLocalidade(this.usuario.localidade).subscribe(localidade => {
+          this.usuario.localidade = localidade;
+          this.service.createUsuario(this.usuario).subscribe(user => {
+            this.usuario.setIfo(user);
+            this.salvarImagemBD();
+            this.homePage();
+          },
+            error => console.log(error),
+            () => "");
+        }, error => console.log(error),
           () => "");
-
-        this.salvarImagemBD(this.usuario);
 
         break;
 
       case 2:
-        this.localidadeService.editLocalidade(this.usuario.localidade).subscribe(localidade => this.usuario.localidade,
-          error => console.log(error),
-          () => "");
+        this.localidadeService.editLocalidade(this.usuario.localidade).subscribe(localidade => {
+          this.usuario.localidade = localidade;
 
-        if (this.usuario.usuarioImgs != null && this.usuario.usuarioImgs.length > 0) {
+          if (this.usuario.usuarioImgs != null && this.usuario.usuarioImgs.length > 0) {
 
-          if (this.imagem != "") {
-            this.usuario.usuarioImgs[0].imagem = this.imagem;
-            this.imgUsuService.editImgUsu(this.usuario.usuarioImgs[0]).subscribe(retornoImg => console.log(retornoImg),
-              error => console.log(error),
-              () => console.log("Salvo Imagem"));
-          } else {
-            this.imgUsuService.deleteImgUsu(this.usuario.usuarioImgs[0].codigo).subscribe(retornoImg => console.log(retornoImg),
-              error => console.log(error),
-              () => console.log("deletado Imagem"));
+            if (this.imagem != "") {
+              this.usuario.usuarioImgs[0].imagem = this.imagem;
+              this.imgUsuService.editImgUsu(this.usuario.usuarioImgs[0]).subscribe(retornoImg => {
+                this.service.editUsuario(this.usuario).subscribe(user => {
+                  this.usuario.setIfo(user);
+                  this.ajustarBotoes(true);
+                },
+                  error => console.log(error),
+                  () => "");
+              }, error => console.log(error),
+                () => console.log("Salvo Imagem"));
+            } else {
+              this.imgUsuService.deleteImgUsu(this.usuario.usuarioImgs[0].codigo).subscribe(retornoImg => {
+                this.service.editUsuario(this.usuario).subscribe(user => {
+                  this.usuario.setIfo(user);
+                  this.ajustarBotoes(true);
+                },
+                  error => console.log(error),
+                  () => "");
+              },
+                error => console.log(error),
+                () => console.log("deletado Imagem"));
+            }
+          } else if (this.imagem != "") {
+            this.salvarImagemBD();
           }
-        } else if (this.imagem != "") {
-          this.salvarImagemBD(this.usuario);
-        }
-
-        this.service.editUsuario(this.usuario).subscribe(user => this.usuario.setIfo(user),
-          error => console.log(error),
+        }, error => console.log(error),
           () => "");
-
-        this.ajustarBotoes(true);
         break;
 
       case 3:
 
         if (this.usuario.usuarioImgs != null && this.usuario.usuarioImgs.length > 0) {
-          this.imgUsuService.deleteImgUsu(this.usuario.usuarioImgs[0].codigo).subscribe(retornoImg => console.log(retornoImg),
+          this.imgUsuService.deleteImgUsu(this.usuario.usuarioImgs[0].codigo).subscribe(retornoImg => this.deletar(),
             error => console.log(error),
             () => console.log("deletado Imagem"));
+        } else {
+          this.deletar();
         }
 
-        this.localidadeService.deleteLocalidade(this.usuario.localidade.codigo).subscribe(localidade => console.log(localidade),
-          error => console.log(error),
-          () => "");
 
-        this.service.deleteUsuario(this.usuario.codigo).subscribe(user => console.log(user),
-          error => console.log(error),
-          () => "");
-
-        localStorage.removeItem('codigoUsuLogado');
-
-        this.homePage();
         break;
     }
 
+  }
+
+  deletar() {
+    this.localidadeService.deleteLocalidade(this.usuario.localidade.codigo).subscribe(localidade => console.log(localidade),
+      error => console.log(error),
+      () => "");
+
+    this.service.deleteUsuario(this.usuario.codigo).subscribe(user => console.log(user),
+      error => console.log(error),
+      () => "");
+
+    localStorage.removeItem('codigoUsuLogado');
+
+    this.homePage();
   }
 
   editarCadastr() {
@@ -178,6 +206,7 @@ export class CadastroUsuarioComponent implements OnInit {
   deletarCadastro() {
     this.tipoAcao = 3;
     this.ajustarBotoes(false);
+    this.submit();
   }
 
   ajustarBotoes(isTrue: boolean) {
@@ -186,13 +215,14 @@ export class CadastroUsuarioComponent implements OnInit {
     this.isBtSaveCanVisible = !isTrue;
   }
 
-  salvarImagemBD(user: Usuario) {
-    this.usuario.setIfo(user);
-    if (this.imagem != "" && user != null) {
+  salvarImagemBD() {
+    if (this.imagem != "" && this.usuario != null && this.usuario.codigo > 0) {
       var img = new ImgUsuario(this.usuario);
       img.imagem = this.imagem;
+      img.usuario = this.usuario;
 
-      this.imgUsuService.newImgUsu(img).subscribe(retornoImg => "",
+      console.log(img);
+      this.imgUsuService.newImgUsu(img).subscribe(retornoImg => "Salvo img",
         error => console.log(error),
         () => console.log("Salvo Imagem"));
     }

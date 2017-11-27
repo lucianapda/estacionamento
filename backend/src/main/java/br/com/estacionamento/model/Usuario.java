@@ -3,10 +3,8 @@ package br.com.estacionamento.model;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -102,8 +100,8 @@ public class Usuario implements Serializable {
 	}
 
 	@JsonBackReference(value = "user-localidade")
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "codloc_usu")
+	@ManyToOne
+	@JoinColumn(name = "codloc_usu", insertable = false, updatable = false)
 	public Localidade getLocalidade() {
 		return this.localidade;
 	}
@@ -230,7 +228,7 @@ public class Usuario implements Serializable {
 	}
 
 	// bi-directional many-to-one association to UsuarioImg
-	@JsonManagedReference (value = "user-imgUsu")
+	@JsonManagedReference(value = "user-imgUsu")
 	@OneToMany(mappedBy = "usuario")
 	public List<UsuarioImg> getUsuarioImgs() {
 		return this.usuarioImgs;

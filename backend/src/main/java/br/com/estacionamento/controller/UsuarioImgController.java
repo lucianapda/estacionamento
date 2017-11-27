@@ -50,6 +50,7 @@ public class UsuarioImgController {
 		if (usuarioImg != null) {
 			try {
 				usuarioImgRepository.saveAndFlush(usuarioImg);
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 				return new ResponseEntity<UsuarioImg>(usuarioImg, HttpStatus.INTERNAL_SERVER_ERROR);
