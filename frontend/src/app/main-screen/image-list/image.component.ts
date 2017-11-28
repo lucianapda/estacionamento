@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
-import { Image } from '../../models/image';
+import { Estacionamento } from '../../models/estacionamento';
+import {Component, OnInit, ViewEncapsulation, Input} from '@angular/core';
+import {Image} from '../../models/image';
 
 @Component({
   selector: 'app-image',
@@ -7,8 +8,8 @@ import { Image } from '../../models/image';
   styleUrls: ['./image.component.css']
 })
 export class ImageComponent implements OnInit {
-  @Input() image: Image;
-  constructor() { }
+  @Input() image: Estacionamento;
+  constructor() {}
 
   ngOnInit() {
   }

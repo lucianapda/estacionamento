@@ -1,8 +1,9 @@
 <nav>
-	<a [routerLink]="['parking', image.id]" class="div-responsive"> <br> <img class="img-responsive"
-		src="{{image.thumbnail}}" />
+	<a [routerLink]="['parking', image.codigo]" class="div-responsive">
+		<br> <img class="img-responsive"
+		[src]="image.imagemEstacionamento[0].imagem" />
 		<div class="titulos">
-			<h5 class="texto">{{image.title}}</h5>
+			<h5 class="texto">{{image.nome}}</h5>
 		</div>
 	</a>
 </nav>
