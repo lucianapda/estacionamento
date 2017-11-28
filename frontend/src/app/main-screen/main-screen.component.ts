@@ -1,7 +1,4 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { EstacionamentoService } from '../cadastro-estacionamento/estacionamento.service';
-import { Estacionamento } from 'app/models/estacionamento';
 
 @Component({
   selector: 'app-main-screen',
@@ -13,6 +10,7 @@ export class MainScreenComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
 
 }

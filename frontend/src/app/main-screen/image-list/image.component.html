@@ -1,5 +1,5 @@
 <nav>
-	<a routerLink="/parking" class="div-responsive"> <br> <img class="img-responsive"
+	<a [routerLink]="['parking', image.id]" class="div-responsive"> <br> <img class="img-responsive"
 		src="{{image.thumbnail}}" />
 		<div class="titulos">
 			<h5 class="texto">{{image.title}}</h5>

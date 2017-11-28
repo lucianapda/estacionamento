@@ -25,7 +25,6 @@ import {SlideListComponent} from './information/slide-list/slide-list.component'
 import {SlideComponent} from './information/slide-list/slide.component';
 import {FinancialMovementComponent} from './financial-movement/financial-movement.component';
 import {ScreenHomeComponent} from './screen-home/screen-home.component';
-import {ServicoEstacionamentoService} from './information/servico-estacionamento.service';
 import {CarouselModule} from 'ngx-bootstrap';
 import {CadastroEstacionamentoComponent} from './cadastro-estacionamento/cadastro-estacionamento.component'
 import {EstacionamentoService} from './cadastro-estacionamento/estacionamento.service';
@@ -42,7 +41,7 @@ const appRoutes: Routes = [
   {path: '', component: ScreenHomeComponent},
   {path: 'new_user', component: CadastroUsuarioComponent, canActivate: [NoLoginGuard]},
   {path: 'edit', component: CadastroUsuarioComponent, canActivate: [LoginGuard]},
-  {path: 'parking', component: InformationComponent},
+  {path: 'parking/:id', component: InformationComponent},
   {path: 'parking/:id', component: CadastroEstacionamentoComponent},
   {path: 'new_parking', component: CadastroEstacionamentoComponent, canActivate: [LoginGuard]},
   {path: 'my_parking', component: MyParkingComponent, canActivate: [LoginGuard]},
@@ -160,7 +159,6 @@ import { DisplayCadastreComponent } from './display-cadastre/display-cadastre.co
   ],
   providers: [
     ServicoUsuarioService,
-    ServicoEstacionamentoService,
     BairroService,
     CidadeService,
     EstacionamentoService,

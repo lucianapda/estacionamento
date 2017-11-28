@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ServicoEstacionamentoService } from './servico-estacionamento.service';
+import { EstacionamentoService } from '../cadastro-estacionamento/estacionamento.service';
+import { Estacionamento } from 'app/models/estacionamento';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-information',
@@ -9,21 +11,22 @@ import { ServicoEstacionamentoService } from './servico-estacionamento.service';
 })
 export class InformationComponent implements OnInit {
 
-  private estacionamento;
-  private vaga;
+  private estacionamentos: Estacionamento;
+  private codigoEstacionamento: number;
   
-  constructor(private service: ServicoEstacionamentoService) {
-    //Como a chamada de serviço é assincrona passamos ao subscribe 3 métodos como parâmetro:
-    //O primeiro é o que ele faz se houver sucesso.(Neste caso this.exemplos = exemplos)
-    //O segundo é quando ocorre erro
-    //O terceiro sempre é chamado independende se deu erro ou não
-    service.getAll().subscribe(estacionamento => this.estacionamento = estacionamento, 
-                                error => console.log(error),
-                                () => console.log("Terminou")
-      );
-  }
+  constructor(private service: EstacionamentoService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+
+    this.codigoEstacionamento = this.route.snapshot.params['id'];
+
+    this.service.getByCode(this.codigoEstacionamento)
+    .subscribe(estacionamento => this.estacionamentos = estacionamento, 
+      error => console.log(error),
+      () => console.log("Terminou"));
+
+      console.log(this.estacionamentos);
+
   }
 
 }
