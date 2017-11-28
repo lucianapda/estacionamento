@@ -8,6 +8,6 @@ export class Cidade {
 
   public codigo: number;
   public descricao: String;
-  public uf: String;
+  public  uf: String;
   public pais: Pais;
 }
