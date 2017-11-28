@@ -17,24 +17,31 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.estacionamento.model.Estacionamento;
 import br.com.estacionamento.model.EstacionamentoRepository;
 
-@CrossOrigin(allowedHeaders="*", origins="*")
+@CrossOrigin(allowedHeaders = "*", origins = "*")
 @RestController
 public class EstacionamentoController {
 
 	@Inject
 	private EstacionamentoRepository estacionamentoRepository;
-	
+
 	@RequestMapping(path = "/estacionamento", method = RequestMethod.GET)
 	public ResponseEntity<List<Estacionamento>> get(@RequestParam(name = "nome", required = false) String nome,
-			@RequestParam(name = "codigo", required = false) Long codigo) {
+			@RequestParam(name = "codigo", required = false) Long codigo,
+			@RequestParam(name = "codigousuario", required = false) Long codigoUsuario) {
 		List<Estacionamento> listaRetorno = new ArrayList<>();
 
 		if (nome != null && !nome.isEmpty()) {
 			listaRetorno = estacionamentoRepository.obtemPeloNome(nome);
 		} else {
-			if (estacionamentoRepository.exists(codigo)) {
-				Estacionamento estacionamento = estacionamentoRepository.findOne(codigo);
-				listaRetorno.add(estacionamento);
+			if (codigo != null) {
+				if (estacionamentoRepository.exists(codigo)) {
+					Estacionamento estacionamento = estacionamentoRepository.findOne(codigo);
+					listaRetorno.add(estacionamento);
+				}
+			} else if (codigoUsuario != null) {
+				listaRetorno = estacionamentoRepository.obtemPeloUsuario(codigoUsuario);
+			} else {
+				listaRetorno = estacionamentoRepository.obtemTodos();
 			}
 		}
 
@@ -58,8 +65,8 @@ public class EstacionamentoController {
 	}
 
 	@RequestMapping(path = "/estacionamento", method = RequestMethod.DELETE)
-	public ResponseEntity<String> delete(@RequestParam(name = "codigo", required=true) Long codigo) {
-		
+	public ResponseEntity<String> delete(@RequestParam(name = "codigo", required = true) Long codigo) {
+
 		if (estacionamentoRepository.exists(codigo)) {
 			estacionamentoRepository.delete(codigo);
 			return new ResponseEntity<String>("Excluído com sucesso", HttpStatus.OK);
@@ -67,7 +74,7 @@ public class EstacionamentoController {
 			return new ResponseEntity<String>("Erro ao tentar excluir", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+
 	@RequestMapping(path = "/estacionamento", method = RequestMethod.PUT)
 	public ResponseEntity<Estacionamento> update(@RequestBody Estacionamento estacionamento) {
 

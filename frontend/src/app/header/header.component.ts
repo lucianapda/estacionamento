@@ -18,6 +18,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
+  pesquisaEstacionamento(codigo: number) {
+    this.router.navigateByUrl('/parking/'+codigo);
+  }
+
   chamaLogin() {
     let dialogRef = this.dialog.open(LoginDialogComponent, {
       width: '50%'
