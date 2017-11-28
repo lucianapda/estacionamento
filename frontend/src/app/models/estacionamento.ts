@@ -7,7 +7,7 @@ export class Estacionamento {
   constructor() {
     this.localidade = new Localidade;
     this.usuario = new Usuario;
-    this.dataCriacao = "20171122";
+    this.dataCriacao = String(Date.now());
     this.tempoReserva = 0;
     this.valorReserva = 0;
 

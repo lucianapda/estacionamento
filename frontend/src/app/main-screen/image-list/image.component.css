@@ -1,16 +1,17 @@
 .titulos {
 	background-color: black;
 	border-radius: 25px;
-	opacity: 0.7;
+	opacity: 0.3;
 	position: absolute;
-	top: 95%;
+	top: 140%;
 	width: 96%;
-	height: 60%;
+	height: 40%;
 	left: 2%;
 }
 
 .texto {
-	font-size: 80%;
+	font-size: 130%;
+	font: bold;
 	position: absolute;
 	top: 50%;
 	left: 50%;

@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit {
   pesquisaEstacionamento(nome: String) {
     if (nome != null && nome != "") {
       this.router.navigateByUrl('/main/' + nome);
+      window.location.reload();
     } else {
       this.router.navigateByUrl('');
     }

@@ -11,16 +11,23 @@ import {Router} from '@angular/router';
 export class LoginDialogComponent implements OnInit {
   Bntconfirma = false;
 
-  constructor(public thisDialogRef: MatDialogRef<LoginDialogComponent>, private loginService: ServicoLoginService, private router: Router) {}
+  constructor(public thisDialogRef: MatDialogRef<LoginDialogComponent>,
+    private loginService: ServicoLoginService, private router: Router) {}
 
   ngOnInit() {
   }
 
   entrar(email, senha) {
     console.log(email, senha);
-    this.loginService.loginUser(email, senha).subscribe(codigo => localStorage.setItem('codigoUsuLogado', codigo), error => console.log(error), () => console.log("tentou logar"));
-    window.location.reload();
-    this.cancelar();
+    this.loginService.loginUser(email, senha).subscribe(codigo => {
+      localStorage.setItem('codigoUsuLogado', codigo);
+      this.cancelar();
+      window.location.reload();
+    },
+      error => {
+        this.cancelar();
+        alert("Nao foi possivel efetuar login")
+      }, () => console.log("tentou logar"));
   }
 
   cancelar() {

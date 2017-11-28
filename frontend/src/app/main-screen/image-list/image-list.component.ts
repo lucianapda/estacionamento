@@ -20,10 +20,12 @@ export class ImageListComponent implements OnInit {
 
   ngOnInit() {
     var infoPesquisa: String = this.route.snapshot.params['nome'];
-    
+
     if (infoPesquisa != null && infoPesquisa != "") {
       this.servicoEstacionamento.getByName(infoPesquisa).subscribe(estacionamentos =>
-        this.estacionamentos = estacionamentos, error => console.log(error),
+        this.estacionamentos = estacionamentos, error => {
+          alert("Nao foi possivel encontrar!");
+        },
         () => console.log("Carregado tela inicial"));
     } else {
       this.servicoEstacionamento.getAll().subscribe(estacionamentos =>
