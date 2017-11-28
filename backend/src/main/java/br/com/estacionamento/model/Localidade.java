@@ -14,7 +14,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  * The persistent class for the localidade database table.
@@ -85,7 +84,7 @@ public class Localidade implements Serializable {
 	}
 
 	// bi-directional many-to-one association to Estacionamento
-	@JsonManagedReference(value = "localidade-estacionamento")
+	@JsonBackReference(value = "localidade-estacionamento")
 	@OneToMany(mappedBy = "localidade")
 	public List<Estacionamento> getEstacionamento() {
 		return this.estacionamento;

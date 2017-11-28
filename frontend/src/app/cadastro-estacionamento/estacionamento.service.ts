@@ -35,7 +35,7 @@ export class EstacionamentoService {
   }
 
   deletaEstaconamento(codigoEstacionamento: number) {
-    return this.http.delete("http://localhost:8080/estacionamento?codigo="+codigoEstacionamento).map(response => response.json());
+    return this.http.delete("http://localhost:8080/estacionamento?codigo="+codigoEstacionamento).map(response => response.text());
   }
 
 }

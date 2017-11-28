@@ -24,7 +24,7 @@ export class ImgEstacionamentoService {
   }
 
   deleteImgEst(codigo: number) {
-    return this.http.delete("http://localhost:8080/estacionamentoimg?codigo=" + codigo).map(response => response.json());
+    return this.http.delete("http://localhost:8080/estacionamentoimg?codigo=" + codigo).map(response => response.text());
   }
 
 }

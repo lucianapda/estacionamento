@@ -35,17 +35,17 @@ import {ImgUsuarioService} from './models/imgUsuario.service';
 import {LocalidadeService} from './models/localidade.service';
 import {NoLoginGuard} from './no-login/no-login.guard';
 import {UploadImageComponent} from './upload-image/upload-image.component';
-import { TextMaskModule } from 'angular2-text-mask';
+import {TextMaskModule} from 'angular2-text-mask';
 
 const appRoutes: Routes = [
   {path: '', component: ScreenHomeComponent},
   {path: 'new_user', component: CadastroUsuarioComponent, canActivate: [NoLoginGuard]},
   {path: 'edit', component: CadastroUsuarioComponent, canActivate: [LoginGuard]},
-  {path: 'parking/:id', component: InformationComponent},
+  {path: 'parking', component: InformationComponent},
   {path: 'parking/:id', component: CadastroEstacionamentoComponent},
   {path: 'new_parking', component: CadastroEstacionamentoComponent, canActivate: [LoginGuard]},
   {path: 'my_parking', component: MyParkingComponent, canActivate: [LoginGuard]},
-  {path: 'main/:nome', component: ScreenHomeComponent}
+  {path: 'main/:nome', component: MainScreenComponent, canActivate: [NoLoginGuard]}
 ];
 
 import {
@@ -81,8 +81,9 @@ import {
   MatTooltipModule,
   MatStepperModule
 } from '@angular/material';
-import { MyParkingComponent } from './my-parking/my-parking.component';
-import { DisplayCadastreComponent } from './display-cadastre/display-cadastre.component';
+import {MyParkingComponent} from './my-parking/my-parking.component';
+import {DisplayCadastreComponent} from './display-cadastre/display-cadastre.component';
+import {ImgEstacionamentoService} from './models/img-estacionamento.service';
 
 @NgModule({
   declarations: [
@@ -167,7 +168,8 @@ import { DisplayCadastreComponent } from './display-cadastre/display-cadastre.co
     NoLoginGuard,
     ServicoLoginService,
     UploadImageComponent,
-    ImgUsuarioService
+    ImgUsuarioService,
+    ImgEstacionamentoService
   ],
   bootstrap: [AppComponent]
 })

@@ -3,6 +3,8 @@ package br.com.estacionamento.model;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 /**
  * The persistent class for the estacionamento_img database table.
  * 
@@ -12,13 +14,14 @@ import javax.persistence.*;
 public class Estacionamento_img implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Long codigo_eimg;
-	private byte[] img_eimg;
+	private String img_eimg;
 	private Estacionamento codest_eimg;
 
 	public Estacionamento_img() {
 	}
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "codigo_eimg")
 	public Long getCodigo() {
 		return this.codigo_eimg;
@@ -30,15 +33,16 @@ public class Estacionamento_img implements Serializable {
 
 	@Lob
 	@Column(name = "img_eimg")
-	public byte[] getImagem() {
+	public String getImagem() {
 		return this.img_eimg;
 	}
 
-	public void setImagem(byte[] imgagem) {
+	public void setImagem(String imgagem) {
 		this.img_eimg = imgagem;
 	}
 
 	// bi-directional many-to-one association to Estacionamento
+	@JsonBackReference(value = "estacionamento-imgEstacionamento")
 	@ManyToOne
 	@JoinColumn(name = "codest_eimg")
 	public Estacionamento getEstacionamento() {

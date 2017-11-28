@@ -23,7 +23,8 @@ public class EstacionamentoController {
 
 	@Inject
 	private EstacionamentoRepository estacionamentoRepository;
-
+	
+	@CrossOrigin(origins = "*")
 	@RequestMapping(path = "/estacionamento", method = RequestMethod.GET)
 	public ResponseEntity<List<Estacionamento>> get(@RequestParam(name = "nome", required = false) String nome,
 			@RequestParam(name = "codigo", required = false) Long codigo,
@@ -50,7 +51,8 @@ public class EstacionamentoController {
 		}
 		return new ResponseEntity<List<Estacionamento>>(listaRetorno, HttpStatus.NOT_FOUND);
 	}
-
+	
+	@CrossOrigin(origins = "*")
 	@RequestMapping(path = "/estacionamento", method = RequestMethod.POST)
 	public ResponseEntity<Estacionamento> save(@RequestBody Estacionamento estacionamento) {
 
@@ -58,12 +60,14 @@ public class EstacionamentoController {
 			try {
 				estacionamentoRepository.saveAndFlush(estacionamento);
 			} catch (Exception e) {
+				e.printStackTrace();
 				return new ResponseEntity<Estacionamento>(estacionamento, HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		}
 		return new ResponseEntity<Estacionamento>(estacionamento, HttpStatus.OK);
 	}
-
+	
+	@CrossOrigin(origins = "*")
 	@RequestMapping(path = "/estacionamento", method = RequestMethod.DELETE)
 	public ResponseEntity<String> delete(@RequestParam(name = "codigo", required = true) Long codigo) {
 
@@ -74,7 +78,8 @@ public class EstacionamentoController {
 			return new ResponseEntity<String>("Erro ao tentar excluir", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
+	
+	@CrossOrigin(origins = "*")
 	@RequestMapping(path = "/estacionamento", method = RequestMethod.PUT)
 	public ResponseEntity<Estacionamento> update(@RequestBody Estacionamento estacionamento) {
 

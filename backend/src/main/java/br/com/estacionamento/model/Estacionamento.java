@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -103,8 +102,7 @@ public class Estacionamento implements Serializable {
 	}
 
 	// bi-directional many-to-one association to Localidade
-	@JsonBackReference(value = "localidade-estacionamento")
-	@ManyToOne(cascade = { CascadeType.ALL })
+	@ManyToOne
 	@JoinColumn(name = "codloc_est")
 	public Localidade getLocalidade() {
 		return this.codloc_est;
@@ -115,7 +113,6 @@ public class Estacionamento implements Serializable {
 	}
 
 	// bi-directional many-to-one association to Usuario
-	@JsonBackReference(value = "user-estacionamento")
 	@ManyToOne
 	@JoinColumn(name = "codusu_est")
 	public Usuario getUsuario() {

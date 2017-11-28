@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
@@ -118,7 +119,7 @@ public class Usuario implements Serializable {
 	}
 
 	// bi-directional many-to-one association to Estacionamento
-	@JsonManagedReference(value = "user-estacionamento")
+	@JsonBackReference(value = "user-estacionamento")
 	@OneToMany(mappedBy = "usuario")
 	public List<Estacionamento> getEstacionamentos() {
 		return this.estacionamentos;
