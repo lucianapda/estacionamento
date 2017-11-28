@@ -1,27 +1,48 @@
 <app-header></app-header>
 <br>
-<mat-card class="card-inf">  
-    
-    <div class="title">
-        <h5>Informações do estacionamento</h5>
-    </div>
+<mat-card class="card-inf">
 
-    <hr><br>
+<div class="title">
+	<h5>Informações:</h5>
+</div>
+<hr>
+<br>
+<div style="text-align: center;">
+	<h2>{{estacionamento.nome}}</h2>
+</div>
+<br>
+<div style="text-align: center;">
+	<div style="text-align: center;">
+		<img [src]="estacionamento.imagemEstacionamento[0].imagem"
+			alt="Imagens" width="40%" height="40%" />
+	</div>
 
-    <div>
-        <div style="text-align: center;">
-            <img src="https://videotutoriales.com/maspa/maspa1.jpg" alt="Imagens" />   
-        </div>
-        
-        <hr style="width: 70%;">
-        
-        <div class="description-title">
-            <h3>Estacionamento beira rio</h3>
-        </div>
-        
-        <div class="description">
-            <h5>Rua beira rio nº 55, Blumenau/SC, 89066-444.</h5>
-        </div>
-    </div>
-         
+	<hr style="width: 70%;">
+
+	<div class="row">
+		<div class="col">
+			<h5>Informa&ccedil;&otilde;es do Estacionamento</h5>
+			<div>
+				<br> Nome: {{estacionamento.nome}}<br> CNPJ:
+				{{estacionamento.cnpj}}<br> Telefone:
+				{{estacionamento.telefone}}<br>
+				CEP: {{estacionamento.localidade.cep}}&nbsp;&nbsp;N&deg;: {{estacionamento.localidade.numero}}<br>
+				Rua: {{estacionamento.localidade.endereco}}<br>
+				Bairro: {{estacionamento.localidade.bairro.descricao}}<br>
+				Cidade: {{estacionamento.localidade.cidade.descricao}}
+				
+			</div>
+		</div>
+		<div class="col">
+			<h5>Informa&ccedil;&otilde;es do usu&aacute;rio que publicou</h5>
+			<br>
+			<img [src]="estacionamento.usuario.usuarioImgs[0].imagem"
+			alt="Imagens" width="20%" height="28%" />
+			<br><br>
+			Nome: {{estacionamento.usuario.nome}}<br>
+			Email: {{estacionamento.usuario.email}}
+		</div>
+	</div>
+</div>
+
 </mat-card>

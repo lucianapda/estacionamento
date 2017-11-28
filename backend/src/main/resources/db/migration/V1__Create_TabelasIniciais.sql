@@ -22,6 +22,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 CREATE TABLE IF NOT EXISTS `estacionamento`.`estacionamento` (
   `codigo_est` INT(11) NOT NULL AUTO_INCREMENT,
   `nome_est` VARCHAR(250) NOT NULL,
+  `fone_est` varchar(16) DEFAULT NULL,
   `cnpj_est` VARCHAR(19) NULL DEFAULT NULL,
   `codloc_est` INT(11) NOT NULL COMMENT 'Define a localidade do estacionamento',
   `codusu_est` INT(11) NOT NULL COMMENT 'Define a qual usuário pertence o estacionamento',

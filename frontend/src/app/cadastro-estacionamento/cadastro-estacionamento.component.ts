@@ -34,7 +34,8 @@ export class CadastroEstacionamentoComponent implements OnInit {
   private isBtEditExclVisible: boolean;
   private isReadOnly: boolean;
   private cepMask = [/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
-  private cnpjMask = [/\d/, /\d/, '.' , /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/];
+  private cnpjMask = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/];
+  private telMask = ['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
   constructor(private service: EstacionamentoService,
     private bairroServico: BairroService,

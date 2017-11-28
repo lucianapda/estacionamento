@@ -19,13 +19,15 @@
 </div>
 
 <div style="text-align: center;">
-	<mat-form-field class="input-cnpj"> <input type="text" [textMask]="{mask: cnpjMask}"
-		[readonly]="isReadOnly" [(ngModel)]="estacionamento.cnpj" name="cnpj"
-		matInput placeholder="CNPJ"> </mat-form-field>
+	<mat-form-field class="input-cnpj"> <input type="text"
+		[textMask]="{mask: cnpjMask}" [readonly]="isReadOnly"
+		[(ngModel)]="estacionamento.cnpj" name="cnpj" matInput
+		placeholder="CNPJ"> </mat-form-field>
 
-	<mat-form-field class="input-cep"> <input type="text" [textMask]="{mask: cepMask}"
-		[readonly]="isReadOnly" [(ngModel)]="estacionamento.localidade.cep"
-		name="cep" matInput placeholder="CEP"> </mat-form-field>
+	<mat-form-field class="input-cep"> <input type="text"
+		[textMask]="{mask: cepMask}" [readonly]="isReadOnly"
+		[(ngModel)]="estacionamento.localidade.cep" name="cep" matInput
+		placeholder="CEP"> </mat-form-field>
 </div>
 
 <div style="text-align: center;">
@@ -36,8 +38,13 @@
 
 	<mat-form-field class="input-number"> <input
 		[readonly]="isReadOnly" type="text"
-		[(ngModel)]="estacionamento.localidade.numero" name="numero" matInput type="number"
-		placeholder="Nº"> </mat-form-field>
+		[(ngModel)]="estacionamento.localidade.numero" name="numero" matInput
+		type="number" placeholder="Nº"> </mat-form-field>
+
+	<mat-form-field class="input-phone"> <input require
+		[readonly]="isReadOnly" [(ngModel)]="estacionamento.telefone"
+		name="telefone" [textMask]="{mask: telMask}" matInput
+		placeholder="Telefone" ng-model="number" ui-number-mask="3"> </mat-form-field>
 </div>
 
 <div style="text-align: center;">

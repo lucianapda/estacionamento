@@ -41,7 +41,7 @@ const appRoutes: Routes = [
   {path: '', component: ScreenHomeComponent},
   {path: 'new_user', component: CadastroUsuarioComponent, canActivate: [NoLoginGuard]},
   {path: 'edit', component: CadastroUsuarioComponent, canActivate: [LoginGuard]},
-  {path: 'parking', component: InformationComponent},
+  {path: 'information/:id', component: InformationComponent},
   {path: 'parking/:id', component: CadastroEstacionamentoComponent},
   {path: 'new_parking', component: CadastroEstacionamentoComponent, canActivate: [LoginGuard]},
   {path: 'my_parking', component: MyParkingComponent, canActivate: [LoginGuard]},

@@ -21,6 +21,7 @@ export class Estacionamento {
   public codigo: number;
   public cnpj: String;
   public nome: String;
+  public telefone: String;
   public dataCriacao: String;
   public valorReserva: number;
   public tempoReserva: number;

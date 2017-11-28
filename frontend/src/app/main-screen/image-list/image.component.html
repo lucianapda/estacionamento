@@ -1,7 +1,7 @@
 <nav>
-	<a [routerLink]="['parking', image.codigo]" class="div-responsive">
+	<a (click)="callInformation(image.codigo)" class="div-responsive">
 		<br> <img class="img-responsive"
-		[src]="image.imagemEstacionamento[0].imagem" />
+		[src]="image.imagemEstacionamento[0].imagem"  width="40%" height="40%"/>
 		<div class="titulos">
 			<h5 class="texto">{{image.nome}}</h5>
 		</div>

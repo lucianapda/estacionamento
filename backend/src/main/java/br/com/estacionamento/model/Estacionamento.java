@@ -28,6 +28,7 @@ public class Estacionamento implements Serializable {
 	private long codigo_est;
 	private String cnpj_est;
 	private Date datcri_est;
+	private String telefone;
 	private String nome_est;
 	private int tmpres_est;
 	private BigDecimal valres_est;
@@ -47,6 +48,15 @@ public class Estacionamento implements Serializable {
 	@Column(name = "codigo_est")
 	public long getCodigo() {
 		return this.codigo_est;
+	}
+
+	@Column(name = "fone_est")
+	public String getTelefone() {
+		return this.telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
 	public void setCodigo(long codigo) {
