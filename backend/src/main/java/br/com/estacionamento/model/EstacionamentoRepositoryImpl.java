@@ -19,7 +19,7 @@ public class EstacionamentoRepositoryImpl extends RepositoryBaseImpl implements 
 			query.where(estacionamentoAux.nome.containsIgnoreCase(nome)
 					.or(estacionamentoAux.localidade.bairro.descricao.containsIgnoreCase(nome))
 					.or(estacionamentoAux.localidade.cidade.descricao.containsIgnoreCase(nome))
-					.or(estacionamentoAux.nome.containsIgnoreCase(nome)));
+					.or(estacionamentoAux.localidade.endereco.containsIgnoreCase(nome)));
 		}
 
 		query.orderBy(estacionamentoAux.nome.asc());

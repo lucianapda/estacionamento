@@ -11,23 +11,8 @@ import { Estacionamento } from 'app/models/estacionamento';
 })
 export class MainScreenComponent implements OnInit {
 
-  private nomePesquisa: string;
-  private estacionamento: Estacionamento;
+  constructor() { }
 
-  constructor(private service: EstacionamentoService, private route: ActivatedRoute) { }
-
-  ngOnInit() {
-    this.nomePesquisa = this.route.snapshot.params['nome'];
-    console.log(this.nomePesquisa);
-    if(this.nomePesquisa != ''){
-      this.service.getByName(this.nomePesquisa).subscribe(
-        estacionamento => this.estacionamento = estacionamento, 
-        error => console.log(error), 
-        () => console.log("pesquisando estacionamento"));
-        console.log(this.estacionamento);
-      } else {
-        console.log('erro ao editar');
-    }
-  }
+  ngOnInit() { }
 
 }

@@ -10,19 +10,19 @@ export class Estacionamento {
     this.tempoReserva = 0;
     this.valorReserva = 0;
 
-    if (localStorage.getItem('codigoUsuLogado')) {
+    if (localStorage.getItem('codigoUsuLogado') != null) {
       this.usuario.codigo = parseInt(localStorage.getItem('codigoUsuLogado'));      
     } else {
       this.usuario.codigo = null;
     }        
   }
 
-  private codigo: number;
-  private cnpj: String;
-  private nome: String;
-  private dataCriacao: String;
-  private valorReserva: number;
-  private tempoReserva: number; 
+  public codigo: number;
+  public cnpj: String;
+  public nome: String;
+  public dataCriacao: String;
+  public valorReserva: number;
+  public tempoReserva: number; 
   public localidade: Localidade;
-  private usuario: Usuario;
+  public usuario: Usuario;
 }
