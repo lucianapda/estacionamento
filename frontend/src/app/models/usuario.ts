@@ -19,19 +19,4 @@ export class Usuario {
   public estacionamento: Estacionamento[];
   public usuarioImgs: ImgUsuario[];
 
-  setIfo(user: Usuario) {
-    this.codigo = user.codigo;
-    this.cpf = user.cpf;
-    this.email = user.email;
-    this.telefone = user.telefone;
-    this.nome = user.nome;
-    this.senha = user.senha;
-    this.sexo = user.sexo;
-
-    if (user.localidade != null) {
-      this.localidade = user.localidade;
-    } else {
-      this.localidade = new Localidade();
-    }
-  }
 }

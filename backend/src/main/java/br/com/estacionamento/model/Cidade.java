@@ -16,13 +16,12 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-
 /**
  * The persistent class for the cidade database table.
  * 
  */
 @Entity
-@NamedQuery(name="Cidade.findAll", query="SELECT c FROM Cidade c")
+@NamedQuery(name = "Cidade.findAll", query = "SELECT c FROM Cidade c")
 public class Cidade implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Long codigo;
@@ -35,10 +34,9 @@ public class Cidade implements Serializable {
 	public Cidade() {
 	}
 
-
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="codigo_cid")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "codigo_cid")
 	public Long getCodigo() {
 		return this.codigo;
 	}
@@ -47,8 +45,7 @@ public class Cidade implements Serializable {
 		this.codigo = codigoCid;
 	}
 
-
-	@Column(name="descri_cid")
+	@Column(name = "descri_cid")
 	public String getDescricao() {
 		return this.descricao;
 	}
@@ -56,9 +53,9 @@ public class Cidade implements Serializable {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
-	@JsonManagedReference (value="bairro-cidade")
-	@OneToMany(mappedBy="cidade")
+
+	@JsonManagedReference(value = "bairro-cidade")
+	@OneToMany(mappedBy = "cidade")
 	public List<Bairro> getBairros() {
 		return this.bairros;
 	}
@@ -67,7 +64,7 @@ public class Cidade implements Serializable {
 		this.bairros = bairros;
 	}
 
-	@Column(name="uf_cid")
+	@Column(name = "uf_cid")
 	public String getUf() {
 		return this.uf;
 	}
@@ -76,11 +73,10 @@ public class Cidade implements Serializable {
 		this.uf = uf;
 	}
 
-
-	//bi-directional many-to-one association to Pais
+	// bi-directional many-to-one association to Pais
 	@ManyToOne
-	@JsonBackReference (value="cidade-pais")
-	@JoinColumn(name="codpai_cid")
+	@JsonBackReference(value = "cidade-pais")
+	@JoinColumn(name = "codpai_cid")
 	public Pais getPais() {
 		return this.pais;
 	}
@@ -89,10 +85,9 @@ public class Cidade implements Serializable {
 		this.pais = pais;
 	}
 
-
-	//bi-directional many-to-one association to Localidade
-	@JsonManagedReference (value="localidade-cidade")
-	@OneToMany(mappedBy="cidade")
+	// bi-directional many-to-one association to Localidade
+	@JsonBackReference(value = "localidade-cidade")
+	@OneToMany(mappedBy = "cidade")
 	public List<Localidade> getLocalidade() {
 		return this.localidade;
 	}

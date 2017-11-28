@@ -77,24 +77,12 @@ export class CadastroUsuarioComponent implements OnInit {
   ];
 
   carregaUsuEdicao(user: Usuario) {
-    console.log(user);
-    this.usuario.setIfo(user);
+    this.usuario = user;
+    this.carregaBairro(this.usuario.localidade.cidade.codigo);
 
-    this.localidadeService.getLocalidade(user.localidade.codigo).subscribe(localidade => {
-      this.usuario.localidade = localidade[0];
-      console.log(user.localidade);
-      if (user.localidade != null) {
-        this.carregaBairro(user.localidade.cidade.codigo);
-      }
-
-      this.imgUsuService.getImg(user.codigo).subscribe(imgCarregada => this.usuario.usuarioImgs = imgCarregada,
-        error => console.log(error),
-        () => console.log("carregou imagens salvas"));
-
+    if (this.usuario.usuarioImgs != null && this.usuario.usuarioImgs.length > 0) {
       this.imagem = this.usuario.usuarioImgs[0].imagem;
-    },
-      error => console.log(error),
-      () => console.log("carregou localidade"));
+    }
   }
 
   setImage(event) {
@@ -123,7 +111,7 @@ export class CadastroUsuarioComponent implements OnInit {
           this.usuario.localidade = localidade;
           console.log(this.usuario);
           this.service.createUsuario(this.usuario).subscribe(user => {
-            this.usuario.setIfo(user);
+            this.usuario = user;
             this.salvarImagemBD();
             this.homePage();
           },
@@ -144,7 +132,7 @@ export class CadastroUsuarioComponent implements OnInit {
               this.usuario.usuarioImgs[0].imagem = this.imagem;
               this.imgUsuService.editImgUsu(this.usuario.usuarioImgs[0]).subscribe(retornoImg => {
                 this.service.editUsuario(this.usuario).subscribe(user => {
-                  this.usuario.setIfo(user);
+                  this.usuario = user;
                   this.ajustarBotoes(true);
                 },
                   error => console.log(error),
@@ -154,7 +142,7 @@ export class CadastroUsuarioComponent implements OnInit {
             } else {
               this.imgUsuService.deleteImgUsu(this.usuario.usuarioImgs[0].codigo).subscribe(retornoImg => {
                 this.service.editUsuario(this.usuario).subscribe(user => {
-                  this.usuario.setIfo(user);
+                  this.usuario = user;
                   this.ajustarBotoes(true);
                 },
                   error => console.log(error),

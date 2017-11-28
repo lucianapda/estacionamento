@@ -13,7 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
@@ -99,7 +98,7 @@ public class Usuario implements Serializable {
 		this.senha = senha;
 	}
 
-	@JsonBackReference(value = "user-localidade")
+	@JsonManagedReference(value = "user-localidade")
 	@ManyToOne
 	@JoinColumn(name = "codloc_usu")
 	public Localidade getLocalidade() {
