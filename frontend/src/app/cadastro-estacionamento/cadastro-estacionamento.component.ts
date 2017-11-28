@@ -205,7 +205,7 @@ export class CadastroEstacionamentoComponent implements OnInit {
       img.imagem = this.imagem;
 
       this.imgService.newImgEst(img).subscribe(retornoImg => {
-        this.estacionamento.imagemEstacionamento.push(retornoImg);
+        this.estacionamento.imagemEstacionamento = [retornoImg];
       },
         error => console.log(error),
         () => console.log("Salvo Imagem"));
