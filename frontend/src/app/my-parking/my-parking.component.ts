@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Estacionamento} from '../models/estacionamento';
+import {EstacionamentoService} from '../cadastro-estacionamento/estacionamento.service';
 
 @Component({
   selector: 'app-my-parking',
@@ -7,7 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyParkingComponent implements OnInit {
 
-  constructor() { }
+  private estacionamentos: Estacionamento;
+
+  constructor(private service: EstacionamentoService) { 
+    this.service.getByCodeUsuario().subscribe(estacionamento => this.estacionamentos = estacionamento,
+    error => console.log(error),
+    () => console.log("carregou estacionamentos"));
+    
+    console.log(this.estacionamentos);
+  }
 
   ngOnInit() {
   }

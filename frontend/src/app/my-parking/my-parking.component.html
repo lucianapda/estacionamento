@@ -1,1 +1,31 @@
-<app-display-cadastre></app-display-cadastre>
+<app-header></app-header>
+<br>
+<div style="width: 70%; margin-left: 17%;"> 
+    <p>Estacionamentos cadastrados</p>
+</div>
+
+<hr style="width: 70%;">
+
+<div style="margin-left: 17%;">
+    <button routerLink="/new_parking">
+        Novo
+    </button>
+</div>
+
+<br>
+
+<div class="row">
+    <div class="col-md-2 col-sm-0">                
+    </div>
+
+    <div  class="col-md-8 col-sm-12">
+        <div class="row">
+            <div *ngFor="let estacionamento of estacionamentos" class="col-sm-6">
+                    <app-display-cadastre [estacionamento]="estacionamento"></app-display-cadastre>
+                </div>
+            </div>
+    </div>
+
+    <div  class="col-md-2 col-sm-0">        
+    </div>
+</div>

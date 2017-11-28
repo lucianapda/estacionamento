@@ -39,10 +39,11 @@ import {UploadImageComponent} from './upload-image/upload-image.component';
 import { TextMaskModule } from 'angular2-text-mask';
 
 const appRoutes: Routes = [
+  {path: '', component: ScreenHomeComponent},
   {path: 'new_user', component: CadastroUsuarioComponent, canActivate: [NoLoginGuard]},
   {path: 'edit', component: CadastroUsuarioComponent, canActivate: [LoginGuard]},
   {path: 'parking', component: InformationComponent},
-  {path: '', component: ScreenHomeComponent},
+  {path: 'parking/:id', component: CadastroEstacionamentoComponent},
   {path: 'new_parking', component: CadastroEstacionamentoComponent, canActivate: [LoginGuard]},
   {path: 'my_parking', component: MyParkingComponent, canActivate: [LoginGuard]}
 ];

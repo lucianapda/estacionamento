@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
+import { EstacionamentoService } from '../cadastro-estacionamento/estacionamento.service';
+import { Estacionamento } from '../models/estacionamento';
+import { parse } from 'path';
+import { RouterLink } from '@angular/router/src/directives/router_link';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-display-cadastre',
@@ -7,18 +12,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DisplayCadastreComponent implements OnInit {
 
-  constructor() { }
+  @Input() estacionamento : Estacionamento;
+
+  constructor(private service: EstacionamentoService, private router: Router) { }
 
   ngOnInit() {
   }
 
-  editaEstacionamento(codigoEstacionamento: number){
-
+  editaEstacionamento(codigo: number) {
+    this.router.navigateByUrl('/parking/'+codigo);
   }
 
-
-  deletaEstacionamento(codigoEstacionamento: number){
-    
+  deletaEstacionamento(codigoEstacionamento: number) {
+    this.service.deletaEstaconamento(codigoEstacionamento).subscribe(error => console.log(error),
+        () => console.log("deletou"));
   }
-
 }

@@ -13,36 +13,40 @@
     font: bold;
 }
 .input-razao {
-    width: 60%
+    width: 75%;
 }
 
 .input-cnpj {
-    width: 60%;
+    width: 45%;
 }
 
 .input-cep {
-    width: 60%;
+    width: 29%;
 }
 
 .input-street{
-    width: 49%;
+    width: 59%;
 }
 .input-number{
-    width: 10%;
-}
-
-.input-uf{
-    width: 5%;
+    width: 15%;
 }
 
 .select-cidade{
-    width: 60%;
+    width: 31%;
 }
 .select-estado{
-    width: 60%;    
+    width: 10%;    
 }
 .select-bairro{
-    width: 60%;    
+    width: 32%;    
+}
+
+.image {
+	align-items: center;
+	display: flex;
+	flex-direction: row; flex-wrap : wrap;
+	justify-content: center;
+	flex-wrap: wrap;
 }
 
 .button-save {

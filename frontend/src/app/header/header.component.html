@@ -1,48 +1,63 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<div class="container">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="#">Estacione j�</a>
-		</div>
-
-		<div class="navbarsearch">
-			<input type="text" class="search-input" placeholder="Pesquisar">
-			<div class="buttonPesquisa">
-				<button type="submit" class="buttonsearch">
-					<mat-icon>search</mat-icon>
-				</button>
+		<div class="row">
+			<div class="col-3">
+				<a class="navbar-brand" href="#">Estacione j�</a>
 			</div>
-		</div>
 
-		<div class="menuUser">
-			<div class="btn-group" dropdown>
-				<button dropdownToggle type="button" class="btn dropdown-toggle">
-					<mat-icon>person</mat-icon>
-					<span class="caret"></span>
-				</button>
-				<ul *dropdownMenu class="dropdown-menu dropdown-menu-right"
-					role="menu">
-					<div *ngIf="!isLogado">
-						<li role="menuitem"><a class="dropdown-item"
-							(click)="chamaLogin()">Entrar</a></li>
-						<li class="divider dropdown-divider"></li>
-						<li role="menuitem"><a class="dropdown-item"
-							routerLink="/new_user">Cadastrar</a></li>
-					</div>
+			<div class=" col-6">
+					<div class="row">
+						<div class="col-8">
+								<div class="row">
+									<div class="col-10">
+										<input type="text" class="search-input" placeholder="Pesquisar">
+									</div>
+									<div class="col-2">
+										<div class="buttonPesquisa">
+												<button type="submit" class="buttonsearch">
+													<mat-icon>search</mat-icon>
+												</button>
+										</div>
+									</div>
+								</div>
+						</div>	
+						<div class="col-4">
 
-					<div *ngIf="isLogado">
-						<li role="menuitem"><a class="dropdown-item"
-							routerLink="/edit">Editar cadastro</a></li>
-						<li class="divider dropdown-divider"></li>
-						<li role="menuitem"><a class="dropdown-item"
-							routerLink="/new_parking">Cadastrar estacionamento</a></li>
-						<li class="divider dropdown-divider"></li>
-						<li role="menuitem"><a class="dropdown-item"
-							routerLink="/my_parking">Meus estacionamento</a></li>
-						<li class="divider dropdown-divider"></li>
-						<li role="menuitem"><a class="dropdown-item"
-							(click)="logoff()">Sair</a></li>
+						</div>
 					</div>
-				</ul>
+			</div>
+
+			<div class="col-3">
+				<div class="btn-group" dropdown>
+					<button dropdownToggle type="button" class="btn dropdown-toggle">
+						<mat-icon>person</mat-icon>
+						<span class="caret"></span>
+					</button>
+					<ul *dropdownMenu class="dropdown-menu dropdown-menu-right"
+						role="menu">
+						<div *ngIf="!isLogado">
+							<li role="menuitem"><a class="dropdown-item"
+								(click)="chamaLogin()">Entrar</a></li>
+							<li class="divider dropdown-divider"></li>
+							<li role="menuitem"><a class="dropdown-item"
+								routerLink="/new_user">Cadastrar</a></li>
+						</div>
+
+						<div *ngIf="isLogado">
+							<li role="menuitem"><a class="dropdown-item"
+								routerLink="/edit">Editar cadastro</a></li>
+							<li class="divider dropdown-divider"></li>
+							<li role="menuitem"><a class="dropdown-item"
+								routerLink="/new_parking">Cadastrar estacionamento</a></li>
+							<li class="divider dropdown-divider"></li>
+							<li role="menuitem"><a class="dropdown-item"
+								routerLink="/my_parking">Meus estacionamento</a></li>
+							<li class="divider dropdown-divider"></li>
+							<li role="menuitem"><a class="dropdown-item"
+								(click)="logoff()">Sair</a></li>
+						</div>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>

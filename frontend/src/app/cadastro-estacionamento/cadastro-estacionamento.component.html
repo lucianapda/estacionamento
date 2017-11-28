@@ -8,29 +8,26 @@
 
   <hr><br>
 
-  <div style="float:right;">
-    <app-upload-image [imageSrc]="imagem" (returnImage)="setImage($event)" class="image" ></app-upload-image>
-  </div>
+  <app-upload-image [imageSrc]="imagem" [height]="'180px'"
+  [widht]="'160px'" (returnImage)="setImage($event)" class="image"></app-upload-image>
   
-  <div>
+  <div style="text-align: center;">
       <mat-form-field class="input-razao">   
         <input type="text" [(ngModel)]="estacionamento.nome" name="nome" matInput placeholder="Razão social">
       </mat-form-field>
   </div>
 
-  <div>
+  <div style="text-align: center;">
     <mat-form-field class="input-cnpj">   
       <input type="text" [(ngModel)]="estacionamento.cnpj" name="cnpj" matInput placeholder="CNPJ">
     </mat-form-field>
-  </div>
-  
-  <div>
+ 
     <mat-form-field class="input-cep">   
       <input type="text" [(ngModel)]="estacionamento.localidade.cep" name="cep" matInput placeholder="CEP">
     </mat-form-field>
   </div>
 
-  <div>
+  <div style="text-align: center;">
     <mat-form-field class="input-street">   
       <input type="text" [(ngModel)]="estacionamento.localidade.endereco" name="endereco" matInput placeholder="Rua">
     </mat-form-field>
@@ -40,23 +37,15 @@
     </mat-form-field>
   </div>
 
-  <div>
-    <mat-form-field class="select-estado">
-      <input placeholder="Estado" matInput [(ngModel)]="estacionamento.localidade.estado" name="estado">
-    </mat-form-field>
-  </div>
-
-   <div>
+  <div style="text-align: center;">
     <mat-form-field class="select-cidade">
-      <mat-select [(ngModel)]="estacionamento.localidade.cidade.codigo" name="codigo" placeholder="Cidade">
-        <mat-option *ngFor="let cidadeAux of cidades" [value]="cidadeAux.codigo" (click)="carregaBairro(estacionamento.localidade.cidade.codigo)">
-          {{ cidadeAux.descricao }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
+        <mat-select [(ngModel)]="estacionamento.localidade.cidade.codigo" name="codigo" placeholder="Cidade">
+          <mat-option *ngFor="let cidadeAux of cidades" [value]="cidadeAux.codigo" (click)="carregaBairro(estacionamento.localidade.cidade.codigo)">
+            {{ cidadeAux.descricao }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-  <div>
     <mat-form-field class="select-bairro">
       <mat-select placeholder="Bairro" [(ngModel)]="estacionamento.localidade.bairro.codigo" name="codigo">
         <mat-option *ngFor="let bairroAux of bairros" [value]="bairroAux.codigo">
@@ -64,6 +53,11 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+
+    <mat-form-field class="select-estado">
+      <input placeholder="UF" matInput [(ngModel)]="estacionamento.localidade.estado" name="estado">
+    </mat-form-field>
+
   </div>
 
   <div class="button-save">
@@ -71,3 +65,5 @@
   </div>
   
 </mat-card>
+<br>
+<app-footer></app-footer>
