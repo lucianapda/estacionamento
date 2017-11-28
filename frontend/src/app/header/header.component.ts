@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { MatDialog } from '@angular/material';
-import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
-import { Router } from '@angular/router';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {MatDialog} from '@angular/material';
+import {LoginDialogComponent} from '../login-dialog/login-dialog.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -11,15 +11,19 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   private isLogado: boolean = localStorage.getItem('codigoUsuLogado') != null;
-  
+
   constructor(public dialog: MatDialog, private router: Router) {
   }
-    
+
   ngOnInit() {
   }
 
-  pesquisaEstacionamento(nome: string) {
-    this.router.navigateByUrl('/main/'+nome);
+  pesquisaEstacionamento(nome: String) {
+    if (nome != null && nome != "") {
+      this.router.navigateByUrl('/main/' + nome);
+    } else {
+      this.router.navigateByUrl('');
+    }
   }
 
   chamaLogin() {

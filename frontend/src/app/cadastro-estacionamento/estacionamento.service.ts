@@ -22,7 +22,7 @@ export class EstacionamentoService {
     return this.http.get("http://localhost:8080/estacionamento?codigousuario="+localStorage.getItem('codigoUsuLogado')).map(response => response.json());
   }
 
-  getByName(nomePesquisa: string) {
+  getByName(nomePesquisa: String) {
     return this.http.get("http://localhost:8080/estacionamento?nome="+nomePesquisa).map(response => response.json());
   }
    
