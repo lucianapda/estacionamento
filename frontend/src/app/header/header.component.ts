@@ -1,7 +1,7 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {MatDialog} from '@angular/material';
-import {LoginDialogComponent} from '../login-dialog/login-dialog.component';
-import {Router} from '@angular/router';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -18,8 +18,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
-  pesquisaEstacionamento(codigo: number) {
-    this.router.navigateByUrl('/parking/'+codigo);
+  pesquisaEstacionamento(nome: string) {
+    this.router.navigateByUrl('/main/'+nome);
   }
 
   chamaLogin() {

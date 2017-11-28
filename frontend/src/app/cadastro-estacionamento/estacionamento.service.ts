@@ -21,6 +21,10 @@ export class EstacionamentoService {
   getByCodeUsuario() {
     return this.http.get("http://localhost:8080/estacionamento?codigousuario="+localStorage.getItem('codigoUsuLogado')).map(response => response.json());
   }
+
+  getByName(nomePesquisa: string) {
+    return this.http.get("http://localhost:8080/estacionamento?nome="+nomePesquisa).map(response => response.json());
+  }
    
   createEstacionamento(estacionamento: Estacionamento) {
      return this.http.post("http://localhost:8080/estacionamento", estacionamento).map(response => response.json());

@@ -45,7 +45,8 @@ const appRoutes: Routes = [
   {path: 'parking', component: InformationComponent},
   {path: 'parking/:id', component: CadastroEstacionamentoComponent},
   {path: 'new_parking', component: CadastroEstacionamentoComponent, canActivate: [LoginGuard]},
-  {path: 'my_parking', component: MyParkingComponent, canActivate: [LoginGuard]}
+  {path: 'my_parking', component: MyParkingComponent, canActivate: [LoginGuard]},
+  {path: 'main/:nome', component: MainScreenComponent, canActivate: [NoLoginGuard]}
 ];
 
 import {

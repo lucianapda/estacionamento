@@ -10,11 +10,11 @@
 						<div class="col-8">
 								<div class="row">
 									<div class="col-10">
-										<input type="text" class="search-input" placeholder="Estacionamento, Bairro ou Cidade">
+										<input #nomeDigitado type="text" class="search-input" placeholder="Estacionamento, Rua, Bairro ou Cidade">
 									</div>
 									<div class="col-2">
 										<div class="buttonPesquisa">
-												<button type="submit" class="buttonsearch" (click)="editaEstacionamento()">
+												<button type="submit" class="buttonsearch" (click)="pesquisaEstacionamento(nomeDigitado.value)">
 													<mat-icon>search</mat-icon>
 												</button>
 										</div>

@@ -12,7 +12,6 @@ import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
 import { Pais } from '../models/pais';
 import { ActivatedRoute } from '@angular/router';
 import { error } from 'util';
-import { UploadImageComponent } from '../upload-image/upload-image.component';
 
 @Component({
   selector: 'app-cadastro-estacionamento',
