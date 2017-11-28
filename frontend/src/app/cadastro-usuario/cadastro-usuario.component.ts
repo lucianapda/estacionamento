@@ -34,18 +34,20 @@ export class CadastroUsuarioComponent implements OnInit {
   private isReadOnly: boolean;
   private cepMask = [/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
   private telMask = ['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+  private confiEmail: String;
+  private confiSenha: String;
 
   constructor(private service: ServicoUsuarioService, private bairroServico: BairroService, private cidadeServico: CidadeService,
     private localidadeService: LocalidadeService, private imgUsuService: ImgUsuarioService, private router: Router) {
     this.cidades = [
-      {codigo: 75680, descricao: 'Blumenau', pais: new Pais()},
-      {codigo: 55298, descricao: 'Curitiba', pais: new Pais()},
-      {codigo: 71986, descricao: 'Porto Alegre', pais: new Pais()}];
+      {codigo: 75680, descricao: 'Blumenau', uf: "SC", pais: new Pais()},
+      {codigo: 55298, descricao: 'Curitiba', uf: "SC", pais: new Pais()},
+      {codigo: 71986, descricao: 'Porto Alegre', uf: "SC", pais: new Pais()}];
     this.bairros = [];
     this.imagem = '';
 
     if (localStorage.getItem('codigoUsuLogado') != null) {
-      console.log(localStorage.getItem('codigoUsuLogado'));
+
       this.isBtSaveCanVisible = false;
       this.isBtEditExclVisible = true;
       this.isReadOnly = false;
@@ -78,6 +80,8 @@ export class CadastroUsuarioComponent implements OnInit {
 
   carregaUsuEdicao(user: Usuario) {
     this.usuario = user;
+    this.confiEmail = this.usuario.email;
+    this.confiSenha = this.usuario.senha;
     this.carregaBairro(this.usuario.localidade.cidade.codigo);
 
     if (this.usuario.usuarioImgs != null && this.usuario.usuarioImgs.length > 0) {
@@ -130,17 +134,22 @@ export class CadastroUsuarioComponent implements OnInit {
 
             if (this.imagem != "") {
               this.usuario.usuarioImgs[0].imagem = this.imagem;
+              this.usuario.usuarioImgs[0].usuario = new Usuario;
+              this.usuario.usuarioImgs[0].usuario.codigo = this.usuario.codigo;
+
               this.imgUsuService.editImgUsu(this.usuario.usuarioImgs[0]).subscribe(retornoImg => {
                 this.service.editUsuario(this.usuario).subscribe(user => {
                   this.usuario = user;
                   this.ajustarBotoes(true);
                 },
                   error => console.log(error),
-                  () => "");
+                  () => "Salvo usuario");
               }, error => console.log(error),
                 () => console.log("Salvo Imagem"));
+              return;
             } else {
               this.imgUsuService.deleteImgUsu(this.usuario.usuarioImgs[0].codigo).subscribe(retornoImg => {
+                this.usuario.usuarioImgs = [];
                 this.service.editUsuario(this.usuario).subscribe(user => {
                   this.usuario = user;
                   this.ajustarBotoes(true);
@@ -150,10 +159,19 @@ export class CadastroUsuarioComponent implements OnInit {
               },
                 error => console.log(error),
                 () => console.log("deletado Imagem"));
+              return;
             }
           } else if (this.imagem != "") {
             this.salvarImagemBD();
+            this.ajustarBotoes(true);
           }
+
+          this.service.editUsuario(this.usuario).subscribe(user => {
+            this.usuario = user;
+            this.ajustarBotoes(true);
+          },
+            error => console.log(error),
+            () => "");
         }, error => console.log(error),
           () => "");
         break;
@@ -173,10 +191,10 @@ export class CadastroUsuarioComponent implements OnInit {
   }
 
   deletar() {
-    this.localidadeService.deleteLocalidade(this.usuario.localidade.codigo).subscribe(localidade => {
-      this.service.deleteUsuario(this.usuario.codigo).subscribe(user => {
-        localStorage.removeItem('codigoUsuLogado');
-        this.homePage();
+    this.service.deleteUsuario(this.usuario.codigo).subscribe(user => {
+      localStorage.removeItem('codigoUsuLogado');
+      this.localidadeService.deleteLocalidade(this.usuario.localidade.codigo).subscribe(localidade => {
+        this.router.navigateByUrl('');
       },
         error => console.log(error),
         () => "");

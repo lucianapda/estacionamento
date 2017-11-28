@@ -50,7 +50,7 @@ public class UsuarioImgController {
 		if (usuarioImg != null) {
 			try {
 				usuarioImgRepository.saveAndFlush(usuarioImg);
-				
+
 			} catch (Exception e) {
 				e.printStackTrace();
 				return new ResponseEntity<UsuarioImg>(usuarioImg, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -59,6 +59,7 @@ public class UsuarioImgController {
 		return new ResponseEntity<UsuarioImg>(usuarioImg, HttpStatus.OK);
 	}
 
+	@CrossOrigin(origins = "*")
 	@RequestMapping(path = "/usuarioimg", method = RequestMethod.DELETE)
 	public ResponseEntity<String> delete(@RequestParam(name = "codigo", required = true) Long codigo) {
 
@@ -71,6 +72,7 @@ public class UsuarioImgController {
 		}
 	}
 
+	@CrossOrigin(origins = "*")
 	@RequestMapping(path = "/usuarioimg", method = RequestMethod.PUT)
 	public ResponseEntity<UsuarioImg> update(@RequestBody UsuarioImg usuarioImg) {
 

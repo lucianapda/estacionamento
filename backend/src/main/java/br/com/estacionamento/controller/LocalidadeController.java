@@ -57,7 +57,8 @@ public class LocalidadeController {
 		}
 		return new ResponseEntity<Localidade>(localidade, HttpStatus.OK);
 	}
-
+	
+	@CrossOrigin(origins = "*")
 	@RequestMapping(path = "/localidade", method = RequestMethod.DELETE)
 	public ResponseEntity<String> delete(@RequestParam(name = "codigo", required = true) Long codigo) {
 
@@ -69,7 +70,8 @@ public class LocalidadeController {
 			return new ResponseEntity<String>("Erro ao tentar excluir", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
+	
+	@CrossOrigin(origins = "*")
 	@RequestMapping(path = "/localidade", method = RequestMethod.PUT)
 	public ResponseEntity<Localidade> update(@RequestBody Localidade localidade) {
 

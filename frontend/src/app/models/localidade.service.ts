@@ -19,10 +19,11 @@ export class LocalidadeService {
   }
 
   editLocalidade(localidade: Localidade) {
+    console.log(localidade);
     return this.http.put("http://localhost:8080/localidade", localidade).map(response => response.json());
   }
 
   deleteLocalidade(codigo: number) {
-    return this.http.delete("http://localhost:8080/localidade?codigo=" + codigo).map(response => response.json());
+    return this.http.delete("http://localhost:8080/localidade?codigo=" + codigo).map(response => response.text());
   }
 }

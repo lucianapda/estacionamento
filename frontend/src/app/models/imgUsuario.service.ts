@@ -23,7 +23,7 @@ export class ImgUsuarioService {
   }
 
   deleteImgUsu(codigo: number) {
-    return this.http.delete("http://localhost:8080/usuarioimg?codigo=" + codigo).map(response => response.json());
+    return this.http.delete("http://localhost:8080/usuarioimg?codigo=" + codigo).map(response => response.text());
   }
 
 }

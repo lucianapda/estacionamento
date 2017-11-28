@@ -18,4 +18,5 @@ export class Localidade {
   public usuarios: Usuario[];
   public estado: String;
   public estacionamento: Estacionamento[];
+
 }

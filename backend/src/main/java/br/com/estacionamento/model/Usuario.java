@@ -98,7 +98,6 @@ public class Usuario implements Serializable {
 		this.senha = senha;
 	}
 
-	@JsonManagedReference(value = "user-localidade")
 	@ManyToOne
 	@JoinColumn(name = "codloc_usu")
 	public Localidade getLocalidade() {

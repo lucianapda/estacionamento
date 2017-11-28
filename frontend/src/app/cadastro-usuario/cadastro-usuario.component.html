@@ -27,7 +27,7 @@
 
 		<div>
 			<mat-form-field class="input-cep"> <input
-				[textMask]="{mask: cepMask}" [readonly]="isReadOnly" 
+				[textMask]="{mask: cepMask}" [readonly]="isReadOnly"
 				[(ngModel)]="usuario.localidade.cep" require name="cep" matInput
 				placeholder="CEP"> </mat-form-field>
 		</div>
@@ -53,7 +53,7 @@
 	<div style="text-align: center;">
 		<mat-form-field class="select-cidade"> <mat-select
 			ng-disabled="isReadOnly" require
-			[(ngModel)]="usuario.localidade.cidade.codigo" name="codigo"
+			[(ngModel)]="usuario.localidade.cidade.codigo" name="cidadeAux"
 			placeholder="Cidade"> <mat-option
 			*ngFor="let cidadeAux of cidades" [value]="cidadeAux.codigo"
 			(click)="carregaBairro(usuario.localidade.cidade.codigo)">
@@ -63,10 +63,10 @@
 	<div>
 		<mat-form-field class="select-bairro"> <mat-select
 			ng-disabled="isReadOnly" placeholder="Bairro"
-			[(ngModel)]="usuario.localidade.bairro.codigo" require name="codigo">
-		<mat-option *ngFor="let bairroAux of bairros"
-			[value]="bairroAux.codigo"> {{ bairroAux.descricao }} </mat-option> </mat-select>
-		</mat-form-field>
+			[(ngModel)]="usuario.localidade.bairro.codigo" require
+			name="bairroAux"> <mat-option
+			*ngFor="let bairroAux of bairros" [value]="bairroAux.codigo">
+		{{ bairroAux.descricao }} </mat-option> </mat-select> </mat-form-field>
 
 		<mat-form-field class="input-phone"> <input require
 			[readonly]="isReadOnly" [(ngModel)]="usuario.telefone"
@@ -84,9 +84,10 @@
 
 	<div style="text-align: center;">
 		<mat-form-field class="input-confEmail"> <input
-			[readonly]="isReadOnly" matInput placeholder="Confirmar email"
-			[formControl]="confEmail" required> <mat-error
-			*ngIf="confEmail.invalid">{{getErrorMessageConf()}}</mat-error> </mat-form-field>
+			[(ngModel)]="confiEmail" name="confiEmail" [readonly]="isReadOnly"
+			matInput placeholder="Confirmar email" [formControl]="confEmail"
+			required> <mat-error *ngIf="confEmail.invalid">{{getErrorMessageConf()}}</mat-error>
+		</mat-form-field>
 	</div>
 
 	<div style="text-align: center;">
@@ -100,10 +101,11 @@
 
 	<div style="text-align: center;">
 		<mat-form-field class="input-confPassword"> <input
-			[readonly]="isReadOnly" matInput maxlength="20"
-			placeholder="Confirmar senha" [type]="hide2 ? 'password' : 'text'">
-		<mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ?
-		'visibility' : 'visibility_off'}}</mat-icon> </mat-form-field>
+			[(ngModel)]="confiSenha" name="confiSenha" [readonly]="isReadOnly"
+			matInput maxlength="20" placeholder="Confirmar senha"
+			[type]="hide2 ? 'password' : 'text'"> <mat-icon matSuffix
+			(click)="hide2 = !hide2">{{hide2 ? 'visibility' :
+		'visibility_off'}}</mat-icon> </mat-form-field>
 	</div>
 
 	<br>

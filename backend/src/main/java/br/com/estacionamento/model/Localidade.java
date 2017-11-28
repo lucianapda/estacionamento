@@ -110,7 +110,6 @@ public class Localidade implements Serializable {
 	}
 
 	// bi-directional many-to-one association to Bairro
-	@JsonManagedReference (value="localidade-bairro")
 	@ManyToOne
 	@JoinColumn(name = "codbai_loc")
 	public Bairro getBairro() {
@@ -122,7 +121,6 @@ public class Localidade implements Serializable {
 	}
 
 	// bi-directional many-to-one association to Cidade
-	@JsonManagedReference (value="localidade-cidade")
 	@ManyToOne
 	@JoinColumn(name = "codcid_loc")
 	public Cidade getCidade() {
