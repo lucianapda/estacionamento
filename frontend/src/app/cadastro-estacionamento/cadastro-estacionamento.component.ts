@@ -1,20 +1,21 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {EstacionamentoService} from './estacionamento.service';
-import {Estacionamento} from '../models/estacionamento';
-import {Localidade} from '../models/localidade';
-import {BairroService} from '../models/bairro.service';
-import {CidadeService} from '../models/cidade.service';
-import {Usuario} from '../models/usuario';
-import {Bairro} from '../models/bairro';
-import {Cidade} from '../models/cidade';
-import {LocalidadeService} from '../models/localidade.service';
-import {LoginDialogComponent} from '../login-dialog/login-dialog.component';
-import {ImgEstacionamento} from '../models/img-estacionamento';
-import {ImgEstacionamentoService} from '../models/img-estacionamento.service';
-import {Pais} from '../models/pais';
-import {ActivatedRoute, Router} from '@angular/router';
-import {error} from 'util';
-import {UploadImageComponent} from '../upload-image/upload-image.component';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { EstacionamentoService } from './estacionamento.service';
+import { Estacionamento } from '../models/estacionamento';
+import { Localidade } from '../models/localidade';
+import { BairroService } from '../models/bairro.service';
+import { CidadeService } from '../models/cidade.service';
+import { Usuario } from '../models/usuario';
+import { Bairro } from '../models/bairro';
+import { Cidade } from '../models/cidade';
+import { LocalidadeService } from '../models/localidade.service';
+import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
+import { ImgEstacionamento } from '../models/img-estacionamento';
+import { ImgEstacionamentoService } from '../models/img-estacionamento.service';
+import { Pais } from '../models/pais';
+import { ActivatedRoute, Router } from '@angular/router';
+import { error } from 'util';
+import { UploadImageComponent } from '../upload-image/upload-image.component';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cadastro-estacionamento',
@@ -24,6 +25,7 @@ import {UploadImageComponent} from '../upload-image/upload-image.component';
 })
 export class CadastroEstacionamentoComponent implements OnInit {
 
+  private formulario: FormGroup;
   private imagem: String;
   private estacionamento: Estacionamento;
   private bairros: Bairro[];
@@ -43,7 +45,8 @@ export class CadastroEstacionamentoComponent implements OnInit {
     private localidadeService: LocalidadeService,
     private route: ActivatedRoute,
     private routerPage: Router,
-    private imgService: ImgEstacionamentoService) {
+    private imgService: ImgEstacionamentoService,
+    private formBuilder: FormBuilder) {
 
     this.estacionamento = new Estacionamento();
 
@@ -56,6 +59,7 @@ export class CadastroEstacionamentoComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.codigoEstacionamento = this.route.snapshot.params['id'];
 
     if (this.codigoEstacionamento != null) {
@@ -76,6 +80,7 @@ export class CadastroEstacionamentoComponent implements OnInit {
       this.isBtSaveCanVisible = true;
       this.isReadOnly = false;
     }
+
   }
 
   setImage(event) {

@@ -14,6 +14,7 @@ import {LocalidadeService} from '../models/localidade.service';
 import {Pais} from '../models/pais';
 import {UploadImageComponent} from '../upload-image/upload-image.component';
 import {Router} from '@angular/router';
+import { MinLengthValidator } from '@angular/forms/src/directives/validators';
 
 @Component({
   selector: 'app-cadastro-usuario',
@@ -54,7 +55,7 @@ export class CadastroUsuarioComponent implements OnInit {
 
       this.service.getUsuario(parseInt(localStorage.getItem('codigoUsuLogado'))).subscribe(user => this.carregaUsuEdicao(user[0]),
         error => console.log(error),
-        () => console.log("carregou usuario edi��o"));
+        () => console.log("carregou usuario edi��o"));
 
     } else {
       this.isBtEditExclVisible = false;
@@ -71,6 +72,8 @@ export class CadastroUsuarioComponent implements OnInit {
 
   email = new FormControl('', [Validators.required, Validators.email]);
   confEmail = new FormControl('', [Validators.required, Validators.email]);
+  senha = new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]);
+  confsenha = new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]);
 
   sex = [
     {value: '1', name: 'Masculino'},
@@ -98,17 +101,42 @@ export class CadastroUsuarioComponent implements OnInit {
   }
 
   getErrorMessage() {
-    return this.email.hasError('required') ? 'O email deve ser preenchido' :
+    return this.email.hasError('required') ? 'Email é obrigatório' :
       this.email.hasError('email') ? 'Email é inválido' : '';
   }
 
   getErrorMessageConf() {
-    return this.confEmail.hasError('required') ? 'O email deve ser preenchido' :
-      this.confEmail.hasError('confEmail') ? 'Email é inválido' : '';
+     return this.confEmail.hasError('required') ? 'Email é obrigatório' :
+        this.confEmail.hasError('email') ? 'Email é inválido' : '';
+  }
+
+  getErrorMessageSenha() {
+    return this.senha.hasError('required') ? 'Senha é obrigatório' :
+      this.senha.hasError('minlength') ? 'Senha deve ter no minimo 6 caracteres' : '';
+  }
+
+  getErrorMessageSenhaConf() {
+    return this.confsenha.hasError('required') ? 'Senha é obrigatório' :
+      this.confsenha.hasError('minlength') ? 'Senha deve ter no minimo 6 caracteres' : '';
+  }
+
+  validaSenha() {
+    console.log(this.senha.value != this.confsenha.value);
+    if(this.senha.value != this.confsenha.value) {
+      alert("As senhas devem ser iguais.");
+      return false;
+    }
+  }
+
+  validaEmail() {
+    console.log(this.senha.value != this.confsenha.value);
+    if(this.email.value != this.confEmail.value) {
+      alert("AOs emails devem ser iguais.");
+      return false;
+    }
   }
 
   submit() {
-
     switch (this.tipoAcao) {
       case 1:
         this.localidadeService.createLocalidade(this.usuario.localidade).subscribe(localidade => {

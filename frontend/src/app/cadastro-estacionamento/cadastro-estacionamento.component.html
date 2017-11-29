@@ -2,81 +2,104 @@
 <br>
 <mat-card class="card-register-user">
 
-<div class="title">
-	<h5>Cadastro de estacionamento</h5>
-</div>
+<form #f="ngForm" novalidate>
 
-<hr>
-<br>
+	<div class="title">
+		<h5>Cadastro de estacionamento</h5>
+	</div>
 
-<app-upload-image [imageSrc]="imagem" [height]="'320px'"
-	[widht]="'400px'" (returnImage)="setImage($event)" class="image"></app-upload-image>
+	<hr>
+	<br>
 
-<div style="text-align: center;">
-	<mat-form-field class="input-razao"> <input
-		[readonly]="isReadOnly" type="text" [(ngModel)]="estacionamento.nome"
-		name="nome" matInput placeholder="Razão social"> </mat-form-field>
-</div>
+	<app-upload-image [imageSrc]="imagem" [height]="'320px'"
+		[widht]="'400px'" (returnImage)="setImage($event)" class="image"></app-upload-image>
 
-<div style="text-align: center;">
-	<mat-form-field class="input-cnpj"> <input type="text"
-		[textMask]="{mask: cnpjMask}" [readonly]="isReadOnly"
-		[(ngModel)]="estacionamento.cnpj" name="cnpj" matInput
-		placeholder="CNPJ"> </mat-form-field>
+	
+		<div style="text-align: center;">
+			<mat-form-field class="input-razao"> 
+				<input [readonly]="isReadOnly" type="text" [(ngModel)]="estacionamento.nome"
+				name="nome" matInput placeholder="Razão social" required>
+				<mat-error>Razão social é obrigatório</mat-error>
+			</mat-form-field>
+		</div>
 
-	<mat-form-field class="input-cep"> <input type="text"
-		[textMask]="{mask: cepMask}" [readonly]="isReadOnly"
-		[(ngModel)]="estacionamento.localidade.cep" name="cep" matInput
-		placeholder="CEP"> </mat-form-field>
-</div>
+		<div style="text-align: center;">
+			<mat-form-field class="input-cnpj"> 
+				<input type="text" [textMask]="{mask: cnpjMask}" [readonly]="isReadOnly"
+				[(ngModel)]="estacionamento.cnpj" name="cnpj" matInput
+				placeholder="CNPJ" required>
+				<mat-error>CNPJ é obrigatório</mat-error>				
+			</mat-form-field>
 
-<div style="text-align: center;">
-	<mat-form-field class="input-street"> <input
-		[readonly]="isReadOnly" type="text"
-		[(ngModel)]="estacionamento.localidade.endereco" name="endereco"
-		matInput placeholder="Rua"> </mat-form-field>
+			<mat-form-field class="input-cep"> 
+				<input type="text" [textMask]="{mask: cepMask}" [readonly]="isReadOnly"
+				[(ngModel)]="estacionamento.localidade.cep" name="cep" matInput
+				placeholder="CEP" required>
+				<mat-error>CEP é obrigatório</mat-error>				
+			</mat-form-field>
+		</div>
 
-	<mat-form-field class="input-number"> <input
-		[readonly]="isReadOnly" type="text"
-		[(ngModel)]="estacionamento.localidade.numero" name="numero" matInput
-		type="number" placeholder="Nº"> </mat-form-field>
+		<div style="text-align: center;">
+			<mat-form-field class="input-street"> 
+				<input [readonly]="isReadOnly" type="text"
+				[(ngModel)]="estacionamento.localidade.endereco" name="endereco"
+				matInput placeholder="Rua" required>
+				<mat-error>Rua é obrigatório</mat-error>				
+			</mat-form-field>
 
-	<mat-form-field class="input-phone"> <input require
-		[readonly]="isReadOnly" [(ngModel)]="estacionamento.telefone"
-		name="telefone" [textMask]="{mask: telMask}" matInput
-		placeholder="Telefone" ng-model="number" ui-number-mask="3"> </mat-form-field>
-</div>
+			<mat-form-field class="input-number"> 
+				<input [readonly]="isReadOnly" type="text"
+				[(ngModel)]="estacionamento.localidade.numero" name="numero" matInput
+				type="number" placeholder="Nº" required>
+				<mat-error>Número é obrigatório</mat-error>				
+			</mat-form-field>
 
-<div style="text-align: center;">
-	<mat-form-field class="select-cidade"> <mat-select
-		ng-disabled="isReadOnly"
-		[(ngModel)]="estacionamento.localidade.cidade.codigo" name="codigo"
-		placeholder="Cidade"> <mat-option
-		*ngFor="let cidadeAux of cidades" [value]="cidadeAux.codigo"
-		(click)="carregaBairro(estacionamento.localidade.cidade.codigo)">
-	{{ cidadeAux.descricao }} </mat-option> </mat-select> </mat-form-field>
+			<mat-form-field class="input-phone"> 
+				<input [readonly]="isReadOnly" [(ngModel)]="estacionamento.telefone"
+				name="telefone" [textMask]="{mask: telMask}" matInput
+				placeholder="Telefone" ng-model="number" ui-number-mask="3" required>
+				<mat-error>Nº é obrigatório</mat-error>				
+			</mat-form-field>
+		</div>
 
-	<mat-form-field class="select-bairro"> <mat-select
-		placeholder="Bairro" ng-disabled="isReadOnly"
-		[(ngModel)]="estacionamento.localidade.bairro.codigo" name="codigo">
-	<mat-option *ngFor="let bairroAux of bairros"
-		[value]="bairroAux.codigo"> {{ bairroAux.descricao }} </mat-option> </mat-select> </mat-form-field>
+		<div style="text-align: center;">
+			<mat-form-field class="select-cidade"> 
+				<mat-select ng-disabled="isReadOnly"
+					[(ngModel)]="estacionamento.localidade.cidade.codigo" name="codigo"
+					placeholder="Cidade" required> 
+					<mat-option *ngFor="let cidadeAux of cidades" [value]="cidadeAux.codigo"
+						(click)="carregaBairro(estacionamento.localidade.cidade.codigo)">
+						{{ cidadeAux.descricao }} 
+					</mat-option> 
+				</mat-select>
+				<mat-error>Cidade é obrigatório</mat-error>				
+			</mat-form-field>
 
-	<mat-form-field class="select-estado"> <input
-		[readonly]="isReadOnly" placeholder="UF" matInput maxlength="2"
-		[(ngModel)]="estacionamento.localidade.estado" name="estado">
-	</mat-form-field>
+			<mat-form-field class="select-bairro"> 
+				<mat-select placeholder="Bairro" ng-disabled="isReadOnly"
+					[(ngModel)]="estacionamento.localidade.bairro.codigo" name="codigo" required>
+					<mat-option *ngFor="let bairroAux of bairros"
+						[value]="bairroAux.codigo"> {{ bairroAux.descricao }} 
+					</mat-option> 
+				</mat-select>
+				<mat-error>Bairro é obrigatório</mat-error>				
+			</mat-form-field>
 
-</div>
+			<mat-form-field class="select-estado"> 
+				<input [readonly]="isReadOnly" placeholder="UF" matInput maxlength="2"
+					[(ngModel)]="estacionamento.localidade.estado" name="estado" required>
+				<mat-error>UF é obrigatório</mat-error>				
+			</mat-form-field>
 
-<div class="buttons">
-	<mat-button-toggle (click)="submit()" *ngIf="isBtSaveCanVisible">Salvar</mat-button-toggle>
-	<mat-button-toggle (click)="editarCadastro()"
-		*ngIf="isBtEditExclVisible">Editar</mat-button-toggle>
-	<mat-button-toggle (click)="deletarCadastro()"
-		*ngIf="isBtEditExclVisible">Deletar</mat-button-toggle>
-	<mat-button-toggle (click)="cancelar()" *ngIf="isBtSaveCanVisible">cancelar</mat-button-toggle>
-</div>
+		</div>
 
+		<div class="buttons">
+			<mat-button-toggle (click)="submit()" *ngIf="isBtSaveCanVisible" [disabled]="!f.valid">Salvar</mat-button-toggle>
+			<mat-button-toggle (click)="editarCadastro()"
+				*ngIf="isBtEditExclVisible">Editar</mat-button-toggle>
+			<mat-button-toggle (click)="deletarCadastro()"
+				*ngIf="isBtEditExclVisible">Deletar</mat-button-toggle>
+			<mat-button-toggle (click)="cancelar()" *ngIf="isBtSaveCanVisible">cancelar</mat-button-toggle>
+		</div>
+	</form>
 </mat-card>
-<br>
