@@ -3,14 +3,14 @@
 	border-radius: 25px;
 	opacity: 0.3;
 	position: absolute;
-	top: 140%;
+	top: 130%;
 	width: 96%;
 	height: 40%;
 	left: 2%;
 }
 
 .texto {
-	font-size: 130%;
+	font-size: 100%;
 	font: bold;
 	position: absolute;
 	top: 50%;

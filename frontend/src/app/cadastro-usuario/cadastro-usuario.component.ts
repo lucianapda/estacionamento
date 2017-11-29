@@ -130,6 +130,7 @@ export class CadastroUsuarioComponent implements OnInit {
             this.usuario = user;
             this.salvarImagemBD();
             this.homePage();
+            alert("Salvo com sucesso!");
           },
             error => console.log(error),
             () => "");
@@ -207,6 +208,7 @@ export class CadastroUsuarioComponent implements OnInit {
       localStorage.removeItem('codigoUsuLogado');
       this.localidadeService.deleteLocalidade(this.usuario.localidade.codigo).subscribe(localidade => {
         this.router.navigateByUrl('');
+        alert("Deletado com sucesso!");
       },
         error => console.log(error),
         () => "");

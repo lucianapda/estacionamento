@@ -98,6 +98,7 @@ export class CadastroEstacionamentoComponent implements OnInit {
             this.estacionamento = estacionamento;
 
             this.salvarImagemBD();
+            alert("Salvo com sucesso!");
             this.homePage();
           },
             error => console.log(error),
@@ -175,6 +176,7 @@ export class CadastroEstacionamentoComponent implements OnInit {
     this.service.deletaEstaconamento(this.estacionamento.codigo).subscribe(estacionamento => {
       this.localidadeService.deleteLocalidade(this.estacionamento.localidade.codigo).subscribe(localidade => {
         this.homePage();
+        alert("Deletado com sucesso!");
       },
         error => console.log(error),
         () => "");
