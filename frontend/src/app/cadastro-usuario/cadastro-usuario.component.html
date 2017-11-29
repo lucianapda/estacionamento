@@ -92,34 +92,35 @@
 			<input [readonly]="isReadOnly" [(ngModel)]="usuario.telefone"
 				name="telefone" [textMask]="{mask: telMask}" matInput
 				placeholder="Telefone" ng-model="number" ui-number-mask="3" required>
+				<mat-error>Telefone é obrigatório</mat-error> 
 		</mat-form-field>
 	</div>
 
 	<div style="text-align: center;">
 		<mat-form-field class="input-email"> 
 			<input matInput [readonly]="isReadOnly" [(ngModel)]="usuario.email" name="email" type="email"
-				placeholder="E-mail" [formControl]="email"> 
-			<mat-error *ngIf="email.invalid">
+				placeholder="E-mail" [formControl]="email" required> 
+			<mat-error>
 				{{getErrorMessage()}}
 			</mat-error> 
 		</mat-form-field>
 	</div>
 
-	<div style="text-align: center;">
+	<!--<div style="text-align: center;">
 		<mat-form-field class="input-confEmail"> 
 			<input [(ngModel)]="confiEmail" name="confiEmail" [readonly]="isReadOnly"
-				matInput placeholder="Confirmar email" [formControl]="confEmail"> 
-			<mat-error *ngIf="confEmail.invalid">
+				matInput placeholder="Confirmar email" [formControl]="confEmail" required> 
+			<mat-error>
 				{{getErrorMessageConf()}}
 			</mat-error>
 		</mat-form-field>
-	</div>
+	</div>-->
 
 	<div style="text-align: center;">
 		<mat-form-field class="input-password"> 
-			<input [readonly]="isReadOnly" matInput [(ngModel)]="usuario.senha"
+			<input [readonly]="isReadOnly" matInput [(ngModel)]="usuario.senha" maxlength="20"
 				name="senha" placeholder="Senha" [formControl]="senha"
-				[type]="hide ? 'password' : 'text'" [formControl]="senha"> 
+				[type]="hide ? 'password' : 'text'" required> 
 				<mat-icon matSuffix (click)="hide = !hide">
 					{{hide ? 'visibility' : 'visibility_off'}}
 				</mat-icon>
@@ -129,19 +130,19 @@
 		</mat-form-field>
 	</div>
 
-	<div style="text-align: center;">
+	<!--<div style="text-align: center;">
 		<mat-form-field class="input-confPassword"> 
-			<input [(ngModel)]="confiSenha" name="confiSenha" [readonly]="isReadOnly"
+			<input [(ngModel)]="confiSenha" maxlength="20" name="confiSenha" [readonly]="isReadOnly"
 			matInput placeholder="Confirmar senha"
-			[type]="hide2 ? 'password' : 'text'" [formControl]="confsenha" ng-blur="validaSenha()"> 
+			[type]="hide2 ? 'password' : 'text'" [formControl]="confsenha" onblur="isRequiredSenha()" required> 
 			<mat-icon matSuffix (click)="hide2 = !hide2">
 				{{hide2 ? 'visibility' : 'visibility_off'}}
 			</mat-icon>
-			<mat-error *ngIf="confsenha.invalid">
+			<mat-error>
 				{{getErrorMessageSenhaConf()}}
 			</mat-error>
 		</mat-form-field>
-	</div>
+	</div>-->
 
 	<br>
 

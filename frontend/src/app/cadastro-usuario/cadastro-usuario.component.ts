@@ -72,8 +72,8 @@ export class CadastroUsuarioComponent implements OnInit {
 
   email = new FormControl('', [Validators.required, Validators.email]);
   confEmail = new FormControl('', [Validators.required, Validators.email]);
-  senha = new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]);
-  confsenha = new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]);
+  senha = new FormControl('', [Validators.required, Validators.minLength(6)]);
+  confsenha = new FormControl('', [Validators.required, Validators.minLength(6)]);
 
   sex = [
     {value: '1', name: 'Masculino'},
@@ -116,24 +116,8 @@ export class CadastroUsuarioComponent implements OnInit {
   }
 
   getErrorMessageSenhaConf() {
-    return this.confsenha.hasError('required') ? 'Senha é obrigatório' :
+     return this.confsenha.hasError('required') ? 'Senha é obrigatório' :
       this.confsenha.hasError('minlength') ? 'Senha deve ter no minimo 6 caracteres' : '';
-  }
-
-  validaSenha() {
-    console.log(this.senha.value != this.confsenha.value);
-    if(this.senha.value != this.confsenha.value) {
-      alert("As senhas devem ser iguais.");
-      return false;
-    }
-  }
-
-  validaEmail() {
-    console.log(this.senha.value != this.confsenha.value);
-    if(this.email.value != this.confEmail.value) {
-      alert("AOs emails devem ser iguais.");
-      return false;
-    }
   }
 
   submit() {
