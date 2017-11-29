@@ -36,6 +36,7 @@ import {LocalidadeService} from './models/localidade.service';
 import {NoLoginGuard} from './no-login/no-login.guard';
 import {UploadImageComponent} from './upload-image/upload-image.component';
 import {TextMaskModule} from 'angular2-text-mask';
+import { AgmCoreModule } from '@agm/core';
 
 const appRoutes: Routes = [
   {path: '', component: ScreenHomeComponent},
@@ -83,6 +84,7 @@ import {
 } from '@angular/material';
 import {MyParkingComponent} from './my-parking/my-parking.component';
 import {DisplayCadastreComponent} from './display-cadastre/display-cadastre.component';
+import { InformationService } from './information/information.service';
 import {ImgEstacionamentoService} from './models/img-estacionamento.service';
 
 @NgModule({
@@ -115,6 +117,9 @@ import {ImgEstacionamentoService} from './models/img-estacionamento.service';
     CarouselModule.forRoot(),
     AlertModule.forRoot(),
     FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCogHRSH3rJOK7nqcvRx88N2zvF0zb6GqA'
+    }),
     HttpModule,
     ReactiveFormsModule,
     BrowserModule,
@@ -169,7 +174,8 @@ import {ImgEstacionamentoService} from './models/img-estacionamento.service';
     ServicoLoginService,
     UploadImageComponent,
     ImgUsuarioService,
-    ImgEstacionamentoService
+    ImgEstacionamentoService,
+    InformationService
   ],
   bootstrap: [AppComponent]
 })

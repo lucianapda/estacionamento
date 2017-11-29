@@ -23,6 +23,7 @@ export class LoginDialogComponent implements OnInit {
       localStorage.setItem('codigoUsuLogado', codigo);
       this.cancelar();
       window.location.reload();
+      
     },
       error => {
         this.cancelar();

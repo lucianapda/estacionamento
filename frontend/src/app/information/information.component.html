@@ -12,11 +12,17 @@
 </div>
 <br>
 <div style="text-align: center;">
-	<div style="text-align: center;">
-		<img [src]="estacionamento.imagemEstacionamento[0].imagem"
-			alt="Imagens" width="40%" height="40%" />
-	</div>
 
+	<div class="row">
+		<div style="text-align: center; left: 7%;" class="col">
+			<img [src]="estacionamento.imagemEstacionamento[0].imagem"
+				alt="Imagens" width="70%" height="100%" />
+		</div>
+		<div class="col">
+			<agm-map [latitude]="lat" [longitude]="lng" [zoom]="17"> <agm-marker
+				[latitude]="lat" [longitude]="lng"></agm-marker> </agm-map>
+		</div>
+	</div>
 	<hr style="width: 70%;">
 
 	<div class="row">
@@ -25,24 +31,22 @@
 			<div>
 				<br> Nome: {{estacionamento.nome}}<br> CNPJ:
 				{{estacionamento.cnpj}}<br> Telefone:
-				{{estacionamento.telefone}}<br>
-				CEP: {{estacionamento.localidade.cep}}&nbsp;&nbsp;N&deg;: {{estacionamento.localidade.numero}}<br>
-				Rua: {{estacionamento.localidade.endereco}}<br>
-				Bairro: {{estacionamento.localidade.bairro.descricao}}<br>
-				Cidade: {{estacionamento.localidade.cidade.descricao}}
-				
+				{{estacionamento.telefone}}<br> CEP:
+				{{estacionamento.localidade.cep}}&nbsp;&nbsp;N&deg;:
+				{{estacionamento.localidade.numero}}<br> Rua:
+				{{estacionamento.localidade.endereco}}<br> Bairro:
+				{{estacionamento.localidade.bairro.descricao}}<br> Cidade:
+				{{estacionamento.localidade.cidade.descricao}}
+
 			</div>
 		</div>
 		<div class="col">
 			<h5>Informa&ccedil;&otilde;es do usu&aacute;rio que publicou</h5>
-			<br>
-			<img [src]="estacionamento.usuario.usuarioImgs[0].imagem"
-			alt="Imagens" width="20%" height="28%" />
-			<br><br>
-			Nome: {{estacionamento.usuario.nome}}<br>
-			Email: {{estacionamento.usuario.email}}
+			<br> <img [src]="estacionamento.usuario.usuarioImgs[0].imagem"
+				alt="Imagens" width="15%" height="28%" /> <br> <br> Nome:
+			{{estacionamento.usuario.nome}}<br> Email:
+			{{estacionamento.usuario.email}}
 		</div>
 	</div>
 </div>
-
 </mat-card>

@@ -21,7 +21,6 @@ carousel,
     height: 400px;
 }
 .item img{
-    width: 200%;
     height: 500px;
 }
 a.left{
@@ -32,4 +31,9 @@ a.left:hover{
 }
 .carousel-inner {
     height: 100%;
+}
+
+agm-map {
+   height: 500px;
+	width: 70%; 
 }
